@@ -14,12 +14,13 @@
 
   <properties>
     <!-- Convenience property to set the GWT version -->
-    <gwtVersion>2.5.0</gwtVersion>
+    <gwtVersion>2.5.0-rc2</gwtVersion>
     <!-- GWT needs at least java 1.5 -->
     <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring.version>3.0.5.RELEASE</spring.version>
     <aspectj.version>1.6.11.M2</aspectj.version>
+    <slf4j.version>1.5.6</slf4j.version>
     
     <!--  Mybatis generator properties -->
     <mybatis.generator.overwrite>true</mybatis.generator.overwrite>
@@ -159,6 +160,11 @@
 			<version>1.0</version>
 			<scope>provided</scope>
 		</dependency>
+				<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
   </dependencies>
 
   <build>
@@ -202,7 +208,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>gwt-maven-plugin</artifactId>
-        <version>2.5.0</version>
+        <version>2.5.0-rc2</version>
         <executions>
           <execution>
             <goals>
