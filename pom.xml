@@ -18,6 +18,8 @@
     <!-- GWT needs at least java 1.5 -->
     <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <spring.version>3.0.5.RELEASE</spring.version>
+    <aspectj.version>1.6.11.M2</aspectj.version>
     
     <!--  Mybatis generator properties -->
     <mybatis.generator.overwrite>true</mybatis.generator.overwrite>
@@ -25,7 +27,76 @@
 	<mybatis-generator-core.version>1.3.1</mybatis-generator-core.version>
   </properties>
 
+	<repositories>
+		<repository>
+			<id>gwt-crypto repo</id>
+			<url>http://gwt-crypto.googlecode.com/svn/trunk/repo/</url>
+		</repository>
+		<repository>
+			<id>jboss-maven2-release-repository</id>
+			<name>JBoss Maven Release Repository</name>
+			<url>https://oss.sonatype.org/content/repositories/JBoss/</url>
+		</repository>
+		<repository>
+			<id>jboss-maven-release</id>
+			<name>JBoss Maven Release Repository</name>
+			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>spring-maven-release</id>
+			<name>Spring Maven Release Repository</name>
+			<url>http://maven.springframework.org/release</url>
+		</repository>
+		<repository>
+			<id>spring-maven-milestone</id>
+			<name>Spring Maven Milestone Repository</name>
+			<url>http://maven.springframework.org/milestone</url>
+		</repository>
+		<repository>
+			<id>spring-roo-repository</id>
+			<name>Spring Roo Repository</name>
+			<url>http://spring-roo-repository.springsource.org/release</url>
+		</repository>
+		<!-- repository> <id>JBoss Repo</id> <url>https://repository.jboss.org/nexus/content/repositories/releases</url> 
+			<name>JBoss Repo</name> </repository -->
+		<repository>
+			<id>maven.springframework.org.external</id>
+			<url>http://maven.springframework.org/external</url>
+			<name>SpringSource Maven Repository - External Releases</name>
+		</repository>
+	</repositories>
+
   <dependencies>
+  <!-- aspectj dependency called back to properties to manage version -->
+    
+    <!-- Spring dependancy called back to properties to manage version -->
+	<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>org.springframework.asm</artifactId>
+				</exclusion>
+			</exclusions>
+	</dependency>
+    <dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<version>${spring.version}</version>
+		<scope>test</scope>
+		<exclusions>
+			<exclusion>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
   	<dependency>
 		<groupId>org.mybatis</groupId>
 		<artifactId>mybatis-spring</artifactId>
@@ -67,6 +138,27 @@
       <classifier>sources</classifier>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>org.aspectj</groupId>
+    	<artifactId>aspectjrt</artifactId>
+    	<version>1.6.11.M2</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.aspectj</groupId>
+    	<artifactId>aspectjweaver</artifactId>
+    	<version>1.6.11.M2</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-aspects</artifactId>
+    	<version>3.0.6.RELEASE</version>
+    </dependency>
+    <dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
   </dependencies>
 
   <build>
@@ -74,7 +166,30 @@
     <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
 
     <plugins>
-    
+    <!-- tells maven to do compile time weaving -->
+    <plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>1.3.1</version>
+				<executions>
+					<execution>
+						<configuration>
+							<aspectLibraries>
+								<aspectLibrary>
+									<groupId>org.springframework</groupId>
+									<artifactId>spring-aspects</artifactId>
+								</aspectLibrary>
+							</aspectLibraries>
+							<source>1.6</source>
+							<target>1.6</target>
+						</configuration>
+						<goals>
+							<goal>compile</goal>       <!-- use this goal to weave all your main classes -->
+							<goal>test-compile</goal>  <!-- use this goal to weave all your test classes -->
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
     <!-- MyBatis Plugin -->
 		<plugin>
 			<groupId>org.mybatis.generator</groupId>
