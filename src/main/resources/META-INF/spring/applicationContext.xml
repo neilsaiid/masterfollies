@@ -50,7 +50,7 @@
     <context:annotation-config/>
     
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-	  <property name="dataSource" ref="campusDataSource" />
+	  <property name="dataSource" ref="masterfolliesDataSource" />
 	</bean>
 
     <context:component-scan base-package="com.ritchey.forms.server">
