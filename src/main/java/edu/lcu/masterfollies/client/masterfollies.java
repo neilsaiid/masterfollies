@@ -1,6 +1,6 @@
 package edu.lcu.masterfollies.client;
 
-import edu.lcu.masterfollies.shared.FieldVerifier;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -111,10 +111,10 @@ public class masterfollies implements EntryPoint {
         // First, we validate the input.
         errorLabel.setText("");
         String textToServer = nameField.getText();
-        if (!FieldVerifier.isValidName(textToServer)) {
-          errorLabel.setText("Please enter at least four characters");
-          return;
-        }
+//        if (!FieldVerifier.isValidName(textToServer)) {
+//          errorLabel.setText("Please enter at least four characters");
+//          return;
+//        }
 
         // Then, we send the input to the server.
         sendButton.setEnabled(false);
