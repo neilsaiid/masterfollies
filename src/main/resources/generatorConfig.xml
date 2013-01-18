@@ -29,10 +29,25 @@
               
 <!-- copy this example for the rest of the tables. -->
     <table tableName="judges" domainObjectName="Judges" >
-    	
     	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
     	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
     	
+    <table tableName="club_names" domainObjectName="ClubNames" >    	
+    	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
+    	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
+    	
+    <table tableName="details" domainObjectName="Details" >   	
+    	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
+    	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
+    	    	
+     <table tableName="questions" domainObjectName="Questions" >   	
+    	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
+    	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
+    	    	
+     <table tableName="results" domainObjectName="Results" >    	
+    	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
+    	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
+     	
 
     	
   </context>
