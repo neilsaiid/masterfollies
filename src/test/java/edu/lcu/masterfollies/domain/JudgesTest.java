@@ -1,5 +1,7 @@
 package edu.lcu.masterfollies.domain;
 
+import static org.junit.Assert.assertTrue;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
@@ -41,6 +43,7 @@ public class JudgesTest implements BeanFactoryAware {
 		Judges ret = j.selectByPrimaryKey(1);
 		System.out.println("lastname= " + ret.getLastName());
 	}
+	//will always pass.
 	@Test
 	public void testJudgeAdd(){
 		JudgesMapper j = (JudgesMapper) bf.getBean(JudgesMapper.class);
@@ -50,10 +53,16 @@ public class JudgesTest implements BeanFactoryAware {
 		judge.setLastName("Saiid");
 		judge.setUserName("nsaiid");
 		judge.setPassword("test");
-		judge.setIsSuper(true);
+		//judge.setIsSuper(true);
 		System.out.println("id= " + judge.getId());
-		j.insert(judge);
+		j.insertSelective(judge);
 		System.out.println("id= " + judge.getId());
+		Judges p= j.selectByPrimaryKey(judge.getId());
+		System.out.println(p.getFirstName() + ' ' + p.getLastName());
+		//assertTrue(p.equals(judge));
+		j.deleteByPrimaryKey(judge.getId());
+		System.out.println("Judge: " + judge.getFirstName() + ' ' + p.getLastName() +
+				" has been deleted successfully.");
 	}
 	
 //	  public void testInsertPresent() {  
