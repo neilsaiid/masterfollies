@@ -1,7 +1,5 @@
 package edu.lcu.masterfollies.domain;
 
-import static org.junit.Assert.assertTrue;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
@@ -12,8 +10,6 @@ import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-
 
 
 @Configurable
@@ -41,7 +37,7 @@ public class JudgesTest implements BeanFactoryAware {
 	public void testJudgeFind(){
 		JudgesMapper j = (JudgesMapper) bf.getBean(JudgesMapper.class);
 		Judges ret = j.selectByPrimaryKey(1);
-		System.out.println("lastname= " + ret.getLastName());
+		log.debug("lastname= " + ret.getLastName());
 	}
 	//will always pass.
 	@Test
@@ -54,14 +50,14 @@ public class JudgesTest implements BeanFactoryAware {
 		judge.setUserName("nsaiid");
 		judge.setPassword("test");
 		//judge.setIsSuper(true);
-		System.out.println("id= " + judge.getId());
+		log.debug("id= " + judge.getId());
 		j.insertSelective(judge);
-		System.out.println("id= " + judge.getId());
+		log.debug("id= " + judge.getId());
 		Judges p= j.selectByPrimaryKey(judge.getId());
-		System.out.println(p.getFirstName() + ' ' + p.getLastName());
+		log.debug(p.getFirstName() + ' ' + p.getLastName());
 		//assertTrue(p.equals(judge));
 		j.deleteByPrimaryKey(judge.getId());
-		System.out.println("Judge: " + judge.getFirstName() + ' ' + p.getLastName() +
+		log.debug("Judge: " + judge.getFirstName() + ' ' + p.getLastName() +
 				" has been deleted successfully.");
 	}
 	
