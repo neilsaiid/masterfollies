@@ -39,7 +39,7 @@ public class JudgesTest implements BeanFactoryAware {
 	public void testJudgeFind(){
 		JudgesMapper j = (JudgesMapper) bf.getBean(JudgesMapper.class);
 		Judges ret = j.selectByPrimaryKey(1);
-		System.out.println("lastname= " + ret.getLastname());
+		System.out.println("lastname= " + ret.getLastName());
 	}
 	
 
