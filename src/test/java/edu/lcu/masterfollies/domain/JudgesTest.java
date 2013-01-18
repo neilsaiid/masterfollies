@@ -12,8 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
-
-
 @Configurable
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/META-INF/spring/applicationContext.xml", 
@@ -39,10 +37,35 @@ public class JudgesTest implements BeanFactoryAware {
 	public void testJudgeFind(){
 		JudgesMapper j = (JudgesMapper) bf.getBean(JudgesMapper.class);
 		Judges ret = j.selectByPrimaryKey(1);
-		System.out.println("lastname= " + ret.getLastName());
+		log.debug("lastname= " + ret.getLastName());
+	}
+	//will always pass.
+	@Test
+	public void testJudgeAdd(){
+		JudgesMapper j = (JudgesMapper) bf.getBean(JudgesMapper.class);
+		//Judges judges = new Judges("Neil","Saiid","nsaiid","test");
+		Judges judge = new Judges();
+		judge.setFirstName("neil");
+		judge.setLastName("Saiid");
+		judge.setUserName("nsaiid");
+		judge.setPassword("test");
+		//judge.setIsSuper(true);
+		log.debug("id= " + judge.getId());
+		j.insertSelective(judge);
+		log.debug("id= " + judge.getId());
+		Judges p= j.selectByPrimaryKey(judge.getId());
+		log.debug(p.getFirstName() + ' ' + p.getLastName());
+		//assertTrue(p.equals(judge));
+		j.deleteByPrimaryKey(judge.getId());
+		log.debug("Judge: " + judge.getFirstName() + ' ' + p.getLastName() +
+				" has been deleted successfully.");
 	}
 	
-
+//	  public void testInsertPresent() {  
+//	    	PeopleMapper p = (PeopleMapper) bf.getBean("peopleMapper");
+//	    	Course course = new Course("2005", "FALL", "01", "BIB1310", "LEC", "06");
+//	    	int x = p.insertPresent(course);
+//	    	System.err.println("insert present count x = " + x);
 
 //	 @Test    
 //	    public void testFindPerson() {  

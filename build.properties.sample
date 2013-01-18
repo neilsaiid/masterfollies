@@ -1,0 +1,4 @@
+database.password=
+database.url=jdbc:postgresql://localhost:5432/MasterFollies
+database.user=
+database.driverClassName=org.postgresql.Driver
