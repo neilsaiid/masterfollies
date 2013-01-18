@@ -41,8 +41,26 @@ public class JudgesTest implements BeanFactoryAware {
 		Judges ret = j.selectByPrimaryKey(1);
 		System.out.println("lastname= " + ret.getLastName());
 	}
+	@Test
+	public void testJudgeAdd(){
+		JudgesMapper j = (JudgesMapper) bf.getBean(JudgesMapper.class);
+		//Judges judges = new Judges("Neil","Saiid","nsaiid","test");
+		Judges judge = new Judges();
+		judge.setFirstName("neil");
+		judge.setLastName("Saiid");
+		judge.setUserName("nsaiid");
+		judge.setPassword("test");
+		judge.setIsSuper(true);
+		System.out.println("id= " + judge.getId());
+		j.insert(judge);
+		System.out.println("id= " + judge.getId());
+	}
 	
-
+//	  public void testInsertPresent() {  
+//	    	PeopleMapper p = (PeopleMapper) bf.getBean("peopleMapper");
+//	    	Course course = new Course("2005", "FALL", "01", "BIB1310", "LEC", "06");
+//	    	int x = p.insertPresent(course);
+//	    	System.err.println("insert present count x = " + x);
 
 //	 @Test    
 //	    public void testFindPerson() {  
