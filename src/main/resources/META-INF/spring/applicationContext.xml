@@ -53,13 +53,13 @@
 	  <property name="dataSource" ref="masterfolliesDataSource" />
 	</bean>
 
-    <context:component-scan base-package="com.ritchey.forms.server">
+    <context:component-scan base-package="edu.lcu.masterfollies.domain">
    
     </context:component-scan>
 
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> 
-		<property name="basePackage" value="com.ritchey.forms.mapper" />
+		<property name="basePackage" value="edu.lcu.masterfollies.domain" />
 	</bean>
  
 </beans>
