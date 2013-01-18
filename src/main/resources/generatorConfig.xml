@@ -10,7 +10,7 @@
   <context id="DB2Tables" targetRuntime="MyBatis3" >
       <jdbcConnection driverClass="org.postgresql.Driver"
               connectionURL="jdbc:postgresql://localhost:5432/MasterFollies"
-                      userId="${database.user}" password="${database.password}">
+                      userId="postgres" password="bCj7AEc">
       </jdbcConnection>
 
     <javaModelGenerator targetPackage="edu.lcu.masterfollies.domain" targetProject="MBGTestProject/src">
@@ -29,10 +29,25 @@
               
 <!-- copy this example for the rest of the tables. -->
     <table tableName="judges" domainObjectName="Judges" >
-    	
     	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
     	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
     	
+    <table tableName="club_names" domainObjectName="ClubNames" >    	
+    	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
+    	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
+    	
+    <table tableName="details" domainObjectName="Details" >   	
+    	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
+    	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
+    	    	
+     <table tableName="questions" domainObjectName="Questions" >   	
+    	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
+    	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
+    	    	
+     <table tableName="results" domainObjectName="Results" >    	
+    	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
+    	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
+     	
 
     	
   </context>
