@@ -40,14 +40,14 @@ public class ClubNamesTest implements BeanFactoryAware {
 		ClubNamesMapper c = (ClubNamesMapper) bf.getBean(ClubNamesMapper.class);		//Judges judges = new Judges("Neil","Saiid","nsaiid","test");
 		ClubNames cn = new ClubNames();
 		cn.setClubName("CD's");
-		System.out.println("Club Name to be added= " + cn.getClubName());
+		log.debug("Club Name to be added= " + cn.getClubName());
 		c.insertSelective(cn);
-		System.out.println("Club Name that was inserted= " + cn.getClubName());
+		log.debug("Club Name that was inserted= " + cn.getClubName());
 		ClubNames p= c.selectByPrimaryKey(cn.getId());
-		System.out.println(p.getClubName());
+		log.debug(p.getClubName());
 		//assertTrue(p.equals(judge));
 		c.deleteByPrimaryKey(cn.getId());
-		System.out.println("Club: " + cn.getClubName() +	" has been deleted successfully.");
+		log.debug("Club: " + cn.getClubName() +	" has been deleted successfully.");
 	}
 }
 	

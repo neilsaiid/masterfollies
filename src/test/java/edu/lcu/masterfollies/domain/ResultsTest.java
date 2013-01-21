@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/META-INF/spring/applicationContext.xml", 
 "classpath:/META-INF/spring/applicationContext-datasource-test.xml"})
-public class ClubNamesTest implements BeanFactoryAware {
+public class ResultsTest implements BeanFactoryAware {
 	
 	private static Log log = LogFactory.getLog(ClubNamesTest.class);
 	BeanFactory bf = null;
