@@ -1,10 +1,11 @@
 package edu.lcu.masterfollies.client;
 
-import edu.lcu.masterfollies.shared.FieldVerifier;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.junit.client.GWTTestCase;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
+
+import edu.lcu.masterfollies.shared.FieldVerifier;
 
 /**
  * GWT JUnit <b>integration</b> tests must extend GWTTestCase.

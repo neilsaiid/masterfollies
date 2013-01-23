@@ -28,26 +28,46 @@ public class ResultsTest implements BeanFactoryAware {
 	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
 		bf = beanFactory;
 	}
-	@Test
-	public void testselectByPrimaryKey(){
-		ClubNamesMapper c = (ClubNamesMapper) bf.getBean(ClubNamesMapper.class);
-		ClubNames ret = c.selectByPrimaryKey(1);
-		System.out.println("Club Name for id " + ret.getId() + "=" + ret.getClubName());
-	}
 	//will always pass.
 	@Test
-	public void testClubNameAddInsertandRemove(){
-		ClubNamesMapper c = (ClubNamesMapper) bf.getBean(ClubNamesMapper.class);		//Judges judges = new Judges("Neil","Saiid","nsaiid","test");
-		ClubNames cn = new ClubNames();
-		cn.setClubName("CD's");
-		System.out.println("Club Name to be added= " + cn.getClubName());
-		c.insertSelective(cn);
-		System.out.println("Club Name that was inserted= " + cn.getClubName());
-		ClubNames p= c.selectByPrimaryKey(cn.getId());
-		System.out.println(p.getClubName());
+	public void testResultsLoadandDelete(){
+		ResultsMapper rm = (ResultsMapper) bf.getBean(ResultsMapper.class);
+		JudgesMapper jm = (JudgesMapper) bf.getBean(JudgesMapper.class);//Judges judges = new Judges("Neil","Saiid","nsaiid","test");
+		Results rt = new Results();
+		//make a new data to be added to the table
+		rt.setJudgeId(1);
+		rt.setClubId(1);
+		rt.setQuestionId(1);
+		rt.setPoints(10);
+		rt.setRank(1);
+		rt.setNotes("This is a test input");
+		//insert the new data created into the table and print out a log report to show
+		//the changes applied to the table
+		rm.insertSelective(rt);
+		log.debug("Judge ID used: "+ rt.getJudgeId());
+		log.debug("Club Id used: " + rt.getClubId());
+		log.debug("Question ID used: " + rt.getQuestionId());
+		log.debug("Points given: " + rt.getPoints());
+		log.debug("Rank given: " + rt.getRank());
+		log.debug("Notes given: " + rt.getNotes());
+		//choose the line that was just entered and print out a report showing the club
+		//name that corresponds to that Judge, Club and Question ID
+		Judges j= jm.selectByPrimaryKey(rt.getJudgeId());
+		Results r= rm.selectByPrimaryKey(rt.getId());
+		log.debug("Judge Name: " + j.getFirstName() + ' ' + j.getLastName());
+		log.debug("Club Name: " + r.getClubId());
+		log.debug("Question: " + r.getQuestionId());
+		
 		//assertTrue(p.equals(judge));
-		c.deleteByPrimaryKey(cn.getId());
-		System.out.println("Club: " + cn.getClubName() +	" has been deleted successfully.");
+		rm.deleteByPrimaryKey(r.getId());
+		log.debug("This test has been deleted successfully.");
 	}
 }
 	
+
+
+
+
+
+
+

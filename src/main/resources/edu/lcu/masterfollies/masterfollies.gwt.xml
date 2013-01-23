@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module rename-to='masterfollies'>
   <!-- Inherit the core Web Toolkit stuff.                        -->
-  <inherits name='com.google.gwt.user.User' />
+  <inherits name='com.google.gwt.user.User' /> 
+  <inherits name="com.google.gwt.junit.JUnit"/>
+  <inherits name="com.google.gwt.resources.Resources" />
+  
+   <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" />
+   <set-property name="log_DivLogger" value="DISABLED" />
+   
+   <inherits name="com.allen_sauer.gwt.log.gwt-log-RemoteLogger" />
 
   <!-- We need the JUnit module in the main module,               -->
   <!-- otherwise eclipse complains (Google plugin bug?)           -->
@@ -18,9 +25,79 @@
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='edu.lcu.masterfollies.client.masterfollies' />
+<!-- 	<define-property name="mobile.user.agent"  values="mobilesafari, none"/> -->
+
+<!-- 	<property-provider name="mobile.user.agent"> -->
+<!-- 		<![CDATA[ -->
+<!--   		var ua = navigator.userAgent.toLowerCase(); -->
+
+<!--         if (ua.indexOf("webkit") != -1 && ua.indexOf("mobile") != -1) { -->
+<!--         return "mobilesafari"; -->
+<!--         } -->
+
+<!--         var isMobile; -->
+
+<!--         // Look for the m as a url argument -->
+<!--         if (isMobile == null) { -->
+<!--         var args = location.search; -->
+<!--         var startMobile = args.indexOf("m"); -->
+<!--         if (startMobile >= 0) { -->
+<!--           var mobile = args.substring(startMobile); -->
+<!--           var begin = mobile.indexOf("=") + 1; -->
+<!--           var end = mobile.indexOf("&"); -->
+<!--           if (end == -1) { -->
+<!--             end = mobile.length; -->
+<!--           } -->
+<!--           isMobile = mobile.substring(begin, end); -->
+<!--         } -->
+<!--         } -->
+
+<!--         if (isMobile){ -->
+<!--         return "mobilesafari"; -->
+<!--         } -->
+
+<!--         return "none"; -->
+<!--   ]]> -->
+
+<!-- 	</property-provider> -->
+
+  <replace-with class="edu.lcu.masterfollies.client.ClientFactoryImpl">
+    <when-type-is class="edu.lcu.masterfollies.client.ClientFactory"/>
+  </replace-with>
+  
+<!-- 	<replace-with class="com.ritchey.attendance.client.ClientFactoryMobileImpl"> -->
+<!-- 		<when-type-is class="com.ritchey.attendance.client.ClientFactory"/> -->
+<!-- 		<all> -->
+<!-- 			<when-property-is name="mobile.user.agent" value="mobilesafari"/> -->
+<!-- 		</all> -->
+		
+<!-- 	</replace-with> -->
+  
+<!--   <replace-with class="com.ritchey.attendance.client.ui.AttendanceViewImpl"> -->
+<!--     <when-type-is class="com.ritchey.attendance.client.ui.AttendanceView"/> -->
+<!--   </replace-with> -->
+  
+  <replace-with class="edu.lcu.masterfollies.client.ui.LoginViewImpl">
+    <when-type-is class="edu.lcu.masterfollies.client.ui.LoginView"/>
+  </replace-with>
+  
+<!--     <replace-with class="com.ritchey.attendance.client.ui.StudentViewImpl"> -->
+<!--     <when-type-is class="com.ritchey.attendance.client.ui.StudentView"/> -->
+<!--   </replace-with> -->
+  
+<!--       <replace-with class="com.ritchey.attendance.client.ui.AttendanceCommentViewImpl"> -->
+<!--     <when-type-is class="com.ritchey.attendance.client.ui.AttendanceCommentView"/> -->
+<!--   </replace-with> -->
 
   <!-- Specify the paths for translatable code                    -->
-  <source path='client' />
-  <source path='shared' />
+  <source path='client'/>
+  <source path='shared'/>
+  <source path='domain'/>
+  <inherits name="com.google.gwt.i18n.I18N"/>
+<!--   <inherits name="com.ritchey.attendance.attendance"/> -->
+  <inherits name="com.google.gwt.place.Place"/>
+  <inherits name="com.google.gwt.activity.Activity"/>
+<!--   <inherits name="com.googlecode.gwt.crypto.Crypto"/> -->
+	
 
 </module>
