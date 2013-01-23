@@ -1,0 +1,158 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+		xmlns:ui='urn:ui:com.google.gwt.uibinder'
+		xmlns:g='urn:import:com.google.gwt.user.client.ui'
+		xmlns:b='urn:import:com.google.gwt.user.cellview.client'>
+	
+
+	<ui:image
+			field='titleGradient'
+			src='../style/images/titleGradient.png'
+			repeatStyle='Horizontal'/>
+	<ui:image
+			field='backButtonImage'
+			src='../style/images/backButton.png'/>
+			
+			<ui:style>
+  .controls {
+    position: absolute;
+    left:0;
+    right:0;
+    top:3px;
+    height: 2em;
+    margin-left: 15px;
+  }
+
+  .controls table {
+    position:absolute;
+    right:0;
+    top:0;
+  }
+  .controls button {
+    display:inline;
+  }
+  .listView {
+    position: relative;
+  }
+  .listView > table {
+    table-layout:fixed;
+  }
+  
+  .listView > table td td:hover {
+	cursor: pointer;
+	border-bottom: 1px solid #ddd;
+	border: 0px;
+	background: none repeat scroll 0 0 #FFFFFF;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 12pt;
+}
+
+  
+		@sprite .titlebar {
+			gwt-image: 'titleGradient';
+			border-bottom: 1px solid #a0abbf;
+			height: 44px;
+		}
+
+		.titlebarLayout {
+			height: 100%;
+			width: 100%;
+		}
+
+		.title {
+			color: #444;
+			font-size: 12pt;
+			font-weight: bold;
+			text-shadow: #ddd 1px 1px 1px;
+		}
+
+		.backButtonCell {
+			width: 50px;
+			padding-left: 5px;
+		}
+
+		.editButtonCell {
+			width: 50px;
+			padding-right: 5px;
+		}
+
+		.button {
+			color: #4d657f;
+			font-size: 9pt;
+			font-weight: bold;
+			border: 1px solid #aebbdd;
+			padding: 4px 6px;
+			background: #ecf1fd;
+			height: 27px;
+		}
+
+		.backButton {
+			border-left: none;
+			padding-left: 2px;
+			margin-left: 0px;
+		}
+
+		@sprite .backButtonImage {
+			gwt-image: 'backButtonImage';
+		}
+
+		.login {
+			height: 32px;
+			color: #222;
+			text-align: center;
+			background: white;
+			padding: 2px 0px;
+			border-top: 1px solid #a0abbf;
+		}
+		
+		.celllist {
+			cursor: pointer;
+			border-bottom: 1px solid #ddd;
+			padding: 10px;
+			font-weight: bold;
+			font-size: 12pt;
+		
+		}
+		
+							.cellTableOddRow {
+  background: #ffffff;
+}
+		
+
+		
+	</ui:style>
+
+	<g:FlowPanel>
+
+		<g:HTMLPanel>
+		<div>Attendance Login -  Attendance requires a validation login about once a semester.</div>
+  <g:HTMLPanel ui:field='tableDiv' styleName="{style.listView}">
+  	<g:Grid >
+  		<g:row>
+  			<g:customCell>
+  				<g:Label text="User Name:" horizontalAlignment="ALIGN_RIGHT"/>
+  			</g:customCell>
+  			<g:customCell>
+  				<g:TextBox/>
+  			</g:customCell>
+  		</g:row>
+  		<g:row>
+  			<g:customCell>
+  				<g:Label text="Password:" horizontalAlignment="ALIGN_RIGHT"/>
+  			</g:customCell>
+  			<g:customCell>
+  				<g:TextBox/>
+  			</g:customCell>
+  		</g:row>
+  	</g:Grid>
+  	<g:HorizontalPanel>
+  		<g:Button text="OK"/>
+  	</g:HorizontalPanel>
+  </g:HTMLPanel>
+  
+  </g:HTMLPanel>
+
+	</g:FlowPanel>
+
+</ui:UiBinder>
