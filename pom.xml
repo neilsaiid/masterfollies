@@ -219,10 +219,10 @@
 <!-- 								<directory>src/test/java</directory> -->
 <!-- 								<filtering>true</filtering> -->
 <!-- 							</resource> -->
-<!-- 							<resource> -->
-<!-- 								<directory>src/test/jetty</directory> -->
-<!-- 								<filtering>true</filtering> -->
-<!-- 							</resource> -->
+							<resource>
+								<directory>src/test/jetty</directory>
+								<filtering>true</filtering>
+							</resource>
 <!-- 							<resource> -->
 <!-- 								<directory>src/main/java/edu/lcu/masterfollies/client</directory> -->
 <!-- 								<filtering>true</filtering> -->
