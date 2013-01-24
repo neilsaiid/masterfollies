@@ -1,4 +1,4 @@
-package com.ritchey.attendance.shared;
+package edu.lcu.masterfollies.shared;
 
 
 
@@ -10,7 +10,7 @@ public class Log {
 	
 	public static void debug(String message) {
 		if (!testing) {
-			 com.allen_sauer.gwt.log.client.Log.debug(message);
+			 //com.allen_sauer.gwt.log.client.Log.debug(message);
 			 System.err.println(message);
 		}
 		else {
@@ -23,7 +23,8 @@ public class Log {
 	}
 	
 	public static void setUncaughtExceptionHandler() {
-		if (!testing)
-			com.allen_sauer.gwt.log.client.Log.setUncaughtExceptionHandler();
+		if (!testing) {
+			//com.allen_sauer.gwt.log.client.Log.setUncaughtExceptionHandler();
+		}
 	}
 }
