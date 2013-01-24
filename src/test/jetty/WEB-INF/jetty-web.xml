@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Configure class="org.mortbay.jetty.webapp.WebAppContext">
+	<New id="pc" class="org.mortbay.jetty.plus.naming.Resource">
+		<Arg>jdbc/masterfollies</Arg>
+		<Arg>
+		 <New class="org.apache.commons.dbcp.BasicDataSource">
+			 <Set name="driverClassName">${database.driverClassName}</Set>
+			 <Set name="url">${database.url}</Set>
+			 <Set name="username">${database.user}</Set>
+			 <Set name="password">${database.password}</Set>
+		    </New>
+		</Arg>
+	</New>
+</Configure>
