@@ -27,6 +27,10 @@
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='edu.lcu.masterfollies.client.masterfollies' />
+  
+    <replace-with class="edu.lcu.masterfollies.client.ClientFactoryImpl">
+    <when-type-is class="edu.lcu.masterfollies.client.ClientFactory"/>
+  </replace-with>
 
   <source path='client'/>
   <source path='shared'/>
