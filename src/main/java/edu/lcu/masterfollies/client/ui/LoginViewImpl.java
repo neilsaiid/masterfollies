@@ -90,7 +90,7 @@ public class LoginViewImpl extends DialogBox implements LoginView {
 		horizontalPanel4.add(x);
 	}
 
-	//@Override
+	@Override
 	public Button getBtnCancel() {
 		return btnCancel;
 	}
@@ -107,12 +107,12 @@ public class LoginViewImpl extends DialogBox implements LoginView {
 		return txtPassword;
 	}
 
-	//@Override
+	@Override
 	public DialogBox asDialog() {
 		return this;
 	}
 
-	//@Override
+	@Override
 	public Button getOKButton() {
 		return btnOK;
 	}

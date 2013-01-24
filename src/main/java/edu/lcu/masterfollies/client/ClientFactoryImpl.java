@@ -28,25 +28,25 @@ public class ClientFactoryImpl implements ClientFactory
 
 
 
-	//@Override
+	@Override
 	public GreetingServiceAsync getRpcService() {
 		return rpcService;
 	}
 
-	//@Override
+	@Override
 	public EventBus getEventBus()
 	{
 		return eventBus;
 	}
 
-	//@Override
+	@Override
 	public PlaceController getPlaceController()
 	{
 		return placeController;
 	}
 
 
-	//@Override
+	@Override
 	public LoginView getLoginView() {
 		return loginView;
 	}

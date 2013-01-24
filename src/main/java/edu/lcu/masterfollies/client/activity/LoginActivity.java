@@ -45,7 +45,7 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 	      }));
 	    
 		addHandler(this.display.getTxtUserName().addKeyPressHandler(new KeyPressHandler() {
-			//@Override
+			@Override
 			public void onKeyPress(KeyPressEvent event) {
 				int charCode = event.getNativeEvent().getCharCode();
 
@@ -60,7 +60,7 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 		    }));
 		
 		addHandler(this.display.getTxtPassword().addKeyPressHandler(new KeyPressHandler() {
-			//@Override
+			@Override
 			public void onKeyPress(KeyPressEvent event) {
 				int charCode = event.getNativeEvent().getCharCode();
 
@@ -75,7 +75,7 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 		    }));
 		
 		addHandler(this.display.getBtnCancel().addClickHandler(new ClickHandler() {
-			//@Override
+			@Override
 			public void onClick(ClickEvent event) {
 				cancel();
 			}
@@ -112,7 +112,7 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 	/**
 	 * Invoked by the ActivityManager to start a new Activity
 	 */
-	//@Override
+	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		Log.debug("Starting Log Screen...");
 		//Log.debug("LOGIN PRESENTER GO FROM");

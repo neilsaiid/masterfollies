@@ -28,7 +28,7 @@ public class AppActivityMapper implements ActivityMapper {
 	 * Map each Place to its corresponding Activity. This would be a great use
 	 * for GIN.
 	 */
-	//@Override
+	@Override
 	public Activity getActivity(Place place) {
 
 		//Log.debug("Placd is a " + place.getClass().getName());
