@@ -1,7 +1,6 @@
 package edu.lcu.masterfollies.client;
 
 
-import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.EntryPoint;
@@ -16,6 +15,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import edu.lcu.masterfollies.client.mvp.AppActivityMapper;
 import edu.lcu.masterfollies.client.mvp.AppPlaceHistoryMapper;
 import edu.lcu.masterfollies.client.place.LoginPlace;
+import edu.lcu.masterfollies.shared.Log;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -38,12 +38,13 @@ public class masterfollies implements EntryPoint {
    */
   private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
 
-  private final Messages messages = GWT.create(Messages.class);
+  //private final Messages messages = GWT.create(Messages.class);
 
   /**
    * This is the entry point method.
    */
   public void onModuleLoad() {
+	  Log.debug("OML");
 	  clientFactory = GWT.create(ClientFactory.class);
 	  EventBus eventBus = clientFactory.getEventBus();
 		PlaceController placeController = clientFactory.getPlaceController();

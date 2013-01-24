@@ -5,6 +5,17 @@
 
 <web-app>
 
+      <!-- context for spring -->
+  <context-param>
+   <param-name>contextConfigLocation</param-name>
+   <param-value>classpath*:META-INF/spring/applicationContext*.xml</param-value>
+ </context-param>
+ 
+   <!-- listener for spring to init -->
+ <listener>
+   <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+ </listener>
+ 
   <!-- Servlets -->
   <servlet>
     <servlet-name>greetServlet</servlet-name>
@@ -16,16 +27,9 @@
     <url-pattern>/masterfollies/greet</url-pattern>
   </servlet-mapping>
   
-  <!-- context for spring -->
-  <context-param>
-   <param-name>contextConfigLocation</param-name>
-   <param-value>classpath*:META-INF/spring/applicationContext*.xml</param-value>
- </context-param>
+
  
- <!-- listener for spring to init -->
- <listener>
-   <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
- </listener>
+
   
 
   <!-- Default page to serve -->
