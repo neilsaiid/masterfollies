@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Configure class="org.mortbay.jetty.webapp.WebAppContext">
+	<New id="pc" class="org.mortbay.jetty.plus.naming.Resource">
+		<Arg>jdbc/powerCampus</Arg>
+		<Arg>
+		 <New class="org.apache.commons.dbcp.BasicDataSource">
+			 <Set name="driverClassName">com.microsoft.sqlserver.jdbc.SQLServerDriver</Set>
+			 <Set name="url">${database.url}</Set>
+			 <Set name="username">sa</Set>
+			 <Set name="password">${database.password}</Set>
+		    </New>
+		</Arg>
+	</New>
+	<New id="progress" class="org.mortbay.jetty.plus.naming.Resource">
+		<Arg>jdbc/progress</Arg>
+		<Arg>
+		 <New class="org.apache.commons.dbcp.BasicDataSource">
+			 <Set name="driverClassName">com.microsoft.sqlserver.jdbc.SQLServerDriver</Set>
+			 <Set name="url">${progress.database.url}</Set>
+			 <Set name="username">${progress.database.username}</Set>
+			 <Set name="password">${progress.database.password}</Set>
+		    </New>
+		</Arg>
+	</New>
+	<!--New id="mdl" class="org.mortbay.jetty.plus.naming.Resource">
+		<Arg>jdbc/moodle</Arg>
+		<Arg>
+		     <New class="org.apache.commons.dbcp.BasicDataSource">
+                 <Set name="driverClassName">org.gjt.mm.mysql.Driver</Set>
+                 <Set name="url">jdbc:mysql://localhost:3306/moodle</Set>
+                 <Set name="username">root</Set>
+                 <Set name="password">${database.moodle.password}</Set>
+            </New>
+        </Arg>
+	</New>
+	<New id="postgres" class="org.mortbay.jetty.plus.naming.Resource">
+		<Arg>jdbc/postgres</Arg>
+		<Arg>
+		     <New class="org.apache.commons.dbcp.BasicDataSource">
+                 <Set name="driverClassName">org.postgresql.Driver</Set>
+                 <Set name="username">postgres</Set>
+                 <Set name="password">${database.postgres.password}</Set>
+                 <Set name="url">jdbc:postgresql://localhost:5432/status</Set>
+            </New>
+        </Arg>
+	</New-->
+</Configure>
