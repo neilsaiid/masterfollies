@@ -32,6 +32,11 @@
     <when-type-is class="edu.lcu.masterfollies.client.ClientFactory"/>
   </replace-with>
 
+        <replace-with class="edu.lcu.masterfollies.client.ui.LoginViewImpl">
+    <when-type-is class="edu.lcu.masterfollies.client.ui.LoginView"/>
+  </replace-with>
+    
+        
   <source path='client'/>
   <source path='shared'/>
   <source path='domain'/>
