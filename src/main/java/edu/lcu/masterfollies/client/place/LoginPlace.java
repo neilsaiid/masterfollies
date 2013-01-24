@@ -16,13 +16,13 @@ public class LoginPlace extends Place
 	public static class Tokenizer implements PlaceTokenizer<LoginPlace>
 	{
 
-		//@Override
+		@Override
 		public String getToken(LoginPlace place)
 		{
 			return "login";
 		}
 
-		//@Override
+		@Override
 		public LoginPlace getPlace(String token)
 		{
 			return new LoginPlace(token);

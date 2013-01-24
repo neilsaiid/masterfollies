@@ -54,7 +54,6 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 //	    }
 		return "Thank you. Please wait while we verifiy your information";
 	}
-	//@Override
 	
 	/**
 	 *  Accepts user name and password and returns null if they do not authenticate against 
@@ -63,6 +62,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	 * @param password  - given to user by super judge
 	 * @return
 	 */
+	@Override
 	public Judges authenticate(String user, String password) {
 		log.debug("Authenticate " + user);
 		if ((user == null) || (password == null))
