@@ -80,7 +80,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		
 			
 		if ((result==null) || (result.size()==0)){
-			log.debug("returning null");
+			log.debug("(>^^)> returning null <(^^<)");
 			return null;
 		}
 		for(Judges j:result){
