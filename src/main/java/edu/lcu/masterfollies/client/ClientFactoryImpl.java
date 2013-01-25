@@ -7,6 +7,7 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 
 import edu.lcu.masterfollies.client.mvp.AppPlaceHistoryMapper;
+import edu.lcu.masterfollies.client.ui.ClubListView;
 import edu.lcu.masterfollies.client.ui.LoginView;
 
 public class ClientFactoryImpl implements ClientFactory
@@ -18,6 +19,7 @@ public class ClientFactoryImpl implements ClientFactory
 	private final PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
 	
 	private final LoginView loginView = GWT.create(LoginView.class);
+	private final ClubListView clubListView = GWT.create(ClubListView.class);
 	
 	private GreetingServiceAsync rpcService = GWT.create(GreetingService.class);
 	
@@ -55,6 +57,14 @@ public class ClientFactoryImpl implements ClientFactory
 	public PlaceHistoryHandler getHistoryHandler() {
 		// TODO Auto-generated method stub
 		return historyHandler;
+	}
+
+
+
+
+	@Override
+	public ClubListView getClubListView() {		
+		return clubListView;
 	}
 
 

@@ -1,6 +1,4 @@
 package edu.lcu.masterfollies.domain;
-import static org.junit.Assert.assertTrue;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
@@ -21,10 +19,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 "classpath:/META-INF/spring/applicationContext-datasource-test.xml"})
 public class QuestionsTest implements BeanFactoryAware {
 	
-	private static Log log = LogFactory.getLog(ClubNamesTest.class);
+	private static Log log = LogFactory.getLog(QuestionsTest.class);
 	BeanFactory bf = null;
     
-	//@Override
+	@Override
 	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
 		bf = beanFactory;
 	}

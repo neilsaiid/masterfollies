@@ -126,7 +126,7 @@
 	<g:FlowPanel>
 
 		<g:HTMLPanel>
-		<div>Attendance Login -  Attendance requires a validation login about once a semester.</div>
+		<div>Master Follies !!!</div>
   <g:HTMLPanel ui:field='tableDiv' styleName="{style.listView}">
   	<g:Grid >
   		<g:row>
@@ -147,7 +147,7 @@
   		</g:row>
   	</g:Grid>
   	<g:HorizontalPanel>
-  		<g:Button text="OK"/>
+  		<g:Button text="Log In"/>
   	</g:HorizontalPanel>
   </g:HTMLPanel>
   

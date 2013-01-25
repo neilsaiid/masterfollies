@@ -9,6 +9,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
+import com.google.gwt.user.client.Window.Navigator;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 
@@ -32,7 +33,9 @@ public class masterfollies implements EntryPoint {
   private static final String SERVER_ERROR = "An error occurred while "
       + "attempting to contact the server. Please check your network "
       + "connection and try again.";
-
+  public static final MasterfolliesResources images = GWT.create(
+		  MasterfolliesResources.class);
+  public static final AppConstants constants = GWT.create(AppConstants.class);
   /**
    * Create a remote service proxy to talk to the server-side Greeting service.
    */
@@ -63,6 +66,15 @@ public class masterfollies implements EntryPoint {
 		clientFactory.getHistoryHandler().register(placeController, eventBus, defaultPlace);
 
 		RootPanel.get("content").add(appWidget);
+		String userAgent = Navigator.getUserAgent();
+		boolean mobileApple = userAgent.contains("iPad;") || userAgent.contains("iPhone;");
+		
+		if (!mobileApple) {
+			MasterfolliesResources.INSTANCE.css().ensureInjected();
+		}
+		else {
+			MasterfolliesResources.INSTANCE.cssIpad().ensureInjected();
+		}
 	  LoginPlace defaultPlace = new LoginPlace("login");
 	  
 	  clientFactory.getPlaceController().goTo(defaultPlace);

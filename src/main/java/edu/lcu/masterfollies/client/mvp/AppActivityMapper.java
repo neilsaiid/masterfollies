@@ -5,7 +5,9 @@ import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 
 import edu.lcu.masterfollies.client.ClientFactory;
+import edu.lcu.masterfollies.client.activity.ClubListActivity;
 import edu.lcu.masterfollies.client.activity.LoginActivity;
+import edu.lcu.masterfollies.client.place.ClubListPlace;
 import edu.lcu.masterfollies.client.place.LoginPlace;
 
 public class AppActivityMapper implements ActivityMapper {
@@ -40,6 +42,8 @@ public class AppActivityMapper implements ActivityMapper {
 //			return new StudentActivity(clientFactory);
 	    if (place instanceof LoginPlace)
 			return new LoginActivity(clientFactory);
+	    else if (place instanceof ClubListPlace)
+	    	return new ClubListActivity(clientFactory);
 
 		return null;
 	}

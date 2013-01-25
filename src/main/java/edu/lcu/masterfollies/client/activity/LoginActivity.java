@@ -14,6 +14,8 @@ import com.google.gwt.user.client.ui.DialogBox;
 
 import edu.lcu.masterfollies.client.ClientFactory;
 import edu.lcu.masterfollies.client.GreetingServiceAsync;
+import edu.lcu.masterfollies.client.place.ClubListPlace;
+import edu.lcu.masterfollies.client.place.LoginPlace;
 import edu.lcu.masterfollies.client.ui.LoginView;
 import edu.lcu.masterfollies.domain.Judges;
 import edu.lcu.masterfollies.shared.Log;
@@ -99,14 +101,27 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 					public void onSuccess(Judges arg0) {
 						// TODO Auto-generated method stub
 						if(arg0==null){
+							Log.debug("don't Hide");
+							if (arg0 == null) {
+								display.getLblErrorMessage().setText(
+									"Name or password is incorrect; attempt " + ++attempt);
+							} else {
+								display.getLblErrorMessage().setText(
+										"You are not authorized ");
 							return;//message to user that they didn't type valid username or pass
+							}
 						}
 						// TODO user has successfully logged on
+						display.asDialog().hide();
+						ClubListPlace clubListPlace = new ClubListPlace("clublist");
+						  
+						 clientFactory.getPlaceController().goTo(clubListPlace);
+						//goto new (ClubListPlace)
 					}
 
 			
 			
-		});
+					});
 	}
 
 	/**
