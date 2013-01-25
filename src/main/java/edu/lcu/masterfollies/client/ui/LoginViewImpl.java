@@ -35,7 +35,7 @@ public class LoginViewImpl extends DialogBox implements LoginView {
 		HorizontalPanel horizontalPanelTitle = new HorizontalPanel();
 		verticalPanelRoot.add(horizontalPanelTitle);
 		horizontalPanelTitle.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		Label lblTitle = new Label("Attendance");
+		Label lblTitle = new Label("Master Follies Judge");
 		lblTitle.setStyleName("loginTitle");
 		horizontalPanelTitle.add(lblTitle);
 		
@@ -85,7 +85,7 @@ public class LoginViewImpl extends DialogBox implements LoginView {
 		
 		HorizontalPanel horizontalPanel4 = new HorizontalPanel();
 		verticalPanelRoot.add(horizontalPanel4);
-		HTML x = new HTML("Attendance Login - you will be asked to login about once a semester");
+		HTML x = new HTML("Master Follies!!!");
 		x.setStyleName("loginMessage");
 		horizontalPanel4.add(x);
 	}
