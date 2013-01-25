@@ -1,7 +1,6 @@
 package edu.lcu.masterfollies.client.activity;
 
 
-import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
@@ -17,6 +16,7 @@ import edu.lcu.masterfollies.client.ClientFactory;
 import edu.lcu.masterfollies.client.GreetingServiceAsync;
 import edu.lcu.masterfollies.client.ui.LoginView;
 import edu.lcu.masterfollies.domain.Judges;
+import edu.lcu.masterfollies.shared.Log;
 
 
 public class LoginActivity extends BasePresenter implements LoginView.Presenter {
