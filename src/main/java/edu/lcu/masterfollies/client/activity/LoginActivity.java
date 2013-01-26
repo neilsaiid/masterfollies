@@ -105,11 +105,7 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 							if (arg0 == null) {
 								display.getLblErrorMessage().setText(
 									"Name or password is incorrect; attempt " + ++attempt);
-							} else {
-								display.getLblErrorMessage().setText(
-										"You are not authorized ");
-							return;//message to user that they didn't type valid username or pass
-							}
+							}return;
 						}
 						// TODO user has successfully logged on
 						display.asDialog().hide();
