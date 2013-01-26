@@ -22,7 +22,7 @@ import edu.lcu.masterfollies.domain.Judges;
 
 
 public class ClubListActivity extends BasePresenter implements LoginView.Presenter {
-	//private static Log log = LogFactory.getLog(LoginActivity.class);
+
 	private int attempt = 0;
 
 	private ClientFactory clientFactory;
@@ -36,7 +36,6 @@ public class ClubListActivity extends BasePresenter implements LoginView.Present
 		this.display = clientFactory.getClubListView();
 		this.eventBus = clientFactory.getEventBus();
 		this.rpcService = clientFactory.getRpcService();
-		bind();
 	}
 	
 //	public void bind() {
@@ -46,35 +45,6 @@ public class ClubListActivity extends BasePresenter implements LoginView.Present
 //	        }
 //	      }));
 //	    
-//		addHandler(this.display.getTxtUserName().addKeyPressHandler(new KeyPressHandler() {
-//			@Override
-//			public void onKeyPress(KeyPressEvent event) {
-//				int charCode = event.getNativeEvent().getCharCode();
-//
-//				if (charCode == 0) {
-//				    // it's probably Firefox
-//				    charCode = event.getNativeEvent().getKeyCode();  
-//				}
-//				if (charCode == KeyCodes.KEY_ENTER) {
-//					authenticate();
-//				}
-//			}
-//		    }));
-//		
-//		addHandler(this.display.getTxtPassword().addKeyPressHandler(new KeyPressHandler() {
-//			@Override
-//			public void onKeyPress(KeyPressEvent event) {
-//				int charCode = event.getNativeEvent().getCharCode();
-//
-//				if (charCode == 0) {
-//				    // it's probably Firefox
-//				    charCode = event.getNativeEvent().getKeyCode();  
-//				}
-//				if (charCode == KeyCodes.KEY_ENTER) {
-//					authenticate();
-//				}
-//			}
-//		    }));
 //		
 //		addHandler(this.display.getBtnCancel().addClickHandler(new ClickHandler() {
 //			@Override
@@ -86,42 +56,10 @@ public class ClubListActivity extends BasePresenter implements LoginView.Present
 //	}
 	
 	public void cancel() {
-		this.display.asDialog().hide();
+		this.display.asDialog();
 	}
 
-//	public void authenticate() {
-//		rpcService.authenticate(display.getTxtUserName().getText(), display
-//				.getTxtPassword().getText(), new AsyncCallback<Judges>() {
-//
-//					public void onFailure(Throwable arg0) {
-//						// TODO Auto-generated method stub
-//						
-//					}
-//
-//					public void onSuccess(Judges arg0) {
-//						// TODO Auto-generated method stub
-//						if(arg0==null){
-//							
-//								Log.debug("don't Hide");
-//								if (arg0 == null) {
-//									display.getLblErrorMessage().setText(
-//										"Name or password is incorrect; attempt " + ++attempt);
-//								} 
-//								return;
-//							}
-//							
-//						
-//						display.asDialog().hide();
-//						ClubListPlace clubListPlace = new ClubListPlace("clublist");
-//						  
-//						 clientFactory.getPlaceController().goTo(clubListPlace);
-//						//goto new (ClubListPlace)
-//					}
 
-			
-			
-//		});
-//	}
 
 	/**
 	 * Invoked by the ActivityManager to start a new Activity
@@ -132,8 +70,8 @@ public class ClubListActivity extends BasePresenter implements LoginView.Present
 		//Log.debug("LOGIN PRESENTER GO FROM");
 		attempt = 0;
 		//bind();
-		DialogBox login = display.asDialog();
-		login.center();
+		DialogBox nextone = display.asDialog();
+		nextone.center();
 		//login.show();
 		display.getTxtUserName().setFocus(true);
 	}
