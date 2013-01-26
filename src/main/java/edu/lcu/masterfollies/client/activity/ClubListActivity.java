@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.DialogBox;
 import edu.lcu.masterfollies.client.ClientFactory;
 import edu.lcu.masterfollies.client.GreetingServiceAsync;
 import edu.lcu.masterfollies.client.place.ClubListPlace;
+import edu.lcu.masterfollies.client.ui.ClubListView;
 import edu.lcu.masterfollies.client.ui.LoginView;
 import edu.lcu.masterfollies.domain.Judges;
 
@@ -28,99 +29,99 @@ public class ClubListActivity extends BasePresenter implements LoginView.Present
 	private String name;
 	private final GreetingServiceAsync rpcService;
 	private final EventBus eventBus;
-	private final LoginView display;
+	private final ClubListView display;
 
 	public ClubListActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;	
-		this.display = clientFactory.get
+		this.display = clientFactory.getClubListView();
 		this.eventBus = clientFactory.getEventBus();
 		this.rpcService = clientFactory.getRpcService();
 		bind();
 	}
 	
-	public void bind() {
-	    addHandler(this.display.getOKButton().addClickHandler(new ClickHandler() {   
-	        public void onClick(ClickEvent event) {
-	          authenticate();
-	        }
-	      }));
-	    
-		addHandler(this.display.getTxtUserName().addKeyPressHandler(new KeyPressHandler() {
-			@Override
-			public void onKeyPress(KeyPressEvent event) {
-				int charCode = event.getNativeEvent().getCharCode();
-
-				if (charCode == 0) {
-				    // it's probably Firefox
-				    charCode = event.getNativeEvent().getKeyCode();  
-				}
-				if (charCode == KeyCodes.KEY_ENTER) {
-					authenticate();
-				}
-			}
-		    }));
-		
-		addHandler(this.display.getTxtPassword().addKeyPressHandler(new KeyPressHandler() {
-			@Override
-			public void onKeyPress(KeyPressEvent event) {
-				int charCode = event.getNativeEvent().getCharCode();
-
-				if (charCode == 0) {
-				    // it's probably Firefox
-				    charCode = event.getNativeEvent().getKeyCode();  
-				}
-				if (charCode == KeyCodes.KEY_ENTER) {
-					authenticate();
-				}
-			}
-		    }));
-		
-		addHandler(this.display.getBtnCancel().addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				cancel();
-			}
-			
-		}));
-	}
+//	public void bind() {
+//	    addHandler(this.display.getOKButton().addClickHandler(new ClickHandler() {   
+//	        public void onClick(ClickEvent event) {
+//	          authenticate();
+//	        }
+//	      }));
+//	    
+//		addHandler(this.display.getTxtUserName().addKeyPressHandler(new KeyPressHandler() {
+//			@Override
+//			public void onKeyPress(KeyPressEvent event) {
+//				int charCode = event.getNativeEvent().getCharCode();
+//
+//				if (charCode == 0) {
+//				    // it's probably Firefox
+//				    charCode = event.getNativeEvent().getKeyCode();  
+//				}
+//				if (charCode == KeyCodes.KEY_ENTER) {
+//					authenticate();
+//				}
+//			}
+//		    }));
+//		
+//		addHandler(this.display.getTxtPassword().addKeyPressHandler(new KeyPressHandler() {
+//			@Override
+//			public void onKeyPress(KeyPressEvent event) {
+//				int charCode = event.getNativeEvent().getCharCode();
+//
+//				if (charCode == 0) {
+//				    // it's probably Firefox
+//				    charCode = event.getNativeEvent().getKeyCode();  
+//				}
+//				if (charCode == KeyCodes.KEY_ENTER) {
+//					authenticate();
+//				}
+//			}
+//		    }));
+//		
+//		addHandler(this.display.getBtnCancel().addClickHandler(new ClickHandler() {
+//			@Override
+//			public void onClick(ClickEvent event) {
+//				cancel();
+//			}
+//			
+//		}));
+//	}
 	
 	public void cancel() {
 		this.display.asDialog().hide();
 	}
 
-	public void authenticate() {
-		rpcService.authenticate(display.getTxtUserName().getText(), display
-				.getTxtPassword().getText(), new AsyncCallback<Judges>() {
-
-					public void onFailure(Throwable arg0) {
-						// TODO Auto-generated method stub
-						
-					}
-
-					public void onSuccess(Judges arg0) {
-						// TODO Auto-generated method stub
-						if(arg0==null){
-							
-								Log.debug("don't Hide");
-								if (arg0 == null) {
-									display.getLblErrorMessage().setText(
-										"Name or password is incorrect; attempt " + ++attempt);
-								} 
-								return;
-							}
-							
-						
-						display.asDialog().hide();
-						ClubListPlace clubListPlace = new ClubListPlace("clublist");
-						  
-						 clientFactory.getPlaceController().goTo(clubListPlace);
-						//goto new (ClubListPlace)
-					}
+//	public void authenticate() {
+//		rpcService.authenticate(display.getTxtUserName().getText(), display
+//				.getTxtPassword().getText(), new AsyncCallback<Judges>() {
+//
+//					public void onFailure(Throwable arg0) {
+//						// TODO Auto-generated method stub
+//						
+//					}
+//
+//					public void onSuccess(Judges arg0) {
+//						// TODO Auto-generated method stub
+//						if(arg0==null){
+//							
+//								Log.debug("don't Hide");
+//								if (arg0 == null) {
+//									display.getLblErrorMessage().setText(
+//										"Name or password is incorrect; attempt " + ++attempt);
+//								} 
+//								return;
+//							}
+//							
+//						
+//						display.asDialog().hide();
+//						ClubListPlace clubListPlace = new ClubListPlace("clublist");
+//						  
+//						 clientFactory.getPlaceController().goTo(clubListPlace);
+//						//goto new (ClubListPlace)
+//					}
 
 			
 			
-		});
-	}
+//		});
+//	}
 
 	/**
 	 * Invoked by the ActivityManager to start a new Activity
