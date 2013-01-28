@@ -35,9 +35,13 @@ public class LoginViewImpl extends DialogBox implements LoginView {
 		HorizontalPanel horizontalPanelTitle = new HorizontalPanel();
 		verticalPanelRoot.add(horizontalPanelTitle);
 		horizontalPanelTitle.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		Label lblTitle = new Label("Master Follies Judge");
+		Label lblTitle = new Label("Welcome to the  Master Follies Judging app. ");
 		lblTitle.setStyleName("loginTitle");
 		horizontalPanelTitle.add(lblTitle);
+		
+		Label lblUsernameAndPassword = new Label("Username and Password are case sensitive");
+		lblUsernameAndPassword.setStyleName("loginTitle");
+		verticalPanelRoot.add(lblUsernameAndPassword);
 		
 		VerticalPanel verticalPanel = new VerticalPanel();
 		verticalPanel.addStyleName("round");
@@ -51,8 +55,6 @@ public class LoginViewImpl extends DialogBox implements LoginView {
 		
 		txtUserName = new TextBox();
 		horizontalPanel.add(txtUserName);
-		
-		verticalPanel.add(new HTML("<hr/>"));
 
 		HorizontalPanel horizontalPanel1 = new HorizontalPanel();
 		verticalPanel.add(horizontalPanel1);
@@ -82,12 +84,6 @@ public class LoginViewImpl extends DialogBox implements LoginView {
 		HorizontalPanel horizontalPanel3 = new HorizontalPanel();
 		verticalPanelRoot.add(horizontalPanel3);
 		horizontalPanel3.add(lblErrorMessage);
-		
-		HorizontalPanel horizontalPanel4 = new HorizontalPanel();
-		verticalPanelRoot.add(horizontalPanel4);
-		HTML x = new HTML("Master Follies!!!");
-		x.setStyleName("loginMessage");
-		horizontalPanel4.add(x);
 	}
 
 	@Override
