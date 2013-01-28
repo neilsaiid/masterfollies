@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import edu.lcu.masterfollies.domain.ClubNames;
 import edu.lcu.masterfollies.domain.Judges;
+import edu.lcu.masterfollies.domain.ListCount;
 
 /**
  * The server side implementation of the RPC service.
@@ -56,6 +58,11 @@ public class GreetingServiceTestAsync extends RemoteServiceServlet implements Gr
 
 		parameters.put("_result", authenticateResult);
 		callback.onSuccess(authenticateResult);
+		
+	}
+	@Override
+	public void getClubList(AsyncCallback<ListCount<ClubNames>> callback) {
+		// TODO Auto-generated method stub
 		
 	}
 

@@ -43,7 +43,7 @@ public class AppActivityMapper implements ActivityMapper {
 	    if (place instanceof LoginPlace)
 			return new LoginActivity(clientFactory);
 	    else if (place instanceof ClubListPlace)
-	    	return new ClubListActivity(clientFactory);
+	    	return new ClubListActivity(null, clientFactory);
 
 		return null;
 	}

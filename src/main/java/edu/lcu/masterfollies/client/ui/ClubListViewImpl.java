@@ -1,126 +1,195 @@
 package edu.lcu.masterfollies.client.ui;
 
+import com.google.gwt.cell.client.Cell.Context;
+import com.google.gwt.cell.client.ClickableTextCell;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.NativeEvent;
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.cellview.client.Column;
+import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PasswordTextBox;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.view.client.ProvidesKey;
 
-public class ClubListViewImpl implements ClubListView {
+import edu.lcu.masterfollies.client.AppConstants;
+import edu.lcu.masterfollies.client.activity.ClubListActivity;
+import edu.lcu.masterfollies.domain.ClubNames;
+import edu.lcu.masterfollies.domain.Judges;
+import edu.lcu.masterfollies.shared.Log;
+
+public class ClubListViewImpl extends Composite implements ClubListView {
+	private Judges judge;
 	
-//	  interface MyUiBinder extends UiBinder<Widget, ClubListViewImpl> {}
-//	  private static MyUiBinder uiBinder = GWT.create(MyUiBinder.class);
-	  
-	private Button btnOK;
-	private Button btnCancel;
-	private TextBox txtUserName;
-	private PasswordTextBox txtPassword;
-	private Label lblErrorMessage;
-	private FocusPanel focusPanel;
+	private HandlerManager eventBus = null;
+	private Presenter listener;
+	
+	
+	public void setEventBus(HandlerManager eventBus) {
+		this.eventBus = eventBus;
+	}
+
+	public HandlerManager getEventBus() {
+		return eventBus;
+	}
+	
+	@Override
+	public VerticalPanel getPanel() {
+		return contentTableDecorator;
+	}
+
+	private static final AppConstants CONSTANTS = GWT
+			.create(AppConstants.class);
+	final Label errorLabel = new Label();
+	final DialogBox dialogBox = new DialogBox();
+	final Button closeButton = new Button("Close");
+	final Label textToServerLabel = new Label();
+	final HTML serverResponseLabel = new HTML();
+	private SimplePager simplePager;
+	private CellTable<ClubNames> tblClassList;
+	DateTimeFormat x = DateTimeFormat.getFormat("hh:mm a");
+	private Label lblTitle;
+	private VerticalPanel contentTableDecorator;
+	
+
+	public CellTable<ClubNames> getTblClassList() {
+		return tblClassList;
+	}
+
+	public void setTblClassList(CellTable<ClubNames> tblCourseList) {
+		this.tblClassList = tblCourseList;
+	}
+
+	public Label getTextToServerLabel() {
+		return textToServerLabel;
+	}
+
+	public HTML getServerResponseLabel() {
+		return serverResponseLabel;
+	}
+
+	public Button getCloseButton() {
+		return closeButton;
+	}
+
+	public DialogBox getDialogBox() {
+		return dialogBox;
+	}
+
+
+	public Label getErrorLabel() {
+		return errorLabel;
+	}
 
 	public ClubListViewImpl() {
-//		setText("");
-		
-		VerticalPanel verticalPanelRoot = new VerticalPanel();
-		setWidget(verticalPanelRoot);
-		
-		HorizontalPanel horizontalPanelTitle = new HorizontalPanel();
-		verticalPanelRoot.add(horizontalPanelTitle);
-		horizontalPanelTitle.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		Label lblTitle = new Label("This is ACTUALLY the next page!");
-		lblTitle.setStyleName("loginTitle");
-		horizontalPanelTitle.add(lblTitle);
-		
-		VerticalPanel verticalPanel = new VerticalPanel();
-		verticalPanel.addStyleName("round");
-		verticalPanelRoot.add(verticalPanel);
-		
-		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		verticalPanel.add(horizontalPanel);
-		
-		Label lblNewLabel_1 = new Label("Username");
-		horizontalPanel.add(lblNewLabel_1);
-		
-		txtUserName = new TextBox();
-		horizontalPanel.add(txtUserName);
-		
-		verticalPanel.add(new HTML("<hr/>"));
+		Log.debug("Create AttendanceView");
+		contentTableDecorator = new VerticalPanel();
+		initWidget(contentTableDecorator);
+		contentTableDecorator.setWidth("100%");
+		contentTableDecorator.setWidth("50em");
 
-		HorizontalPanel horizontalPanel1 = new HorizontalPanel();
-		verticalPanel.add(horizontalPanel1);
+	    ProvidesKey<ClubNames> keyProvider = new ProvidesKey<ClubNames>() {
+	        public Object getKey(ClubNames item) {
+	          // Always do a null check.
+	          return (item == null) ? null : item.getId();
+	        }
+	      };
+		tblClassList = new CellTable<ClubNames>(keyProvider);
+		//tblClassList.setStyleName("contacts-ListRow td");
+
+		tblClassList.setWidth("950px");
+		//tblClassList.addStyleName("contacts-ListContents");
+		tblClassList.setPageSize(10);
+	      
+	      
+		      
+		      ClickableTextCell txtClubName = new ClickableTextCell();
+			    Column<ClubNames, String> dayColumn = new Column<ClubNames, String>(txtClubName) {
+			    	@Override
+			    	  public void onBrowserEvent(Context context, Element elem, final ClubNames object,
+			    		      NativeEvent event) {
+			    		   	//Log.debug("Change status of " + object.getEvent());
+			    		   	listener.goToResults(object,judge);
+			    		   	//eventBus.fireEvent(new StudentListEvent(object));
+			    		  }
+					@Override
+					public String getValue(ClubNames object) {
+						return object.getClubName();
+					}
+			      };
+			      tblClassList.addColumn(dayColumn, "Club Name");
+			      tblClassList.setColumnWidth(dayColumn, "200px");
+		      
+		      lblTitle = new Label("Clubs");
+		      contentTableDecorator.add(lblTitle);
+		      
+
+		      
+		      simplePager = new SimplePager();
+		      simplePager.setDisplay(tblClassList);
+		      contentTableDecorator.add(simplePager);
+		tblClassList.setVisible(true);
+		simplePager.setVisible(true);
 		
-		Label lblNewLabel = new Label("Password");
-		horizontalPanel1.add(lblNewLabel);
+		contentTableDecorator.add(tblClassList);
 		
-		txtPassword = new PasswordTextBox();
-		horizontalPanel1.add(txtPassword);
-		
-		HorizontalPanel horizontalPanel2 = new HorizontalPanel();
-		verticalPanelRoot.add(horizontalPanel2);
-		horizontalPanel2.setHorizontalAlignment(com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER);
-		
-		btnOK = new Button("New button");
-		btnOK.setText("Log On");
-		horizontalPanel2.add(btnOK);
-		horizontalPanel2.addStyleName("loginButton");
-		btnOK.setStyleName("blackglossyCSSButtonbutton");
-		
-		btnCancel = new Button("New button");
-		btnCancel.setText("Cancel");
-		//horizontalPanel.add(btnCancel);
-		
-		lblErrorMessage = new Label("");
-		lblErrorMessage.setStyleName("gwt-Label-Error");
-		HorizontalPanel horizontalPanel3 = new HorizontalPanel();
-		verticalPanelRoot.add(horizontalPanel3);
-		horizontalPanel3.add(lblErrorMessage);
-		
-		HorizontalPanel horizontalPanel4 = new HorizontalPanel();
-		verticalPanelRoot.add(horizontalPanel4);
-		HTML x = new HTML("IF you can see this, you are to the next page.");
-		x.setStyleName("loginMessage");
-		horizontalPanel4.add(x);
+		contentTableDecorator.add(errorLabel);
+
+
+		// Create the popup dialog box
+
+		dialogBox.setText("Remote Procedure Call");
+		dialogBox.setAnimationEnabled(true);
+
+		// We can set the id of a widget by accessing its Element
+		closeButton.getElement().setId("closeButton");
+
+		VerticalPanel dialogVPanel = new VerticalPanel();
+		dialogVPanel.addStyleName("dialogVPanel");
+		dialogVPanel.add(new HTML("<b>Please Wait...</b>"));
+		dialogVPanel.setHorizontalAlignment(VerticalPanel.ALIGN_RIGHT);
+		//dialogVPanel.add(closeButton);
+		dialogBox.setWidget(dialogVPanel);
+		Log.debug("Create AttendanceView DONE");
 	}
 
-	private void setWidget(VerticalPanel verticalPanelRoot) {
-		// TODO Auto-generated method stub
+	public SimplePager getSimplePager() {
+		return simplePager;
+	}
+
+	public void setSimplePager(SimplePager simplePager) {
+		this.simplePager = simplePager;
+	}
+	
+	@Override
+	public void setPresenter(ClubListActivity clubListActivity) {
+		listener = clubListActivity;
+	}
+
+	@Override
+	public void setLblTitle(String string) {
+		lblTitle.setText(string);
+	}
+
+	@Override
+	public void setLoadtime(String loadtime) {
+
 		
 	}
 
 	@Override
-	public Button getBtnCancel() {
-		return btnCancel;
-	}
-
-	public Label getLblErrorMessage() {
-		return lblErrorMessage;
-	}
-
-	public TextBox getTxtUserName() {
-		return txtUserName;
-	}
-
-	public PasswordTextBox getTxtPassword() {
-		return txtPassword;
-	}
-
-//	@Override
-//	public DialogBox asDialog() {
-//		return this;
-//	}
-
-	@Override
-	public Button getOKButton() {
-		return btnOK;
+	public Button getRefreshButton() {
+		return null;
 	}
 
 	@Override
-	public DialogBox asDialog() {
+	public CellTable<ClubNames> getTblClubList() {
 		// TODO Auto-generated method stub
 		return null;
 	}

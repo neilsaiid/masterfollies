@@ -1,5 +1,7 @@
 package edu.lcu.masterfollies.client.ui;
 
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FocusPanel;
@@ -7,9 +9,14 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
+
+import edu.lcu.masterfollies.client.activity.ClubListActivity;
+import edu.lcu.masterfollies.domain.ClubNames;
 
 public class ReportsListViewImpl implements ClubListView {
 	
@@ -92,10 +99,10 @@ public class ReportsListViewImpl implements ClubListView {
 		
 	}
 
-	@Override
-	public Button getBtnCancel() {
-		return btnCancel;
-	}
+//	@Override
+//	public Button getBtnCancel() {
+//		return btnCancel;
+//	}
 
 	public Label getLblErrorMessage() {
 		return lblErrorMessage;
@@ -114,13 +121,61 @@ public class ReportsListViewImpl implements ClubListView {
 //		return this;
 //	}
 
+//	@Override
+//	public Button getOKButton() {
+//		return btnOK;
+//	}
+//
+//	@Override
+//	public DialogBox asDialog() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
 	@Override
-	public Button getOKButton() {
-		return btnOK;
+	public Widget asWidget() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public DialogBox asDialog() {
+	public void setEventBus(HandlerManager eventBus) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public CellTable<ClubNames> getTblClubList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setPresenter(ClubListActivity clubListActivity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setLblTitle(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setLoadtime(String loadtime) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Button getRefreshButton() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Panel getPanel() {
 		// TODO Auto-generated method stub
 		return null;
 	}

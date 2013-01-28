@@ -17,9 +17,13 @@ import org.springframework.beans.factory.annotation.Configurable;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import edu.lcu.masterfollies.client.GreetingService;
+import edu.lcu.masterfollies.domain.ClubNames;
+import edu.lcu.masterfollies.domain.ClubNamesExample;
+import edu.lcu.masterfollies.domain.ClubNamesMapper;
 import edu.lcu.masterfollies.domain.Judges;
 import edu.lcu.masterfollies.domain.JudgesExample;
 import edu.lcu.masterfollies.domain.JudgesMapper;
+import edu.lcu.masterfollies.domain.ListCount;
 
 /**
  * The server side implementation of the RPC service.
@@ -30,6 +34,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
     GreetingService {
 	
 	private JudgesMapper judgesMapper;
+	private ClubNamesMapper clubNamesMapper;
 
 	@Autowired
 	public void setPersonMapper(JudgesMapper judgesMapper) {
@@ -91,4 +96,14 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		log.debug("Password = " + j.getPassword());
 		return j;
 	}
+	@Override
+	public ListCount<ClubNames> getClubList(){
+		ClubNamesExample ce = new ClubNamesExample();
+		ce.createCriteria().andClubNameIsNotNull();
+		List<ClubNames> result = (List<ClubNames>) clubNamesMapper.selectByExample(ce);
+		Integer count = clubNamesMapper.countByExample(ce);
+		ListCount<ClubNames> lc = new ListCount<ClubNames>(result,count);
+		return lc;
+	}
+	
 }
