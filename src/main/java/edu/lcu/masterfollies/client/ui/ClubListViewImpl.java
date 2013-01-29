@@ -88,7 +88,7 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 	}
 
 	public ClubListViewImpl() {
-		Log.debug("Create AttendanceView");
+		Log.debug("Create ClubListView");
 		contentTableDecorator = new VerticalPanel();
 		initWidget(contentTableDecorator);
 		contentTableDecorator.setWidth("100%");
