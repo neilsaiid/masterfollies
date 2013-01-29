@@ -33,32 +33,44 @@ public class ClubListActivity extends BasePresenter implements
 	private Judges judge; 
 
 	public ClubListActivity(ClubListPlace place, ClientFactory clientFactory) {
+		Log.debug("***I am here in the ClubListActivity***");
 		//this.instructor = place.getInstructor();
 		this.clientFactory = clientFactory;
 		this.rpcService = clientFactory.getRpcService();
 		this.eventBus = clientFactory.getEventBus();
 
+		Log.debug("***I am before the bind method call***");
 
 		bind();
 	}
 	
 	public void bind() {
-		final ClubListActivity x = this;
-		
 		final AsyncDataProvider<ClubNames> provider = new AsyncDataProvider<ClubNames>() {
-			@Override
-			protected void onRangeChanged(HasData<ClubNames> display) {
-				getClubList(display, this);
-			}
-		};
-		provider.addDataDisplay(clientFactory.getClubListView()
-				.getTblClubList());
-	
+				@Override
+				protected void onRangeChanged(HasData<ClubNames> display) {
+					getClubList(display, this);
+				}
+			};
+		
+		try {
+			Log.debug("***I am AFTER the bind method call***");
+
+			final ClubListActivity x = this;
+			
+			
+			provider.addDataDisplay(clientFactory.getClubListView()
+					.getTblClubList());
+			Log.debug("***I am AFTER the provider.addDataDisplay***");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 
 		ClickHandler handler = new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				Log.debug("RUN classlist FIRE");
+				Log.debug("RUN clubname FIRE");
 				HasData<ClubNames> hasData = (HasData<ClubNames>)clubListView.getTblClubList();
 				getClubList(hasData, provider);
 			}
@@ -122,14 +134,21 @@ public class ClubListActivity extends BasePresenter implements
 		Log.debug("Start Activity");
 		
 		
-		judge = ((ClubListPlace) clientFactory.getPlaceController()
-				.getWhere()).getJudge();
-		clubListView.setLblTitle(
-				"Ratings for Judge " + judge.getFirstName() + " " + judge.getLastName());
-		
-		
-		clubListView.setPresenter(this);
-		containerWidget.setWidget(clubListView.asWidget());
+		try {
+			judge = ((ClubListPlace) clientFactory.getPlaceController()
+					.getWhere()).getJudge();
+			Log.debug("Judge: " + judge);
+			clubListView.setLblTitle(
+					"Ratings for Judge " + judge.getFirstName() + " " + judge.getLastName());
+			
+			
+			clubListView.setPresenter(this);
+			containerWidget.setWidget(clubListView.asWidget());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Log.debug("End of start Activity***");
 	}
 
 	/**

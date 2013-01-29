@@ -4,13 +4,15 @@ package edu.lcu.masterfollies.client.place;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
+import edu.lcu.masterfollies.shared.Log;
+
 public class LoginPlace extends Place
 {
 	//private static Log log = LogFactory.getLog(GreetingServiceImpl.class);
 	
 	public LoginPlace(String token)
 	{
-		//Log.debug("TOKEN = '" + token + "'");
+		Log.debug("^^^TOKEN = '" + token + "'");
 	}
 
 	public static class Tokenizer implements PlaceTokenizer<LoginPlace>

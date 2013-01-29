@@ -41,6 +41,10 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		new Exception("SET person MAPPER").printStackTrace();
 		this.judgesMapper = judgesMapper;
 	}
+	@Autowired
+	public void setClubNamesMapper(ClubNamesMapper clubNamesMapper) {
+		this.clubNamesMapper = clubNamesMapper;
+	}
 	
 
 	private static Log log = LogFactory.getLog(GreetingServiceImpl.class);
@@ -98,12 +102,18 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 	@Override
 	public ListCount<ClubNames> getClubList(){
-		ClubNamesExample ce = new ClubNamesExample();
-		ce.createCriteria().andClubNameIsNotNull();
-		List<ClubNames> result = (List<ClubNames>) clubNamesMapper.selectByExample(ce);
-		Integer count = clubNamesMapper.countByExample(ce);
-		ListCount<ClubNames> lc = new ListCount<ClubNames>(result,count);
-		return lc;
+		try {
+			ClubNamesExample ce = new ClubNamesExample();
+			ce.createCriteria().andClubNameIsNotNull();
+			List<ClubNames> result = (List<ClubNames>) clubNamesMapper.selectByExample(ce);
+			Integer count = clubNamesMapper.countByExample(ce);
+			ListCount<ClubNames> lc = new ListCount<ClubNames>(result,count);
+			return lc;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	return null;
 	}
 	
 }

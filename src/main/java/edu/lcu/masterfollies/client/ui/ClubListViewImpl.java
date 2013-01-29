@@ -52,18 +52,18 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 	final Label textToServerLabel = new Label();
 	final HTML serverResponseLabel = new HTML();
 	private SimplePager simplePager;
-	private CellTable<ClubNames> tblClassList;
+	private CellTable<ClubNames> tblClubList;
 	DateTimeFormat x = DateTimeFormat.getFormat("hh:mm a");
 	private Label lblTitle;
 	private VerticalPanel contentTableDecorator;
 	
 
 	public CellTable<ClubNames> getTblClassList() {
-		return tblClassList;
+		return tblClubList;
 	}
 
 	public void setTblClassList(CellTable<ClubNames> tblCourseList) {
-		this.tblClassList = tblCourseList;
+		this.tblClubList = tblCourseList;
 	}
 
 	public Label getTextToServerLabel() {
@@ -100,12 +100,12 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 	          return (item == null) ? null : item.getId();
 	        }
 	      };
-		tblClassList = new CellTable<ClubNames>(keyProvider);
+		tblClubList = new CellTable<ClubNames>(keyProvider);
 		//tblClassList.setStyleName("contacts-ListRow td");
 
-		tblClassList.setWidth("950px");
+		tblClubList.setWidth("950px");
 		//tblClassList.addStyleName("contacts-ListContents");
-		tblClassList.setPageSize(10);
+		tblClubList.setPageSize(10);
 	      
 	      
 		      
@@ -123,8 +123,8 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 						return object.getClubName();
 					}
 			      };
-			      tblClassList.addColumn(dayColumn, "Club Name");
-			      tblClassList.setColumnWidth(dayColumn, "200px");
+			      tblClubList.addColumn(dayColumn, "Club Name");
+			      tblClubList.setColumnWidth(dayColumn, "200px");
 		      
 		      lblTitle = new Label("Clubs");
 		      contentTableDecorator.add(lblTitle);
@@ -132,12 +132,12 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 
 		      
 		      simplePager = new SimplePager();
-		      simplePager.setDisplay(tblClassList);
+		      simplePager.setDisplay(tblClubList);
 		      contentTableDecorator.add(simplePager);
-		tblClassList.setVisible(true);
+		tblClubList.setVisible(true);
 		simplePager.setVisible(true);
 		
-		contentTableDecorator.add(tblClassList);
+		contentTableDecorator.add(tblClubList);
 		
 		contentTableDecorator.add(errorLabel);
 
@@ -190,8 +190,8 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 
 	@Override
 	public CellTable<ClubNames> getTblClubList() {
-		// TODO Auto-generated method stub
-		return null;
+		//  Auto-generated method stub
+		return tblClubList;
 	}
 
 }

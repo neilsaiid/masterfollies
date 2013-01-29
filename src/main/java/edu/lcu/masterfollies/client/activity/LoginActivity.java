@@ -94,12 +94,12 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 				.getTxtPassword().getText(), new AsyncCallback<Judges>() {
 
 					public void onFailure(Throwable arg0) {
-						// TODO Auto-generated method stub
+						//  Auto-generated method stub
 						
 					}
 
 					public void onSuccess(Judges arg0) {
-						// TODO Auto-generated method stub
+						//  Auto-generated method stub
 						if(arg0==null){
 							Log.debug("don't Hide");
 							if (arg0 == null) {
@@ -107,9 +107,9 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 									"Name or password is incorrect; attempt " + ++attempt);
 							}return;
 						}
-						// TODO user has successfully logged on
+						//  user has successfully logged on
 						display.asDialog().hide();
-						ClubListPlace clubListPlace = new ClubListPlace("clublist");
+						ClubListPlace clubListPlace = new ClubListPlace("clublist",arg0);
 						  
 						 clientFactory.getPlaceController().goTo(clubListPlace);
 						//goto new (ClubListPlace)
