@@ -1,27 +1,39 @@
 package edu.lcu.masterfollies.client.ui;
 
-import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.place.shared.Place;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.HasText;
-import com.google.gwt.user.client.ui.TextBox;
-/**
- * This is the place that tells the viewimpl what to show the client
- * @author Neil
- *
- */
-public interface ResultsView {
-	HasClickHandlers getOKButton();
-	public TextBox getTxtUserName();
-	public TextBox getTxtPassword();
-	public HasText getLblErrorMessage();
-	public DialogBox asDialog();
-	Button getBtnCancel();
+import java.util.Map;
 
+import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.IsWidget;
+import com.google.gwt.user.client.ui.TabBar;
+import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.view.client.AsyncDataProvider;
+import com.google.gwt.view.client.HasData;
+
+import edu.lcu.masterfollies.domain.Results;
+
+public interface ResultsView extends IsWidget {
+	public Widget asWidget();
+
+	
+	public void setListener(Presenter listener);
 	
 	public interface Presenter
 	{
+		public void batchInsert (final Integer judgeId, Integer clubNameId);
+		public void updateLineScore(final Integer judgeId, Integer clubNameId, Integer questionId, Integer points);
+		public void updateRankScore(final Integer judgeId, Integer clubNameId, Integer rank);
+		public void updateNotes(final Integer questionId, String notes);
+		void getResultsList(HasData<Results> display, AsyncDataProvider<Results> asyncDataProvider);
 		void goTo(Place place);
+	
 	}
+
+	void setTab();
+	TabBar getTabBar();
+	CellTable<Results> getTblResultsList();
+
+
+	public void setLblTitle(String string);
 }

@@ -15,6 +15,7 @@ import com.google.gwt.view.client.HasData;
 import edu.lcu.masterfollies.client.ClientFactory;
 import edu.lcu.masterfollies.client.GreetingServiceAsync;
 import edu.lcu.masterfollies.client.place.ClubListPlace;
+import edu.lcu.masterfollies.client.place.ResultsPlace;
 import edu.lcu.masterfollies.client.ui.ClubListView;
 import edu.lcu.masterfollies.domain.ClubNames;
 import edu.lcu.masterfollies.domain.Judges;
@@ -53,11 +54,6 @@ public class ClubListActivity extends BasePresenter implements
 			};
 		
 		try {
-			Log.debug("***I am AFTER the bind method call***");
-
-			final ClubListActivity x = this;
-			
-			
 			provider.addDataDisplay(clientFactory.getClubListView()
 					.getTblClubList());
 			Log.debug("***I am AFTER the provider.addDataDisplay***");
@@ -66,21 +62,26 @@ public class ClubListActivity extends BasePresenter implements
 			e.printStackTrace();
 		}
 
-
-		ClickHandler handler = new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				Log.debug("RUN clubname FIRE");
-				HasData<ClubNames> hasData = (HasData<ClubNames>)clubListView.getTblClubList();
-				getClubList(hasData, provider);
+		try {
+			Log.debug("I'm ready for the click handler");
+			ClickHandler handler = new ClickHandler() {
+				@Override
+				public void onClick(ClickEvent event) {
+					Log.debug("RUN clubname FIRE");
+					HasData<ClubNames> hasData = (HasData<ClubNames>)clubListView.getTblClubList();
+					getClubList(hasData, provider);
+				}
+			};
+			
+			clubListView = clientFactory.getClubListView();
+			
+			Button refresh = clubListView.getRefreshButton();
+			if (refresh != null)  {
+				addHandler(refresh.addClickHandler(handler));
 			}
-		};
-		
-		clubListView = clientFactory.getClubListView();
-		
-		Button refresh = clubListView.getRefreshButton();
-		if (refresh != null)  {
-			addHandler(refresh.addClickHandler(handler));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -181,8 +182,9 @@ public class ClubListActivity extends BasePresenter implements
 //	}
 
 	@Override
-	public void goToResults(ClubNames clubNames, Judges judge) {
+	public void goToResults(ClubNames clubNames) {
 		// TODO Auto-generated method stub
-		
+		ResultsPlace resultsPlace = new ResultsPlace("results", judge, clubNames);
+		clientFactory.getPlaceController().goTo(resultsPlace);
 	}
 }

@@ -9,6 +9,7 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
 import edu.lcu.masterfollies.client.mvp.AppPlaceHistoryMapper;
 import edu.lcu.masterfollies.client.ui.ClubListView;
 import edu.lcu.masterfollies.client.ui.LoginView;
+import edu.lcu.masterfollies.client.ui.ResultsView;
 
 public class ClientFactoryImpl implements ClientFactory
 {
@@ -20,7 +21,15 @@ public class ClientFactoryImpl implements ClientFactory
 	
 	private final LoginView loginView = GWT.create(LoginView.class);
 	private final ClubListView clubListView = GWT.create(ClubListView.class);
+	private final ResultsView resultsView = GWT.create(ResultsView.class);
 	
+	public ResultsView getResultsView() {
+		return resultsView;
+	}
+
+
+
+
 	private GreetingServiceAsync rpcService = GWT.create(GreetingService.class);
 	
 	public ClientFactoryImpl() {

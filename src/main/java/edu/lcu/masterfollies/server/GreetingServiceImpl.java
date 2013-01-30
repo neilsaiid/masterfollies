@@ -115,5 +115,27 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		}
 	return null;
 	}
+	@Override
+	public Void batchInsert(Integer judgeId, Integer clubNameId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Void upadateLineScore(Integer judgeId, Integer clubNameId,
+			Integer questionId, Integer points) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Void updateRankScore(Integer judgeId, Integer clubNameId,
+			Integer rank) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Void updateNotes(Integer questionId, String notes) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

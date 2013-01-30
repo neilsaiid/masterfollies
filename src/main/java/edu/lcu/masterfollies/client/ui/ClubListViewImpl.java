@@ -115,7 +115,14 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 			    	  public void onBrowserEvent(Context context, Element elem, final ClubNames object,
 			    		      NativeEvent event) {
 			    		   	//Log.debug("Change status of " + object.getEvent());
-			    		   	listener.goToResults(object,judge);
+			    		   	try {
+			    		   		Log.debug("Responding to event: " + object.getClubName());
+								listener.goToResults(object);
+							} catch (Exception e) {
+								//  Auto-generated catch block
+								Log.debug("you got caught trying to go to a result");
+								e.printStackTrace();
+							}
 			    		   	//eventBus.fireEvent(new StudentListEvent(object));
 			    		  }
 					@Override
@@ -169,6 +176,7 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 	
 	@Override
 	public void setPresenter(ClubListActivity clubListActivity) {
+		Log.debug("this should be listening to this view for events");
 		listener = clubListActivity;
 	}
 

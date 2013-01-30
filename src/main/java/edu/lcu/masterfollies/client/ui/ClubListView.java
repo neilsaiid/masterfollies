@@ -26,7 +26,7 @@ public interface ClubListView extends IsWidget
 	{
 		void goTo(Place place);
 
-		void goToResults(ClubNames clubNames,Judges judge);
+		void goToResults(ClubNames clubNames);
 	}
 
 	public void setPresenter(ClubListActivity clubListActivity);

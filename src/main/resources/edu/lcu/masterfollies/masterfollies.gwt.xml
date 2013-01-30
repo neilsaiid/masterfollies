@@ -39,6 +39,10 @@
    <replace-with class="edu.lcu.masterfollies.client.ui.ClubListViewImpl">
     <when-type-is class="edu.lcu.masterfollies.client.ui.ClubListView"/>
   </replace-with>
+     
+   <replace-with class="edu.lcu.masterfollies.client.ui.ResultsViewImpl">
+    <when-type-is class="edu.lcu.masterfollies.client.ui.ResultsView"/>
+  </replace-with>
     
         
   <source path='client'/>

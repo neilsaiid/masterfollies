@@ -9,6 +9,6 @@ import com.google.gwt.place.shared.WithTokenizers;
  * annotation or by extending PlaceHistoryMapperWithFactory and creating a
  * separate TokenizerFactory.
  */
-@WithTokenizers({edu.lcu.masterfollies.client.place.LoginPlace.Tokenizer.class,edu.lcu.masterfollies.client.place.ClubListPlace.Tokenizer.class})
+@WithTokenizers({edu.lcu.masterfollies.client.place.LoginPlace.Tokenizer.class,edu.lcu.masterfollies.client.place.ClubListPlace.Tokenizer.class,edu.lcu.masterfollies.client.place.ResultsPlace.Tokenizer.class})
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }

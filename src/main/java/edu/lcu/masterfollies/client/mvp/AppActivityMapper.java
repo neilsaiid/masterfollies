@@ -7,8 +7,10 @@ import com.google.gwt.place.shared.Place;
 import edu.lcu.masterfollies.client.ClientFactory;
 import edu.lcu.masterfollies.client.activity.ClubListActivity;
 import edu.lcu.masterfollies.client.activity.LoginActivity;
+import edu.lcu.masterfollies.client.activity.ResultsActivity;
 import edu.lcu.masterfollies.client.place.ClubListPlace;
 import edu.lcu.masterfollies.client.place.LoginPlace;
+import edu.lcu.masterfollies.client.place.ResultsPlace;
 
 public class AppActivityMapper implements ActivityMapper {
 
@@ -33,17 +35,12 @@ public class AppActivityMapper implements ActivityMapper {
 	@Override
 	public Activity getActivity(Place place) {
 
-		//Log.debug("Placd is a " + place.getClass().getName());
-//		if (place instanceof AttendancePlace)
-//			return new AttendanceActivity((AttendancePlace) place, clientFactory);
-//		else if (place instanceof AttendanceCommentPlace)
-//			return new AttendanceCommentActivity((AttendanceCommentPlace) place, clientFactory);
-//		else if (place instanceof StudentPlace)
-//			return new StudentActivity(clientFactory);
 	    if (place instanceof LoginPlace)
 			return new LoginActivity(clientFactory);
 	    else if (place instanceof ClubListPlace)
 	    	return new ClubListActivity(null, clientFactory);
+	    else if (place instanceof ResultsPlace)
+	    	return new ResultsActivity(clientFactory);
 
 		return null;
 	}
