@@ -1,5 +1,8 @@
 package edu.lcu.masterfollies.client;
 
+import java.util.List;
+import java.util.Map;
+
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -20,4 +23,6 @@ public interface GreetingService extends RemoteService {
   Void upadateLineScore(Integer judgeId, Integer clubNameId, Integer questionId, Integer points);
   Void updateRankScore(Integer judgeId, Integer clubNameId, Integer rank);
   Void updateNotes(Integer questionId, String notes);
+  List<Map<String, String>> selectResultsByJudge(Integer judgeId, Integer clubId);
+  
 }

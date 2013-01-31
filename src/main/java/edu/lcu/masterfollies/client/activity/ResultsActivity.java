@@ -1,15 +1,13 @@
 package edu.lcu.masterfollies.client.activity;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.gwt.view.client.AsyncDataProvider;
-import com.google.gwt.view.client.HasData;
 
 import edu.lcu.masterfollies.client.ClientFactory;
 import edu.lcu.masterfollies.client.GreetingServiceAsync;
@@ -33,9 +31,6 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 	private final EventBus eventBus;
 
 	Date today = new Date();
-	DateTimeFormat dateFormat = DateTimeFormat.getFormat("yyyy-MM-dd"); 
-	private boolean unsetOnly = false;
-	final private AsyncDataProvider<Results> provider;
 	
 	Results results;
 	private Judges judge;
@@ -48,18 +43,8 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 		this.display = clientFactory.getResultsView();
 		this.eventBus = clientFactory.getEventBus();
 		this.rpcService = clientFactory.getRpcService();
-		unsetOnly = false;
 		
 		
-		provider = new AsyncDataProvider<Results>() {
-			@Override
-			protected void onRangeChanged(HasData<Results> display) {
-				getResultsList(display, this);
-				
-			}
-
-
-		};
 		
 		
 		bind();
@@ -67,20 +52,44 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 
 	
 	@Override
-	public void start(AcceptsOneWidget panel, EventBus eventBus) {
+	public void start(AcceptsOneWidget panel, EventBus eventBus) {	
+		Log.debug("START");
+		panel.setWidget(display.asWidget());
+		display.setListener(this);
+		
+		selectResultsByJudge();
+		
+//		
+	}
+	
+	private void selectResultsByJudge() {
 		ResultsPlace resultsPlace = ((ResultsPlace)clientFactory.getPlaceController().getWhere());
 		judge = resultsPlace.getJudge();
 		clubName = resultsPlace.getClubName();
 		Log.debug("Judge: " + judge);
 		display.setLblTitle(
 				"Results for "  + clubName.getClubName() + " By: " + judge.getFirstName() + " " + judge.getLastName());
-	
 		
-		Log.debug("START");
-		panel.setWidget(display.asWidget());
-		display.setListener(this);
+		rpcService.selectResultsByJudge(judge.getId(), clubName.getId(), new AsyncCallback<List<Map<String,String>>>(){
+
+			@Override
+			public void onFailure(Throwable arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onSuccess(List<Map<String, String>> arg0) {
+				Log.debug("Running on Success");
+				display.setResults(arg0);
+				
+			}
+			
+		});
+		
 	}
-	
+
+
 	public void bind() {
 		Log.debug("Start bind");
 
@@ -119,13 +128,7 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public
-	void getResultsList(HasData<Results> display,
-			AsyncDataProvider<Results> asyncDataProvider) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public void goTo(Place place) {

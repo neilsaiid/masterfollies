@@ -7,9 +7,8 @@ package edu.lcu.masterfollies.server;
 
 
 import java.util.List;
+import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -24,6 +23,8 @@ import edu.lcu.masterfollies.domain.Judges;
 import edu.lcu.masterfollies.domain.JudgesExample;
 import edu.lcu.masterfollies.domain.JudgesMapper;
 import edu.lcu.masterfollies.domain.ListCount;
+import edu.lcu.masterfollies.domain.ResultsMapper;
+import edu.lcu.masterfollies.shared.Log;
 
 /**
  * The server side implementation of the RPC service.
@@ -35,6 +36,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	
 	private JudgesMapper judgesMapper;
 	private ClubNamesMapper clubNamesMapper;
+	private ResultsMapper resultsMapper;
 
 	@Autowired
 	public void setPersonMapper(JudgesMapper judgesMapper) {
@@ -47,7 +49,10 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 	
 
-	private static Log log = LogFactory.getLog(GreetingServiceImpl.class);
+	@Autowired
+	public void setResultsMapper(ResultsMapper resultsMapper) {
+		this.resultsMapper = resultsMapper;
+	}
 	BeanFactory bf = null;
 	
 	/**
@@ -73,7 +78,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public Judges authenticate(String user, String password) {
-		log.debug("Authenticate " + user);
+		Log.debug("Authenticate " + user);
 		if ((user == null) || (password == null))
 			return null;
 		
@@ -89,15 +94,15 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		
 			
 		if ((result==null) || (result.size()==0)){
-			log.debug("(>^^)> returning null <(^^<)");
+			Log.debug("(>^^)> returning null <(^^<)");
 			return null;
 		}
 		for(Judges j:result){
-			log.debug(j.getLastName());
+			Log.debug(j.getLastName());
 		}
 		Judges j = result.get(0);
-		log.debug("username = " + j.getUserName());
-		log.debug("Password = " + j.getPassword());
+		Log.debug("username = " + j.getUserName());
+		Log.debug("Password = " + j.getPassword());
 		return j;
 	}
 	@Override
@@ -136,6 +141,17 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	public Void updateNotes(Integer questionId, String notes) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public List<Map<String,String>> selectResultsByJudge(Integer judgeId, Integer clubId) {
+		
+		List<Map<String, String>> x = resultsMapper.selectResultsByJudge(judgeId,clubId);
+		Log.debug("X is: " + x);
+		for(Map<String,String> map:x){
+			Log.debug("map = " + map);
+		}
+		
+		return x;
 	}
 	
 }

@@ -1,15 +1,13 @@
 package edu.lcu.masterfollies.client.ui;
 
+import java.util.List;
 import java.util.Map;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.TabBar;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.view.client.AsyncDataProvider;
-import com.google.gwt.view.client.HasData;
 
 import edu.lcu.masterfollies.domain.Results;
 
@@ -25,11 +23,11 @@ public interface ResultsView extends IsWidget {
 		public void updateLineScore(final Integer judgeId, Integer clubNameId, Integer questionId, Integer points);
 		public void updateRankScore(final Integer judgeId, Integer clubNameId, Integer rank);
 		public void updateNotes(final Integer questionId, String notes);
-		void getResultsList(HasData<Results> display, AsyncDataProvider<Results> asyncDataProvider);
+		
 		void goTo(Place place);
 	
 	}
-
+	public void setResults(List<Map<String,String>> results);
 	void setTab();
 	TabBar getTabBar();
 	CellTable<Results> getTblResultsList();

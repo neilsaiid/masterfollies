@@ -1,8 +1,8 @@
 package edu.lcu.masterfollies.domain;
 
-import edu.lcu.masterfollies.domain.Results;
-import edu.lcu.masterfollies.domain.ResultsExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ResultsMapper {
@@ -93,4 +93,7 @@ public interface ResultsMapper {
      * @mbggenerated Thu Jan 17 19:19:16 CST 2013
      */
     int updateByPrimaryKey(Results record);
+    
+    List<Map<String,String>> selectResultsByJudge(@Param("judgeId")Integer judgeId, @Param("clubId") Integer clubId);
+    int insertbatchResultsInsert(@Param("judgeId")Integer judgeId, @Param("clubId") Integer clubId);
 }

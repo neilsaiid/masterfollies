@@ -1,6 +1,7 @@
 package edu.lcu.masterfollies.client;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
@@ -62,6 +63,36 @@ public class GreetingServiceTestAsync extends RemoteServiceServlet implements Gr
 	}
 	@Override
 	public void getClubList(AsyncCallback<ListCount<ClubNames>> callback) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void batchInsert(Integer judgeId, Integer clubNameId,
+			AsyncCallback<Void> callback) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void upadateLineScore(Integer judgeId, Integer clubNameId,
+			Integer questionId, Integer points, AsyncCallback<Void> callback) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void updateRankScore(Integer judgeId, Integer clubNameId,
+			Integer rank, AsyncCallback<Void> callback) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void updateNotes(Integer questionId, String notes,
+			AsyncCallback<Void> callback) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void selectResultsByJudge(Integer judgeId, Integer clubId,
+			AsyncCallback<List<Map<String, String>>> callback) {
 		// TODO Auto-generated method stub
 		
 	}
