@@ -79,7 +79,8 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 //		
 //		RadioButton radioButton_1 = new RadioButton("new name", "New radio button");
 //		verticalPanel_4.add(radioButton_1);
-		
+		//RootLayoutPanel rp = RootLayoutPanel.get();
+		//rp.add(stackLayoutPanel);
 		initWidget(stackLayoutPanel);
 		stackLayoutPanel.setHeight("750px");
 	}
@@ -234,8 +235,8 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 			
 			
 		} // end for loop
-		RootLayoutPanel rp = RootLayoutPanel.get();
-			rp.add(stackLayoutPanel);
+		
+			
 	} // end method
 
 	@Override
