@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SimpleRadioButton;
 import com.google.gwt.user.client.ui.StackLayoutPanel;
 import com.google.gwt.user.client.ui.TabBar;
@@ -20,6 +21,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import edu.lcu.masterfollies.domain.Results;
 import edu.lcu.masterfollies.shared.Log;
+import com.google.gwt.user.client.ui.RadioButton;
 
 public class ResultsViewImpl extends Composite implements ResultsView {
 	StackLayoutPanel stackLayoutPanel;
@@ -29,59 +31,78 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 		
 		stackLayoutPanel = new StackLayoutPanel(Unit.EM);
 		
-		
-		
+//		HTMLPanel panel_1 = new HTMLPanel("New HTML");
+//		
+//		HorizontalPanel horizontalPanel = new HorizontalPanel();
+//		panel_1.add(horizontalPanel);
+//		horizontalPanel.setSize("518px", "146px");
+//		
+//		VerticalPanel verticalPanel = new VerticalPanel();
+//		horizontalPanel.add(verticalPanel);
+//		verticalPanel.setHeight("109px");
+//		
+//		SimpleRadioButton simpleRadioButton = new SimpleRadioButton("new name");
+//		verticalPanel.add(simpleRadioButton);
+//		
+//		VerticalPanel verticalPanel_1 = new VerticalPanel();
+//		horizontalPanel.add(verticalPanel_1);
+//		verticalPanel_1.setHeight("109px");
+//		
+//		SimpleRadioButton simpleRadioButton_1 = new SimpleRadioButton("new name");
+//		verticalPanel_1.add(simpleRadioButton_1);
+//		
+//		VerticalPanel verticalPanel_2 = new VerticalPanel();
+//		horizontalPanel.add(verticalPanel_2);
+//		verticalPanel_2.setHeight("109px");
+//		
+//		SimpleRadioButton simpleRadioButton_2 = new SimpleRadioButton("new name");
+//		verticalPanel_2.add(simpleRadioButton_2);
+//		stackLayoutPanel.add(panel_1, new HTML("New Widget"), 2.0);
+//		
+//		HTMLPanel panel_2 = new HTMLPanel("New HTML");
+//		stackLayoutPanel.add(panel_2, new HTML("New Widget"), 2.0);
+//		
+//		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+//		panel_2.add(horizontalPanel_1);
+//		horizontalPanel_1.setSize("495px", "217px");
+//		
+//		VerticalPanel verticalPanel_3 = new VerticalPanel();
+//		horizontalPanel_1.add(verticalPanel_3);
+//		verticalPanel_3.setHeight("127px");
+//		
+//		RadioButton radioButton = new RadioButton("new name", "");
+//		verticalPanel_3.add(radioButton);
+//		
+//		VerticalPanel verticalPanel_4 = new VerticalPanel();
+//		horizontalPanel_1.add(verticalPanel_4);
+//		verticalPanel_4.setHeight("127px");
+//		
+//		RadioButton radioButton_1 = new RadioButton("new name", "New radio button");
+//		verticalPanel_4.add(radioButton_1);
 		
 		initWidget(stackLayoutPanel);
-	}
-
-	@Override
-	public void setLblTitle(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-
-
-	@Override
-	public void setListener(Presenter listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public CellTable<Results> getTblResultsList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setTab() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public TabBar getTabBar() {
-		// TODO Auto-generated method stub
-		return null;
+		stackLayoutPanel.setHeight("750px");
 	}
 
 	@Override
 	public void setResults(List<Map<String, String>> results) {
 		Log.debug("Starting For Loop");
-		panel = new HTMLPanel("");
+		
 		for (Map<String,String> m: results){
 			
 			String question = m.get("question");
 			Log.debug("Question: " + question);
 			String desc = m.get("desc");
 			Log.debug("desc: " + desc);
+			
+			//stackLayoutPanel = new StackLayoutPanel(Unit.EM);
+			stackLayoutPanel.setHeight("450px");
+			panel = new HTMLPanel("");
 			HorizontalPanel horizontalPanel = new HorizontalPanel();
 			panel.add(horizontalPanel);
 			horizontalPanel.setSize("442px", "41px");
 			
-			HTML htmlDescHtml = new HTML("desc HTML", true);
+			HTML htmlDescHtml = new HTML(desc, true);
 			horizontalPanel.add(htmlDescHtml);
 			
 			HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
@@ -208,11 +229,45 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 			horizontalPanel_1.add(label);
 			horizontalPanel_1.setCellHorizontalAlignment(label, HasHorizontalAlignment.ALIGN_CENTER);
 			horizontalPanel_1.setCellVerticalAlignment(label, HasVerticalAlignment.ALIGN_MIDDLE);
-			panel = new HTMLPanel("");
+			//panel = new HTMLPanel("");
 			stackLayoutPanel.add(panel, new HTML(question), 3.0);
 			
-		}
+			
+		} // end for loop
+		RootLayoutPanel rp = RootLayoutPanel.get();
+			rp.add(stackLayoutPanel);
+	} // end method
+
+	@Override
+	public void setLblTitle(String string) {
+		// TODO Auto-generated method stub
 		
+	}
+	
+
+
+	@Override
+	public void setListener(Presenter listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public CellTable<Results> getTblResultsList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setTab() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public TabBar getTabBar() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
