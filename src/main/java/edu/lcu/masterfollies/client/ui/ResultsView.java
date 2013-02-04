@@ -25,7 +25,9 @@ public interface ResultsView extends IsWidget {
 		public void updateNotes(final Integer questionId, String notes);
 		
 		void goTo(Place place);
-	
+		void updateResultsPoints(String radioButtonName);
+
+		
 	}
 	public void setResults(List<Map<String,String>> results);
 	void setTab();

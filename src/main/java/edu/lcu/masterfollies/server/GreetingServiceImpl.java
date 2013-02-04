@@ -143,6 +143,11 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		return null;
 	}
 	@Override
+	public Void updateResultsPoints(Integer resultsId, Integer value){
+		return null;
+		
+	}
+	@Override
 	public List<Map<String,String>> selectResultsByJudge(Integer judgeId, Integer clubId) {
 		
 		List<Map<String, String>> x = resultsMapper.selectResultsByJudge(judgeId,clubId);

@@ -78,6 +78,48 @@ public class ResultsTest implements BeanFactoryAware {
 		re.createCriteria().andClubIdEqualTo(1).andJudgeIdEqualTo(1);
 		rm.deleteByExample(re);
 	}
+	@Test
+	public void testupdateResults(){
+		Integer value = 5;
+		ResultsMapper rm = (ResultsMapper) bf.getBean(ResultsMapper.class);
+		JudgesMapper jm = (JudgesMapper) bf.getBean(JudgesMapper.class);//Judges judges = new Judges("Neil","Saiid","nsaiid","test");
+		Results rt = new Results();
+		//make a new data to be added to the table
+		rt.setJudgeId(1);
+		rt.setClubId(1);
+		rt.setQuestionId(1);
+		rt.setPoints(0);
+		rt.setRank(1);
+		rt.setNotes("This is a test input");
+		//insert the new data created into the table and print out a log report to show
+		//the changes applied to the table
+		rm.insertSelective(rt);
+		log.debug("Judge ID used: "+ rt.getJudgeId());
+		log.debug("Club Id used: " + rt.getClubId());
+		log.debug("Question ID used: " + rt.getQuestionId());
+		log.debug("Points given: " + rt.getPoints());
+		log.debug("Rank given: " + rt.getRank());
+		log.debug("Notes given: " + rt.getNotes());
+		//choose the line that was just entered and print out a report showing the club
+		//name that corresponds to that Judge, Club and Question ID
+		Judges j= jm.selectByPrimaryKey(rt.getJudgeId());
+		Results r= rm.selectByPrimaryKey(rt.getId());
+		log.debug("Judge Name: " + j.getFirstName() + ' ' + j.getLastName());
+		log.debug("Club Name: " + r.getClubId());
+		log.debug("Question: " + r.getQuestionId());
+		
+
+		rt.setPoints(value);
+		log.debug("New Points value is: " + rt.getPoints());
+		
+		rm.updateByPrimaryKeySelective(rt);
+		Results db = rm.selectByPrimaryKey(rt.getId());
+		assert (db.getPoints() == 5);
+		
+		//assertTrue(p.equals(judge));
+		rm.deleteByPrimaryKey(r.getId());
+		log.debug("This test has been deleted successfully.");
+	}
 }
 	
 

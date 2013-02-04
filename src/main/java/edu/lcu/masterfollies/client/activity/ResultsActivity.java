@@ -4,8 +4,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Update;
+
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
@@ -94,11 +97,6 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 		Log.debug("Start bind");
 
 	}
-
-		
-		
-		
-
 	
 	@Override
 	public void batchInsert(Integer judgeId, Integer clubNameId) {
@@ -133,6 +131,32 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 	@Override
 	public void goTo(Place place) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateResultsPoints(String radioButtonName) {
+		String[] results = radioButtonName.split("_");
+		String value = results[1];
+		String resultId = results[2];
+		Integer intValue = Integer.parseInt("value");
+		Integer intResultId = Integer.parseInt("resultID");		
+		
+		rpcService.updateResultsPoints(intResultId, intValue, new AsyncCallback<Void>(){
+
+			@Override
+			public void onFailure(Throwable arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				Window.alert("it has been updated");
+				
+			};
+		});
+	//	void updateResultsPoints( java.lang.Integer resultsId, java.lang.Integer value, AsyncCallback<java.lang.Void> callback );
 		
 	}
 
