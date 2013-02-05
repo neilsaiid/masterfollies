@@ -305,6 +305,16 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 			
 			SimpleRadioButton simpleRadioButton_10 = new SimpleRadioButton("Radiobutton_10_" + resultId);
 			verticalPanel_10.add(simpleRadioButton_10);
+			simpleRadioButton_10.addClickHandler(new ClickHandler(){
+
+				@Override
+				public void onClick(ClickEvent event) {
+					SimpleRadioButton x = (SimpleRadioButton) event.getSource();
+					listener.updateResultsPoints(x.getName());
+					
+				}
+			});
+			
 			
 			Label label_10 = new Label("10");
 			label_10.setDirection(Direction.RTL);
@@ -317,7 +327,7 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 			horizontalPanel_1.setCellVerticalAlignment(label, HasVerticalAlignment.ALIGN_MIDDLE);
 			//panel = new HTMLPanel("");
 			stackLayoutPanel.add(panel, new HTML(question), 3.0);
-			
+			// Chrismahanukwanzakah
 			
 		} // end for loop
 		

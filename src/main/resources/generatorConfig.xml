@@ -47,6 +47,10 @@
      <table tableName="results" domainObjectName="Results" >    	
     	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
     	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
+	
+	<table tableName="rank" domainObjectName="Rank" >    	
+    	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
+    	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
      	
 
     	
