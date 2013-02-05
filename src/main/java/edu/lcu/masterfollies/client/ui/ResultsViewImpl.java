@@ -33,54 +33,54 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 		
 		stackLayoutPanel = new StackLayoutPanel(Unit.EM);
 		
-		HTMLPanel panel_1 = new HTMLPanel("New HTML");
-		
-		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		panel_1.add(horizontalPanel);
-		horizontalPanel.setSize("518px", "146px");
-		
-		VerticalPanel verticalPanel = new VerticalPanel();
-		horizontalPanel.add(verticalPanel);
-		verticalPanel.setHeight("109px");
-		
-		SimpleRadioButton simpleRadioButton = new SimpleRadioButton("new name");
-		verticalPanel.add(simpleRadioButton);
-		
-		VerticalPanel verticalPanel_1 = new VerticalPanel();
-		horizontalPanel.add(verticalPanel_1);
-		verticalPanel_1.setHeight("109px");
-		
-		SimpleRadioButton simpleRadioButton_1 = new SimpleRadioButton("new name");
-		verticalPanel_1.add(simpleRadioButton_1);
-		
-		VerticalPanel verticalPanel_2 = new VerticalPanel();
-		horizontalPanel.add(verticalPanel_2);
-		verticalPanel_2.setHeight("109px");
-		
-		SimpleRadioButton simpleRadioButton_2 = new SimpleRadioButton("new name");
-		verticalPanel_2.add(simpleRadioButton_2);
-		stackLayoutPanel.add(panel_1, new HTML("New Widget"), 2.0);
-		
-		HTMLPanel panel_2 = new HTMLPanel("New HTML");
-		stackLayoutPanel.add(panel_2, new HTML("New Widget"), 2.0);
-		
-		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
-		panel_2.add(horizontalPanel_1);
-		horizontalPanel_1.setSize("495px", "217px");
-		
-		VerticalPanel verticalPanel_3 = new VerticalPanel();
-		horizontalPanel_1.add(verticalPanel_3);
-		verticalPanel_3.setHeight("127px");
-		
-		RadioButton radioButton = new RadioButton("new name", "");
-		verticalPanel_3.add(radioButton);
-		
-		VerticalPanel verticalPanel_4 = new VerticalPanel();
-		horizontalPanel_1.add(verticalPanel_4);
-		verticalPanel_4.setHeight("127px");
-		
-		RadioButton radioButton_1 = new RadioButton("new name", "New radio button");
-		verticalPanel_4.add(radioButton_1);
+//		HTMLPanel panel_1 = new HTMLPanel("New HTML");
+//		
+//		HorizontalPanel horizontalPanel = new HorizontalPanel();
+//		panel_1.add(horizontalPanel);
+//		horizontalPanel.setSize("518px", "146px");
+//		
+//		VerticalPanel verticalPanel = new VerticalPanel();
+//		horizontalPanel.add(verticalPanel);
+//		verticalPanel.setHeight("109px");
+//		
+//		SimpleRadioButton simpleRadioButton = new SimpleRadioButton("new name");
+//		verticalPanel.add(simpleRadioButton);
+//		
+//		VerticalPanel verticalPanel_1 = new VerticalPanel();
+//		horizontalPanel.add(verticalPanel_1);
+//		verticalPanel_1.setHeight("109px");
+//		
+//		SimpleRadioButton simpleRadioButton_1 = new SimpleRadioButton("new name");
+//		verticalPanel_1.add(simpleRadioButton_1);
+//		
+//		VerticalPanel verticalPanel_2 = new VerticalPanel();
+//		horizontalPanel.add(verticalPanel_2);
+//		verticalPanel_2.setHeight("109px");
+//		
+//		SimpleRadioButton simpleRadioButton_2 = new SimpleRadioButton("new name");
+//		verticalPanel_2.add(simpleRadioButton_2);
+//		stackLayoutPanel.add(panel_1, new HTML("New Widget"), 2.0);
+//		
+//		HTMLPanel panel_2 = new HTMLPanel("New HTML");
+//		stackLayoutPanel.add(panel_2, new HTML("New Widget"), 2.0);
+//		
+//		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
+//		panel_2.add(horizontalPanel_1);
+//		horizontalPanel_1.setSize("495px", "217px");
+//		
+//		VerticalPanel verticalPanel_3 = new VerticalPanel();
+//		horizontalPanel_1.add(verticalPanel_3);
+//		verticalPanel_3.setHeight("127px");
+//		
+//		RadioButton radioButton = new RadioButton("new name", "");
+//		verticalPanel_3.add(radioButton);
+//		
+//		VerticalPanel verticalPanel_4 = new VerticalPanel();
+//		horizontalPanel_1.add(verticalPanel_4);
+//		verticalPanel_4.setHeight("127px");
+//		
+//		RadioButton radioButton_1 = new RadioButton("new name", "New radio button");
+//		verticalPanel_4.add(radioButton_1);
 		//RootLayoutPanel rp = RootLayoutPanel.get();
 		//rp.add(stackLayoutPanel);
 
@@ -145,6 +145,15 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 			
 			SimpleRadioButton simpleRadioButton_2 = new SimpleRadioButton("Radiobutton_2_" + resultId);
 			verticalPanel_2.add(simpleRadioButton_2);
+			simpleRadioButton_2.addClickHandler(new ClickHandler(){
+
+				@Override
+				public void onClick(ClickEvent event) {
+					SimpleRadioButton x = (SimpleRadioButton) event.getSource();
+					listener.updateResultsPoints(x.getName());
+					
+				}
+			});
 			
 			Label label_2 = new Label("2");
 			label_2.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -156,6 +165,15 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 			
 			SimpleRadioButton simpleRadioButton_3 = new SimpleRadioButton("Radiobutton_3_" + resultId);
 			verticalPanel_3.add(simpleRadioButton_3);
+			simpleRadioButton_3.addClickHandler(new ClickHandler(){
+
+				@Override
+				public void onClick(ClickEvent event) {
+					SimpleRadioButton x = (SimpleRadioButton) event.getSource();
+					listener.updateResultsPoints(x.getName());
+					
+				}
+			});
 			
 			Label label_3 = new Label("3");
 			label_3.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -167,6 +185,15 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 			
 			SimpleRadioButton simpleRadioButton_4 = new SimpleRadioButton("Radiobutton_4_" + resultId);
 			verticalPanel_4.add(simpleRadioButton_4);
+			simpleRadioButton_4.addClickHandler(new ClickHandler(){
+
+				@Override
+				public void onClick(ClickEvent event) {
+					SimpleRadioButton x = (SimpleRadioButton) event.getSource();
+					listener.updateResultsPoints(x.getName());
+					
+				}
+			});
 			
 			Label label_4 = new Label("4");
 			label_4.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -178,6 +205,15 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 			
 			SimpleRadioButton simpleRadioButton_5 = new SimpleRadioButton("Radiobutton_5_" + resultId);
 			verticalPanel_5.add(simpleRadioButton_5);
+			simpleRadioButton_5.addClickHandler(new ClickHandler(){
+
+				@Override
+				public void onClick(ClickEvent event) {
+					SimpleRadioButton x = (SimpleRadioButton) event.getSource();
+					listener.updateResultsPoints(x.getName());
+					
+				}
+			});
 			
 			Label label_5 = new Label("5");
 			label_5.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -189,6 +225,15 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 			
 			SimpleRadioButton simpleRadioButton_6 = new SimpleRadioButton("Radiobutton_6_" + resultId);
 			verticalPanel_6.add(simpleRadioButton_6);
+			simpleRadioButton_6.addClickHandler(new ClickHandler(){
+
+				@Override
+				public void onClick(ClickEvent event) {
+					SimpleRadioButton x = (SimpleRadioButton) event.getSource();
+					listener.updateResultsPoints(x.getName());
+					
+				}
+			});
 			
 			Label label_6 = new Label("6");
 			label_6.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -200,6 +245,15 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 			
 			SimpleRadioButton simpleRadioButton_7 = new SimpleRadioButton("Radiobutton_7_" + resultId);
 			verticalPanel_7.add(simpleRadioButton_7);
+			simpleRadioButton_7.addClickHandler(new ClickHandler(){
+
+				@Override
+				public void onClick(ClickEvent event) {
+					SimpleRadioButton x = (SimpleRadioButton) event.getSource();
+					listener.updateResultsPoints(x.getName());
+					
+				}
+			});
 			
 			Label label_7 = new Label("7");
 			label_7.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -211,6 +265,15 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 			
 			SimpleRadioButton simpleRadioButton_8 = new SimpleRadioButton("Radiobutton_8_" + resultId);
 			verticalPanel_8.add(simpleRadioButton_8);
+			simpleRadioButton_8.addClickHandler(new ClickHandler(){
+
+				@Override
+				public void onClick(ClickEvent event) {
+					SimpleRadioButton x = (SimpleRadioButton) event.getSource();
+					listener.updateResultsPoints(x.getName());
+					
+				}
+			});
 			
 			Label label_8 = new Label("8");
 			label_8.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -222,6 +285,15 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 			
 			SimpleRadioButton simpleRadioButton_9 = new SimpleRadioButton("Radiobutton_9_" + resultId);
 			verticalPanel_9.add(simpleRadioButton_9);
+			simpleRadioButton_9.addClickHandler(new ClickHandler(){
+
+				@Override
+				public void onClick(ClickEvent event) {
+					SimpleRadioButton x = (SimpleRadioButton) event.getSource();
+					listener.updateResultsPoints(x.getName());
+					
+				}
+			});
 			
 			Label label_9 = new Label("9");
 			label_9.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
