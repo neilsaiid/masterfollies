@@ -23,6 +23,7 @@ import edu.lcu.masterfollies.domain.Judges;
 import edu.lcu.masterfollies.domain.JudgesExample;
 import edu.lcu.masterfollies.domain.JudgesMapper;
 import edu.lcu.masterfollies.domain.ListCount;
+import edu.lcu.masterfollies.domain.Results;
 import edu.lcu.masterfollies.domain.ResultsMapper;
 import edu.lcu.masterfollies.shared.Log;
 
@@ -142,21 +143,26 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
-	public Void updateResultsPoints(Integer resultsId, Integer value){
-		return null;
-		
-	}
+
 	@Override
 	public List<Map<String,String>> selectResultsByJudge(Integer judgeId, Integer clubId) {
 		
 		List<Map<String, String>> x = resultsMapper.selectResultsByJudge(judgeId,clubId);
 		Log.debug("X is: " + x);
 		for(Map<String,String> map:x){
-			Log.debug("map = " + map);
+			//Log.debug("map = " + map);
 		}
-		
+		Log.debug("Returning x");
 		return x;
+	}
+	@Override
+	public Void updateResultsPoints(Integer resultsId, Integer value) {
+		Results rt = new Results();
+		rt.setId(resultsId);
+		rt.setPoints(value);
+		
+		resultsMapper.updateByPrimaryKeySelective(rt);
+		return null;
 	}
 	
 }

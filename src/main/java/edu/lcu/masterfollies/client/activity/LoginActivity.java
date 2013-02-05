@@ -109,6 +109,7 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 						}
 						//  user has successfully logged on
 						display.asDialog().hide();
+						Log.debug("Judge is: "+arg0);
 						ClubListPlace clubListPlace = new ClubListPlace("clublist",arg0);
 						  
 						 clientFactory.getPlaceController().goTo(clubListPlace);

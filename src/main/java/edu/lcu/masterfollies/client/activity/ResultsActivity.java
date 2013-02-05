@@ -78,7 +78,7 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 			@Override
 			public void onFailure(Throwable arg0) {
 				// TODO Auto-generated method stub
-				
+				Log.debug("FAIL x");
 			}
 			
 			@Override
@@ -135,14 +135,13 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 	}
 
 	@Override
-	public void updateResultsPoints(String radioButtonName) {
+	public void updateResultsPoints(String radioButtonName, Integer value) {
+		Log.debug("About to start the parsing of data");
 		String[] results = radioButtonName.split("_");
-		String value = results[1];
-		String resultId = results[2];
-		Integer intValue = Integer.parseInt("value");
-		Integer intResultId = Integer.parseInt("resultID");		
+		String resultId = results[1];
+		Integer intResultId = Integer.parseInt(resultId);		
 		
-		rpcService.updateResultsPoints(intResultId, intValue, new AsyncCallback<Void>(){
+		rpcService.updateResultsPoints(intResultId, value, new AsyncCallback<Void>(){
 
 			@Override
 			public void onFailure(Throwable arg0) {

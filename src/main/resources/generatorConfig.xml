@@ -4,8 +4,8 @@
     "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-  <properties url="file:///C:/Users/Neil/masterfollies/build.properties"/>
-  <classPathEntry location="C:\Users\Neil\Programming\glassfish3\glassfish\domains\domain1\lib\postgresql-9.2-1002.jdbc4.jar" />
+  <properties url="file:///Users/nsaiid9381/masterfollies/build.properties"/>
+  <classPathEntry location="/Users/nsaiid9381/Downloads/postgresql-9.2-1002.jdbc4.jar" />
 
   <context id="DB2Tables" targetRuntime="MyBatis3" >
       <jdbcConnection driverClass="org.postgresql.Driver"
@@ -35,10 +35,6 @@
     <table tableName="club_names" domainObjectName="ClubNames" >    	
     	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
     	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
-    	
-    <table tableName="details" domainObjectName="Details" >   	
-    	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
-    	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
     	    	
      <table tableName="questions" domainObjectName="Questions" >   	
     	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
@@ -48,7 +44,7 @@
     	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
     	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
 	
-	<table tableName="rank" domainObjectName="Rank" >    	
+      <table tableName="rank" domainObjectName="Rank" >    	
     	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
     	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
      	

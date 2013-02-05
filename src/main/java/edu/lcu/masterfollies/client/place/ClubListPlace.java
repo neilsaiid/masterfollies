@@ -1,9 +1,13 @@
 package edu.lcu.masterfollies.client.place;
 
 
+
+
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
+
 import edu.lcu.masterfollies.domain.Judges;
+import edu.lcu.masterfollies.shared.Log;
 
 public class ClubListPlace extends Place
 {
@@ -14,11 +18,12 @@ public class ClubListPlace extends Place
 
 	public ClubListPlace(String token, Judges judge)
 	{
+		Log.debug("Judge is: " + judge);
 		this.judge = judge;
 	}
 	public ClubListPlace(String token)
 	{
-		
+		Log.debug("clubListPalce, how are we here?!");
 	}
 	public static class Tokenizer implements PlaceTokenizer<ClubListPlace>
 	{

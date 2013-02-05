@@ -25,7 +25,7 @@ public interface ResultsView extends IsWidget {
 		public void updateNotes(final Integer questionId, String notes);
 		
 		void goTo(Place place);
-		void updateResultsPoints(String radioButtonName);
+		void updateResultsPoints(String radioButtonName, Integer value);
 
 		
 	}

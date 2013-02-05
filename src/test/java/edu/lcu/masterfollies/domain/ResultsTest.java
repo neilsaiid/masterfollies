@@ -89,7 +89,7 @@ public class ResultsTest implements BeanFactoryAware {
 		rt.setClubId(1);
 		rt.setQuestionId(1);
 		rt.setPoints(0);
-		rt.setRank(1);
+		//rt.setRank(1);
 		rt.setNotes("This is a test input");
 		//insert the new data created into the table and print out a log report to show
 		//the changes applied to the table
@@ -98,7 +98,7 @@ public class ResultsTest implements BeanFactoryAware {
 		log.debug("Club Id used: " + rt.getClubId());
 		log.debug("Question ID used: " + rt.getQuestionId());
 		log.debug("Points given: " + rt.getPoints());
-		log.debug("Rank given: " + rt.getRank());
+	//	log.debug("Rank given: " + rt.getRank());
 		log.debug("Notes given: " + rt.getNotes());
 		//choose the line that was just entered and print out a report showing the club
 		//name that corresponds to that Judge, Club and Question ID
