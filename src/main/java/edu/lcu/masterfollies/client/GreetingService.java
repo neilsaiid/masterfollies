@@ -22,7 +22,7 @@ public interface GreetingService extends RemoteService {
   Void upadateLineScore(Integer judgeId, Integer clubNameId, Integer questionId, Integer points);
   Void updateRankScore(Integer judgeId, Integer clubNameId, Integer rank);
   Void updateNotes(Integer questionId, String notes);
-  List<Map<String, String>> selectResultsByJudge(Integer judgeId, Integer clubId);
+  List<Map<String, Object>> selectResultsByJudge(Integer judgeId, Integer clubId);
 
   Void updateResultsPoints(Integer resultsId, Integer value);
   

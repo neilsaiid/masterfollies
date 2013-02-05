@@ -98,6 +98,6 @@ public interface ResultsMapper {
     
     int insertbatchResultsInsert(@Param("judgeId")Integer judgeId, @Param("clubId") Integer clubId);
     
-    List<Map<String,String>> selectResultsByJudge(@Param("judgeId")Integer judgeId, @Param("clubId") Integer clubId);
+    List<Map<String,Object>> selectResultsByJudge(@Param("judgeId")Integer judgeId, @Param("clubId") Integer clubId);
     
     }

@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.2.2
 -- Dumped by pg_dump version 9.2.2
--- Started on 2013-02-05 11:11:19
+-- Started on 2013-02-05 16:45:01 CST
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -13,7 +13,7 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- TOC entry 178 (class 3079 OID 11727)
+-- TOC entry 178 (class 3079 OID 11995)
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
 --
 
@@ -21,7 +21,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 1981 (class 0 OID 0)
+-- TOC entry 2248 (class 0 OID 0)
 -- Dependencies: 178
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -31,12 +31,27 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
+--
+-- TOC entry 191 (class 1255 OID 16828)
+-- Name: batch_insert(integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION batch_insert(judge_id integer) RETURNS void
+    LANGUAGE sql
+    AS $_$insert into results (judge_id, club_id, question_id, points, notes)
+select $1 as judge_id, c.id as club_id,q.id as question_id,0 as points, null as notes
+from questions q
+cross join club_names c$_$;
+
+
+ALTER FUNCTION public.batch_insert(judge_id integer) OWNER TO postgres;
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- TOC entry 168 (class 1259 OID 16427)
+-- TOC entry 168 (class 1259 OID 16756)
 -- Name: club_names; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -50,7 +65,7 @@ CREATE TABLE club_names (
 ALTER TABLE public.club_names OWNER TO postgres;
 
 --
--- TOC entry 169 (class 1259 OID 16433)
+-- TOC entry 169 (class 1259 OID 16762)
 -- Name: clubnames_ID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -65,7 +80,7 @@ CREATE SEQUENCE "clubnames_ID_seq"
 ALTER TABLE public."clubnames_ID_seq" OWNER TO postgres;
 
 --
--- TOC entry 1982 (class 0 OID 0)
+-- TOC entry 2249 (class 0 OID 0)
 -- Dependencies: 169
 -- Name: clubnames_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -74,7 +89,7 @@ ALTER SEQUENCE "clubnames_ID_seq" OWNED BY club_names.id;
 
 
 --
--- TOC entry 170 (class 1259 OID 16443)
+-- TOC entry 170 (class 1259 OID 16764)
 -- Name: judges; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -91,7 +106,7 @@ CREATE TABLE judges (
 ALTER TABLE public.judges OWNER TO postgres;
 
 --
--- TOC entry 171 (class 1259 OID 16449)
+-- TOC entry 171 (class 1259 OID 16770)
 -- Name: judges_ID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -106,7 +121,7 @@ CREATE SEQUENCE "judges_ID_seq"
 ALTER TABLE public."judges_ID_seq" OWNER TO postgres;
 
 --
--- TOC entry 1983 (class 0 OID 0)
+-- TOC entry 2250 (class 0 OID 0)
 -- Dependencies: 171
 -- Name: judges_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -115,7 +130,7 @@ ALTER SEQUENCE "judges_ID_seq" OWNED BY judges.id;
 
 
 --
--- TOC entry 172 (class 1259 OID 16451)
+-- TOC entry 172 (class 1259 OID 16772)
 -- Name: questions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -129,7 +144,7 @@ CREATE TABLE questions (
 ALTER TABLE public.questions OWNER TO postgres;
 
 --
--- TOC entry 173 (class 1259 OID 16457)
+-- TOC entry 173 (class 1259 OID 16778)
 -- Name: questions_ID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -144,7 +159,7 @@ CREATE SEQUENCE "questions_ID_seq"
 ALTER TABLE public."questions_ID_seq" OWNER TO postgres;
 
 --
--- TOC entry 1984 (class 0 OID 0)
+-- TOC entry 2251 (class 0 OID 0)
 -- Dependencies: 173
 -- Name: questions_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -153,7 +168,7 @@ ALTER SEQUENCE "questions_ID_seq" OWNED BY questions.id;
 
 
 --
--- TOC entry 176 (class 1259 OID 24586)
+-- TOC entry 174 (class 1259 OID 16780)
 -- Name: rank; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -168,8 +183,8 @@ CREATE TABLE rank (
 ALTER TABLE public.rank OWNER TO postgres;
 
 --
--- TOC entry 1985 (class 0 OID 0)
--- Dependencies: 176
+-- TOC entry 2252 (class 0 OID 0)
+-- Dependencies: 174
 -- Name: COLUMN rank.club_id; Type: COMMENT; Schema: public; Owner: postgres
 --
 
@@ -178,7 +193,7 @@ COMMENT ON COLUMN rank.club_id IS '
 
 
 --
--- TOC entry 177 (class 1259 OID 24620)
+-- TOC entry 175 (class 1259 OID 16783)
 -- Name: rank_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -193,8 +208,8 @@ CREATE SEQUENCE rank_id_seq
 ALTER TABLE public.rank_id_seq OWNER TO postgres;
 
 --
--- TOC entry 1986 (class 0 OID 0)
--- Dependencies: 177
+-- TOC entry 2253 (class 0 OID 0)
+-- Dependencies: 175
 -- Name: rank_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -202,7 +217,7 @@ ALTER SEQUENCE rank_id_seq OWNED BY rank.id;
 
 
 --
--- TOC entry 174 (class 1259 OID 16459)
+-- TOC entry 176 (class 1259 OID 16785)
 -- Name: results; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -219,7 +234,7 @@ CREATE TABLE results (
 ALTER TABLE public.results OWNER TO postgres;
 
 --
--- TOC entry 175 (class 1259 OID 16465)
+-- TOC entry 177 (class 1259 OID 16791)
 -- Name: results_ID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -234,8 +249,8 @@ CREATE SEQUENCE "results_ID_seq"
 ALTER TABLE public."results_ID_seq" OWNER TO postgres;
 
 --
--- TOC entry 1987 (class 0 OID 0)
--- Dependencies: 175
+-- TOC entry 2254 (class 0 OID 0)
+-- Dependencies: 177
 -- Name: results_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -243,7 +258,7 @@ ALTER SEQUENCE "results_ID_seq" OWNED BY results.id;
 
 
 --
--- TOC entry 1944 (class 2604 OID 16467)
+-- TOC entry 2211 (class 2604 OID 16793)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -251,7 +266,7 @@ ALTER TABLE ONLY club_names ALTER COLUMN id SET DEFAULT nextval('"clubnames_ID_s
 
 
 --
--- TOC entry 1945 (class 2604 OID 16469)
+-- TOC entry 2212 (class 2604 OID 16794)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -259,7 +274,7 @@ ALTER TABLE ONLY judges ALTER COLUMN id SET DEFAULT nextval('"judges_ID_seq"'::r
 
 
 --
--- TOC entry 1946 (class 2604 OID 16470)
+-- TOC entry 2213 (class 2604 OID 16795)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -267,7 +282,7 @@ ALTER TABLE ONLY questions ALTER COLUMN id SET DEFAULT nextval('"questions_ID_se
 
 
 --
--- TOC entry 1948 (class 2604 OID 24622)
+-- TOC entry 2214 (class 2604 OID 16796)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -275,7 +290,7 @@ ALTER TABLE ONLY rank ALTER COLUMN id SET DEFAULT nextval('rank_id_seq'::regclas
 
 
 --
--- TOC entry 1947 (class 2604 OID 16471)
+-- TOC entry 2215 (class 2604 OID 16797)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -283,7 +298,7 @@ ALTER TABLE ONLY results ALTER COLUMN id SET DEFAULT nextval('"results_ID_seq"':
 
 
 --
--- TOC entry 1964 (class 0 OID 16427)
+-- TOC entry 2231 (class 0 OID 16756)
 -- Dependencies: 168
 -- Data for Name: club_names; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -301,16 +316,16 @@ COPY club_names (id, club_name, girl) FROM stdin;
 
 
 --
--- TOC entry 1988 (class 0 OID 0)
+-- TOC entry 2255 (class 0 OID 0)
 -- Dependencies: 169
 -- Name: clubnames_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"clubnames_ID_seq"', 40, true);
+SELECT pg_catalog.setval('"clubnames_ID_seq"', 46, true);
 
 
 --
--- TOC entry 1966 (class 0 OID 16443)
+-- TOC entry 2233 (class 0 OID 16764)
 -- Dependencies: 170
 -- Data for Name: judges; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -322,16 +337,16 @@ COPY judges (id, first_name, last_name, user_name, password, is_super) FROM stdi
 
 
 --
--- TOC entry 1989 (class 0 OID 0)
+-- TOC entry 2256 (class 0 OID 0)
 -- Dependencies: 171
 -- Name: judges_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"judges_ID_seq"', 55, true);
+SELECT pg_catalog.setval('"judges_ID_seq"', 61, true);
 
 
 --
--- TOC entry 1968 (class 0 OID 16451)
+-- TOC entry 2235 (class 0 OID 16772)
 -- Dependencies: 172
 -- Data for Name: questions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -346,7 +361,7 @@ COPY questions (id, question, "desc") FROM stdin;
 
 
 --
--- TOC entry 1990 (class 0 OID 0)
+-- TOC entry 2257 (class 0 OID 0)
 -- Dependencies: 173
 -- Name: questions_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -355,8 +370,8 @@ SELECT pg_catalog.setval('"questions_ID_seq"', 5, true);
 
 
 --
--- TOC entry 1972 (class 0 OID 24586)
--- Dependencies: 176
+-- TOC entry 2237 (class 0 OID 16780)
+-- Dependencies: 174
 -- Data for Name: rank; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -365,8 +380,8 @@ COPY rank (judge_id, club_id, rank, id) FROM stdin;
 
 
 --
--- TOC entry 1991 (class 0 OID 0)
--- Dependencies: 177
+-- TOC entry 2258 (class 0 OID 0)
+-- Dependencies: 175
 -- Name: rank_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -374,28 +389,66 @@ SELECT pg_catalog.setval('rank_id_seq', 1, false);
 
 
 --
--- TOC entry 1970 (class 0 OID 16459)
--- Dependencies: 174
+-- TOC entry 2239 (class 0 OID 16785)
+-- Dependencies: 176
 -- Data for Name: results; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY results (id, judge_id, club_id, question_id, points, notes) FROM stdin;
-71	1	1	1	10	PLSE SEE ME
-72	1	1	2	10	\N
+127	1	1	5	7	test in special effects
+108	1	2	1	0	\N
+109	1	2	2	0	\N
+110	1	2	3	0	\N
+111	1	2	4	0	\N
+112	1	2	5	0	\N
+113	1	3	1	0	\N
+114	1	3	2	0	\N
+115	1	3	3	0	\N
+116	1	3	4	0	\N
+117	1	3	5	0	\N
+118	1	4	1	0	\N
+119	1	4	2	0	\N
+120	1	4	3	0	\N
+121	1	4	4	0	\N
+122	1	4	5	0	\N
+123	1	1	1	0	\N
+124	1	1	2	0	\N
+125	1	1	3	0	\N
+126	1	1	4	0	\N
+128	1	5	1	0	\N
+129	1	5	2	0	\N
+130	1	5	3	0	\N
+131	1	5	4	0	\N
+132	1	5	5	0	\N
+133	1	6	1	0	\N
+134	1	6	2	0	\N
+135	1	6	3	0	\N
+136	1	6	4	0	\N
+137	1	6	5	0	\N
+138	1	7	1	0	\N
+139	1	7	2	0	\N
+140	1	7	3	0	\N
+141	1	7	4	0	\N
+142	1	7	5	0	\N
+143	1	8	1	0	\N
+144	1	8	2	0	\N
+145	1	8	3	0	\N
+146	1	8	4	0	\N
+147	1	8	5	0	\N
 \.
 
 
 --
--- TOC entry 1992 (class 0 OID 0)
--- Dependencies: 175
+-- TOC entry 2259 (class 0 OID 0)
+-- Dependencies: 177
 -- Name: results_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"results_ID_seq"', 72, true);
+SELECT pg_catalog.setval('"results_ID_seq"', 147, true);
 
 
 --
--- TOC entry 1950 (class 2606 OID 16473)
+-- TOC entry 2217 (class 2606 OID 16799)
 -- Name: clubnames_ID_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -404,7 +457,7 @@ ALTER TABLE ONLY club_names
 
 
 --
--- TOC entry 1958 (class 2606 OID 24607)
+-- TOC entry 2225 (class 2606 OID 16801)
 -- Name: judge_club_question_unique; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -413,7 +466,7 @@ ALTER TABLE ONLY results
 
 
 --
--- TOC entry 1952 (class 2606 OID 16477)
+-- TOC entry 2219 (class 2606 OID 16803)
 -- Name: judges_Username_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -422,7 +475,7 @@ ALTER TABLE ONLY judges
 
 
 --
--- TOC entry 1954 (class 2606 OID 16479)
+-- TOC entry 2221 (class 2606 OID 16805)
 -- Name: judges_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -431,7 +484,7 @@ ALTER TABLE ONLY judges
 
 
 --
--- TOC entry 1956 (class 2606 OID 16481)
+-- TOC entry 2223 (class 2606 OID 16807)
 -- Name: questions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -440,7 +493,7 @@ ALTER TABLE ONLY questions
 
 
 --
--- TOC entry 1960 (class 2606 OID 16483)
+-- TOC entry 2227 (class 2606 OID 16809)
 -- Name: serial_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -449,7 +502,7 @@ ALTER TABLE ONLY results
 
 
 --
--- TOC entry 1962 (class 2606 OID 24608)
+-- TOC entry 2228 (class 2606 OID 16810)
 -- Name: club_id_as_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -458,7 +511,7 @@ ALTER TABLE ONLY rank
 
 
 --
--- TOC entry 1961 (class 2606 OID 24601)
+-- TOC entry 2230 (class 2606 OID 16815)
 -- Name: fk_judges_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -467,7 +520,7 @@ ALTER TABLE ONLY results
 
 
 --
--- TOC entry 1963 (class 2606 OID 24613)
+-- TOC entry 2229 (class 2606 OID 16820)
 -- Name: judge_id_as_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -476,7 +529,7 @@ ALTER TABLE ONLY rank
 
 
 --
--- TOC entry 1980 (class 0 OID 0)
+-- TOC entry 2247 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -487,7 +540,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2013-02-05 11:11:19
+-- Completed on 2013-02-05 16:45:01 CST
 
 --
 -- PostgreSQL database dump complete

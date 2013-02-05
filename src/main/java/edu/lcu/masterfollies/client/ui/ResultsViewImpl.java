@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.BlurEvent;
+import com.google.gwt.event.dom.client.BlurHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.HasDirection.Direction;
@@ -15,7 +17,7 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RadioButton;
+import com.google.gwt.user.client.ui.RichTextArea;
 import com.google.gwt.user.client.ui.SimpleRadioButton;
 import com.google.gwt.user.client.ui.StackLayoutPanel;
 import com.google.gwt.user.client.ui.TabBar;
@@ -23,83 +25,56 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import edu.lcu.masterfollies.domain.Results;
 import edu.lcu.masterfollies.shared.Log;
+import com.google.gwt.user.client.ui.Button;
 
 public class ResultsViewImpl extends Composite implements ResultsView {
 	StackLayoutPanel stackLayoutPanel;
 	HTMLPanel panel;
 	private Presenter listener;
+	private Button btnNewButton;
+	@Override
+	public HTMLPanel getPanel() {
+		return panel;
+	}
+
+	VerticalPanel vp;
 	
 	public ResultsViewImpl() {
 		Log.debug("About to start the stackLayoutPanel");
-		stackLayoutPanel = new StackLayoutPanel(Unit.EM);
+		vp = new VerticalPanel();
+			
+		initWidget(vp);
+		vp.setWidth("700px");
 		
-//		HTMLPanel panel_1 = new HTMLPanel("New HTML");
-//		
-//		HorizontalPanel horizontalPanel = new HorizontalPanel();
-//		panel_1.add(horizontalPanel);
-//		horizontalPanel.setSize("518px", "146px");
-//		
-//		VerticalPanel verticalPanel = new VerticalPanel();
-//		horizontalPanel.add(verticalPanel);
-//		verticalPanel.setHeight("109px");
-//		
-//		SimpleRadioButton simpleRadioButton = new SimpleRadioButton("new name");
-//		verticalPanel.add(simpleRadioButton);
-//		
-//		VerticalPanel verticalPanel_1 = new VerticalPanel();
-//		horizontalPanel.add(verticalPanel_1);
-//		verticalPanel_1.setHeight("109px");
-//		
-//		SimpleRadioButton simpleRadioButton_1 = new SimpleRadioButton("new name");
-//		verticalPanel_1.add(simpleRadioButton_1);
-//		
-//		VerticalPanel verticalPanel_2 = new VerticalPanel();
-//		horizontalPanel.add(verticalPanel_2);
-//		verticalPanel_2.setHeight("109px");
-//		
-//		SimpleRadioButton simpleRadioButton_2 = new SimpleRadioButton("new name");
-//		verticalPanel_2.add(simpleRadioButton_2);
-//		stackLayoutPanel.add(panel_1, new HTML("New Widget"), 2.0);
-//		
-//		HTMLPanel panel_2 = new HTMLPanel("New HTML");
-//		stackLayoutPanel.add(panel_2, new HTML("New Widget"), 2.0);
-//		
-//		HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
-//		panel_2.add(horizontalPanel_1);
-//		horizontalPanel_1.setSize("495px", "217px");
-//		
-//		VerticalPanel verticalPanel_3 = new VerticalPanel();
-//		horizontalPanel_1.add(verticalPanel_3);
-//		verticalPanel_3.setHeight("127px");
-//		
-//		RadioButton radioButton = new RadioButton("new name", "");
-//		verticalPanel_3.add(radioButton);
-//		
-//		VerticalPanel verticalPanel_4 = new VerticalPanel();
-//		horizontalPanel_1.add(verticalPanel_4);
-//		verticalPanel_4.setHeight("127px");
-//		
-//		RadioButton radioButton_1 = new RadioButton("new name", "New radio button");
-//		verticalPanel_4.add(radioButton_1);
-		//RootLayoutPanel rp = RootLayoutPanel.get();
-		//rp.add(stackLayoutPanel);
-
-		initWidget(stackLayoutPanel);
-		stackLayoutPanel.setHeight("750px");
+		
+		btnNewButton = new Button("Club List");
+		
+		
+		vp.add(btnNewButton);
+	}
+	@Override
+	public Button getBtnNewButton() {
+		return btnNewButton;
 	}
 
 	@Override
-	public void setResults(List<Map<String, String>> results) {
+	public void setResults(List<Map<String, Object>> results) {
 		Log.debug("Starting For Loop");
-		
+		if (stackLayoutPanel != null){
+			vp.remove(stackLayoutPanel);
+			
+		}
+		stackLayoutPanel = new StackLayoutPanel(Unit.EM);
+		stackLayoutPanel.setHeight("1000px");
+		vp.add(stackLayoutPanel);
 		try {
-			for (Map<String,String> m: results){
+			for (Map<String,Object> m: results){
 				
-				String question = m.get("question");
+				String question = (String) m.get("question");
 				Log.debug("Question: " + question);
-				String desc = m.get("desc");
+				String desc = (String) m.get("desc");
 				Log.debug("desc: " + desc);
-				Object resultId  = m.get("id");
+				final Integer resultId  = (Integer) m.get("id");
 				
 				//stackLayoutPanel = new StackLayoutPanel(Unit.EM);
 				stackLayoutPanel.setHeight("450px");
@@ -326,6 +301,25 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				horizontalPanel_1.add(label);
 				horizontalPanel_1.setCellHorizontalAlignment(label, HasHorizontalAlignment.ALIGN_CENTER);
 				horizontalPanel_1.setCellVerticalAlignment(label, HasVerticalAlignment.ALIGN_MIDDLE);
+				
+				HTMLPanel panel_1 = new HTMLPanel("");
+				panel.add(panel_1);
+				panel_1.setHeight("160px");
+				
+				RichTextArea richTextArea = new RichTextArea();
+				panel_1.add(richTextArea);
+				richTextArea.setWidth("440px");
+				richTextArea.addBlurHandler(new BlurHandler(){
+
+					@Override
+					public void onBlur(BlurEvent event) {
+						RichTextArea rta = (RichTextArea) event.getSource();
+						listener.updateNotes(resultId, rta.getText());
+					}
+
+					
+				});
+				
 				//panel = new HTMLPanel("");
 				stackLayoutPanel.add(panel, new HTML(question), 3.0);
 				// Chrismahanukwanzakah

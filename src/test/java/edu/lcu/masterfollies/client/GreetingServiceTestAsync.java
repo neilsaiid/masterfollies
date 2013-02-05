@@ -96,6 +96,12 @@ public class GreetingServiceTestAsync extends RemoteServiceServlet implements Gr
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void updateResultsPoints(Integer resultsId, Integer value,
+			AsyncCallback<Void> callback) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 

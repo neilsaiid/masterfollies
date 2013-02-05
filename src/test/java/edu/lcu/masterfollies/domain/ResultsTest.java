@@ -70,12 +70,14 @@ public class ResultsTest implements BeanFactoryAware {
 //		//call the Batch insert
 //		r.setJudgeId(1);
 //		r.setClubId(1);
-		
+	
+		ResultsExample re = new ResultsExample();
+		re.createCriteria().andClubIdEqualTo(1).andJudgeIdEqualTo(1);
+		rm.deleteByExample(re);
 		rm.insertbatchResultsInsert(1, 1);
 		List<Map<String,String>> results = rm.selectResultsByJudge(1, 1);
 		log.debug("resutl map=" + results);
-		ResultsExample re = new ResultsExample();
-		re.createCriteria().andClubIdEqualTo(1).andJudgeIdEqualTo(1);
+		
 		rm.deleteByExample(re);
 	}
 	@Test

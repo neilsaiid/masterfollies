@@ -139,17 +139,20 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		return null;
 	}
 	@Override
-	public Void updateNotes(Integer questionId, String notes) {
-		// TODO Auto-generated method stub
+	public Void updateNotes(Integer resultsId, String notes) {
+		Results rt = new Results();
+		rt.setNotes(notes);
+		rt.setId(resultsId);
+		resultsMapper.updateByPrimaryKeySelective(rt);
 		return null;
 	}
 
 	@Override
-	public List<Map<String,String>> selectResultsByJudge(Integer judgeId, Integer clubId) {
+	public List<Map<String,Object>> selectResultsByJudge(Integer judgeId, Integer clubId) {
 		
-		List<Map<String, String>> x = resultsMapper.selectResultsByJudge(judgeId,clubId);
+		List<Map<String, Object>> x = resultsMapper.selectResultsByJudge(judgeId,clubId);
 		Log.debug("X is: " + x);
-		for(Map<String,String> map:x){
+		for(Map<String,Object> map:x){
 			//Log.debug("map = " + map);
 		}
 		Log.debug("Returning x");

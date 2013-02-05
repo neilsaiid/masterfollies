@@ -4,10 +4,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Update;
-
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -73,7 +74,7 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 		display.setLblTitle(
 				"Results for "  + clubName.getClubName() + " By: " + judge.getFirstName() + " " + judge.getLastName());
 		
-		rpcService.selectResultsByJudge(judge.getId(), clubName.getId(), new AsyncCallback<List<Map<String,String>>>(){
+		rpcService.selectResultsByJudge(judge.getId(), clubName.getId(), new AsyncCallback<List<Map<String,Object>>>(){
 
 			@Override
 			public void onFailure(Throwable arg0) {
@@ -82,7 +83,7 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 			}
 			
 			@Override
-			public void onSuccess(List<Map<String, String>> arg0) {
+			public void onSuccess(List<Map<String, Object>> arg0) {
 				Log.debug("Running on Success");
 				display.setResults(arg0);
 				
@@ -95,7 +96,16 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 
 	public void bind() {
 		Log.debug("Start bind");
+		display.getBtnNewButton().addClickHandler(new ClickHandler(){
 
+			@Override
+			public void onClick(ClickEvent event) {
+				History.back();
+			//	display.getPanel().remove(0);
+				
+			}
+			
+		});
 	}
 	
 	@Override
@@ -122,8 +132,22 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 
 
 	@Override
-	public void updateNotes(Integer questionId, String notes) {
-		// TODO Auto-generated method stub
+	public void updateNotes(Integer resultId, String notes) {
+		Log.debug("this is entering notes: " + notes);
+		rpcService.updateNotes(resultId, notes, new AsyncCallback<Void>(){
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+			//	Window.alert("it has been updated");				
+			}
+			
+		});
 		
 	}
 

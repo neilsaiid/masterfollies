@@ -1,8 +1,6 @@
 package edu.lcu.masterfollies.client.place;
 
 
-
-
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
@@ -24,6 +22,12 @@ public class ClubListPlace extends Place
 	public ClubListPlace(String token)
 	{
 		Log.debug("clubListPalce, how are we here?!");
+		String[] tokens = token.split(":");
+		judge = new Judges();
+		judge.setFirstName(tokens[1]);
+		judge.setLastName(tokens[2]);
+		Integer intId= Integer.parseInt(tokens[0]);
+		judge.setId(intId);
 	}
 	public static class Tokenizer implements PlaceTokenizer<ClubListPlace>
 	{
@@ -31,7 +35,9 @@ public class ClubListPlace extends Place
 		@Override
 		public String getToken(ClubListPlace place)
 		{
-			return "clublist";
+			Judges judge = place.getJudge();
+			return  ((judge == null)?"":judge.getId()+":" + judge.getFirstName()
+					+ ":" + judge.getLastName());
 		}
 
 		@Override
@@ -39,6 +45,7 @@ public class ClubListPlace extends Place
 		{
 			return new ClubListPlace(token);
 		}
+		
 	}
 
 	/**
