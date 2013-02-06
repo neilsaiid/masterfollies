@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.2.2
 -- Dumped by pg_dump version 9.2.2
--- Started on 2013-02-06 11:30:41 CST
+-- Started on 2013-02-06 16:07:41 CST
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -21,7 +21,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2249 (class 0 OID 0)
+-- TOC entry 2250 (class 0 OID 0)
 -- Dependencies: 178
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -45,6 +45,23 @@ cross join club_names c$_$;
 
 
 ALTER FUNCTION public.batch_insert(judge_id integer) OWNER TO postgres;
+
+--
+-- TOC entry 192 (class 1255 OID 16830)
+-- Name: batch_insert_all(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION batch_insert_all() RETURNS void
+    LANGUAGE sql
+    AS $$delete from results;
+insert into results (judge_id, club_id, question_id, points, notes)
+select j.id as judge_id, c.id as club_id,q.id as question_id,0 as points, null as notes
+from questions q
+cross join club_names c 
+cross join judges j$$;
+
+
+ALTER FUNCTION public.batch_insert_all() OWNER TO postgres;
 
 SET default_tablespace = '';
 
@@ -80,7 +97,7 @@ CREATE SEQUENCE "clubnames_ID_seq"
 ALTER TABLE public."clubnames_ID_seq" OWNER TO postgres;
 
 --
--- TOC entry 2250 (class 0 OID 0)
+-- TOC entry 2251 (class 0 OID 0)
 -- Dependencies: 169
 -- Name: clubnames_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -121,7 +138,7 @@ CREATE SEQUENCE "judges_ID_seq"
 ALTER TABLE public."judges_ID_seq" OWNER TO postgres;
 
 --
--- TOC entry 2251 (class 0 OID 0)
+-- TOC entry 2252 (class 0 OID 0)
 -- Dependencies: 171
 -- Name: judges_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -159,7 +176,7 @@ CREATE SEQUENCE "questions_ID_seq"
 ALTER TABLE public."questions_ID_seq" OWNER TO postgres;
 
 --
--- TOC entry 2252 (class 0 OID 0)
+-- TOC entry 2253 (class 0 OID 0)
 -- Dependencies: 173
 -- Name: questions_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -183,7 +200,7 @@ CREATE TABLE rank (
 ALTER TABLE public.rank OWNER TO postgres;
 
 --
--- TOC entry 2253 (class 0 OID 0)
+-- TOC entry 2254 (class 0 OID 0)
 -- Dependencies: 174
 -- Name: COLUMN rank.club_id; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -208,7 +225,7 @@ CREATE SEQUENCE rank_id_seq
 ALTER TABLE public.rank_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2254 (class 0 OID 0)
+-- TOC entry 2255 (class 0 OID 0)
 -- Dependencies: 175
 -- Name: rank_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -249,7 +266,7 @@ CREATE SEQUENCE "results_ID_seq"
 ALTER TABLE public."results_ID_seq" OWNER TO postgres;
 
 --
--- TOC entry 2255 (class 0 OID 0)
+-- TOC entry 2256 (class 0 OID 0)
 -- Dependencies: 177
 -- Name: results_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -258,7 +275,7 @@ ALTER SEQUENCE "results_ID_seq" OWNED BY results.id;
 
 
 --
--- TOC entry 2211 (class 2604 OID 16793)
+-- TOC entry 2212 (class 2604 OID 16793)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -266,7 +283,7 @@ ALTER TABLE ONLY club_names ALTER COLUMN id SET DEFAULT nextval('"clubnames_ID_s
 
 
 --
--- TOC entry 2213 (class 2604 OID 16794)
+-- TOC entry 2214 (class 2604 OID 16794)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -274,7 +291,7 @@ ALTER TABLE ONLY judges ALTER COLUMN id SET DEFAULT nextval('"judges_ID_seq"'::r
 
 
 --
--- TOC entry 2214 (class 2604 OID 16795)
+-- TOC entry 2215 (class 2604 OID 16795)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -282,7 +299,7 @@ ALTER TABLE ONLY questions ALTER COLUMN id SET DEFAULT nextval('"questions_ID_se
 
 
 --
--- TOC entry 2215 (class 2604 OID 16796)
+-- TOC entry 2216 (class 2604 OID 16796)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -290,7 +307,7 @@ ALTER TABLE ONLY rank ALTER COLUMN id SET DEFAULT nextval('rank_id_seq'::regclas
 
 
 --
--- TOC entry 2216 (class 2604 OID 16797)
+-- TOC entry 2217 (class 2604 OID 16797)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -298,7 +315,7 @@ ALTER TABLE ONLY results ALTER COLUMN id SET DEFAULT nextval('"results_ID_seq"':
 
 
 --
--- TOC entry 2232 (class 0 OID 16756)
+-- TOC entry 2233 (class 0 OID 16756)
 -- Dependencies: 168
 -- Data for Name: club_names; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -316,16 +333,16 @@ COPY club_names (id, club_name, girl) FROM stdin;
 
 
 --
--- TOC entry 2256 (class 0 OID 0)
+-- TOC entry 2257 (class 0 OID 0)
 -- Dependencies: 169
 -- Name: clubnames_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"clubnames_ID_seq"', 46, true);
+SELECT pg_catalog.setval('"clubnames_ID_seq"', 50, true);
 
 
 --
--- TOC entry 2234 (class 0 OID 16764)
+-- TOC entry 2235 (class 0 OID 16764)
 -- Dependencies: 170
 -- Data for Name: judges; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -333,20 +350,23 @@ SELECT pg_catalog.setval('"clubnames_ID_seq"', 46, true);
 COPY judges (id, first_name, last_name, user_name, password, is_super) FROM stdin;
 4	Second	Last	SL	test	\N
 1	First	Last	FL	test	\N
+67	Hilary	Barnes	HB	test	\N
+66	Neil	Saiid	NS	test	t
+68	Jodi	P	JP	test	\N
 \.
 
 
 --
--- TOC entry 2257 (class 0 OID 0)
+-- TOC entry 2258 (class 0 OID 0)
 -- Dependencies: 171
 -- Name: judges_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"judges_ID_seq"', 61, true);
+SELECT pg_catalog.setval('"judges_ID_seq"', 68, true);
 
 
 --
--- TOC entry 2236 (class 0 OID 16772)
+-- TOC entry 2237 (class 0 OID 16772)
 -- Dependencies: 172
 -- Data for Name: questions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -361,7 +381,7 @@ COPY questions (id, question, "desc") FROM stdin;
 
 
 --
--- TOC entry 2258 (class 0 OID 0)
+-- TOC entry 2259 (class 0 OID 0)
 -- Dependencies: 173
 -- Name: questions_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -370,7 +390,7 @@ SELECT pg_catalog.setval('"questions_ID_seq"', 5, true);
 
 
 --
--- TOC entry 2238 (class 0 OID 16780)
+-- TOC entry 2239 (class 0 OID 16780)
 -- Dependencies: 174
 -- Data for Name: rank; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -380,7 +400,7 @@ COPY rank (judge_id, club_id, rank, id) FROM stdin;
 
 
 --
--- TOC entry 2259 (class 0 OID 0)
+-- TOC entry 2260 (class 0 OID 0)
 -- Dependencies: 175
 -- Name: rank_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -389,106 +409,226 @@ SELECT pg_catalog.setval('rank_id_seq', 1, false);
 
 
 --
--- TOC entry 2240 (class 0 OID 16785)
+-- TOC entry 2241 (class 0 OID 16785)
 -- Dependencies: 176
 -- Data for Name: results; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY results (id, judge_id, club_id, question_id, points, notes) FROM stdin;
-115	1	3	3	4	this is loa
-148	4	2	1	0	\N
-149	4	2	2	0	\N
-150	4	2	3	0	\N
-151	4	2	4	0	\N
-152	4	2	5	0	\N
-153	4	3	1	0	\N
-154	4	3	2	0	\N
-155	4	3	3	0	\N
-156	4	3	4	0	\N
-157	4	3	5	0	\N
-158	4	4	1	0	\N
-159	4	4	2	0	\N
-160	4	4	3	0	\N
-161	4	4	4	0	\N
-162	4	4	5	0	\N
-173	4	6	1	0	\N
-174	4	6	2	0	\N
-175	4	6	3	0	\N
-176	4	6	4	0	\N
-177	4	6	5	0	\N
-124	1	1	2	9	\N
-125	1	1	3	9	\N
-127	1	1	5	9	test in special effects
-123	1	1	1	9	\N
-126	1	1	4	9	\N
-166	4	1	4	10	\N
-164	4	1	2	10	\N
-165	4	1	3	10	\N
-167	4	1	5	10	\N
-163	4	1	1	10	\N
-171	4	5	4	10	\N
-170	4	5	3	10	\N
-169	4	5	2	10	\N
-172	4	5	5	10	\N
-168	4	5	1	10	\N
-108	1	2	1	0	\N
-109	1	2	2	0	\N
-112	1	2	5	0	\N
-113	1	3	1	0	\N
-114	1	3	2	0	\N
-116	1	3	4	0	\N
-117	1	3	5	0	\N
-118	1	4	1	0	\N
-119	1	4	2	0	\N
-120	1	4	3	0	\N
-121	1	4	4	0	\N
-122	1	4	5	0	\N
-128	1	5	1	0	\N
-129	1	5	2	0	\N
-130	1	5	3	0	\N
-131	1	5	4	0	\N
-132	1	5	5	0	\N
-133	1	6	1	0	\N
-134	1	6	2	0	\N
-135	1	6	3	0	\N
-136	1	6	4	0	\N
-137	1	6	5	0	\N
-138	1	7	1	0	\N
-139	1	7	2	0	\N
-140	1	7	3	0	\N
-141	1	7	4	0	\N
-142	1	7	5	0	\N
-143	1	8	1	0	\N
-144	1	8	2	0	\N
-145	1	8	3	0	\N
-146	1	8	4	0	\N
-147	1	8	5	0	\N
-186	4	8	4	5	\N
-184	4	8	2	5	\N
-185	4	8	3	5	\N
-183	4	8	1	5	\N
-187	4	8	5	5	\N
-182	4	7	5	6	\N
-181	4	7	4	6	\N
-179	4	7	2	6	\N
-180	4	7	3	6	\N
-178	4	7	1	6	\N
-111	1	2	4	2	change to kappa in storyline
-110	1	2	3	1	this is kappa
+320	4	5	1	0	\N
+321	4	6	1	0	\N
+322	4	7	1	0	\N
+323	4	8	1	0	\N
+324	4	1	1	0	\N
+325	4	2	1	0	\N
+326	4	3	1	0	\N
+327	4	4	1	0	\N
+328	1	5	1	0	\N
+329	1	6	1	0	\N
+330	1	7	1	0	\N
+331	1	8	1	0	\N
+332	1	1	1	0	\N
+333	1	2	1	0	\N
+334	1	3	1	0	\N
+335	1	4	1	0	\N
+336	67	5	1	0	\N
+337	67	6	1	0	\N
+338	67	7	1	0	\N
+339	67	8	1	0	\N
+340	67	1	1	0	\N
+341	67	2	1	0	\N
+342	67	3	1	0	\N
+343	67	4	1	0	\N
+344	66	5	1	0	\N
+345	66	6	1	0	\N
+346	66	7	1	0	\N
+347	66	8	1	0	\N
+348	66	1	1	0	\N
+349	66	2	1	0	\N
+350	66	3	1	0	\N
+351	66	4	1	0	\N
+352	68	5	1	0	\N
+353	68	6	1	0	\N
+354	68	7	1	0	\N
+355	68	8	1	0	\N
+356	68	1	1	0	\N
+357	68	2	1	0	\N
+358	68	3	1	0	\N
+359	68	4	1	0	\N
+360	4	5	2	0	\N
+361	4	6	2	0	\N
+362	4	7	2	0	\N
+363	4	8	2	0	\N
+364	4	1	2	0	\N
+365	4	2	2	0	\N
+366	4	3	2	0	\N
+367	4	4	2	0	\N
+368	1	5	2	0	\N
+369	1	6	2	0	\N
+370	1	7	2	0	\N
+371	1	8	2	0	\N
+372	1	1	2	0	\N
+373	1	2	2	0	\N
+374	1	3	2	0	\N
+375	1	4	2	0	\N
+376	67	5	2	0	\N
+377	67	6	2	0	\N
+378	67	7	2	0	\N
+379	67	8	2	0	\N
+380	67	1	2	0	\N
+381	67	2	2	0	\N
+382	67	3	2	0	\N
+383	67	4	2	0	\N
+384	66	5	2	0	\N
+385	66	6	2	0	\N
+386	66	7	2	0	\N
+387	66	8	2	0	\N
+388	66	1	2	0	\N
+389	66	2	2	0	\N
+390	66	3	2	0	\N
+391	66	4	2	0	\N
+392	68	5	2	0	\N
+393	68	6	2	0	\N
+394	68	7	2	0	\N
+395	68	8	2	0	\N
+396	68	1	2	0	\N
+397	68	2	2	0	\N
+398	68	3	2	0	\N
+399	68	4	2	0	\N
+400	4	5	3	0	\N
+401	4	6	3	0	\N
+402	4	7	3	0	\N
+403	4	8	3	0	\N
+404	4	1	3	0	\N
+405	4	2	3	0	\N
+406	4	3	3	0	\N
+407	4	4	3	0	\N
+408	1	5	3	0	\N
+409	1	6	3	0	\N
+410	1	7	3	0	\N
+411	1	8	3	0	\N
+412	1	1	3	0	\N
+413	1	2	3	0	\N
+414	1	3	3	0	\N
+415	1	4	3	0	\N
+416	67	5	3	0	\N
+417	67	6	3	0	\N
+418	67	7	3	0	\N
+419	67	8	3	0	\N
+420	67	1	3	0	\N
+421	67	2	3	0	\N
+422	67	3	3	0	\N
+423	67	4	3	0	\N
+424	66	5	3	0	\N
+425	66	6	3	0	\N
+426	66	7	3	0	\N
+427	66	8	3	0	\N
+428	66	1	3	0	\N
+429	66	2	3	0	\N
+430	66	3	3	0	\N
+431	66	4	3	0	\N
+432	68	5	3	0	\N
+433	68	6	3	0	\N
+434	68	7	3	0	\N
+435	68	8	3	0	\N
+436	68	1	3	0	\N
+437	68	2	3	0	\N
+438	68	3	3	0	\N
+439	68	4	3	0	\N
+440	4	5	4	0	\N
+441	4	6	4	0	\N
+442	4	7	4	0	\N
+443	4	8	4	0	\N
+444	4	1	4	0	\N
+445	4	2	4	0	\N
+446	4	3	4	0	\N
+447	4	4	4	0	\N
+448	1	5	4	0	\N
+449	1	6	4	0	\N
+450	1	7	4	0	\N
+451	1	8	4	0	\N
+452	1	1	4	0	\N
+453	1	2	4	0	\N
+454	1	3	4	0	\N
+455	1	4	4	0	\N
+456	67	5	4	0	\N
+457	67	6	4	0	\N
+458	67	7	4	0	\N
+459	67	8	4	0	\N
+460	67	1	4	0	\N
+461	67	2	4	0	\N
+462	67	3	4	0	\N
+463	67	4	4	0	\N
+464	66	5	4	0	\N
+465	66	6	4	0	\N
+466	66	7	4	0	\N
+467	66	8	4	0	\N
+468	66	1	4	0	\N
+469	66	2	4	0	\N
+470	66	3	4	0	\N
+471	66	4	4	0	\N
+472	68	5	4	0	\N
+473	68	6	4	0	\N
+474	68	7	4	0	\N
+475	68	8	4	0	\N
+476	68	1	4	0	\N
+477	68	2	4	0	\N
+478	68	3	4	0	\N
+479	68	4	4	0	\N
+480	4	5	5	0	\N
+481	4	6	5	0	\N
+482	4	7	5	0	\N
+483	4	8	5	0	\N
+484	4	1	5	0	\N
+485	4	2	5	0	\N
+486	4	3	5	0	\N
+487	4	4	5	0	\N
+488	1	5	5	0	\N
+489	1	6	5	0	\N
+490	1	7	5	0	\N
+491	1	8	5	0	\N
+492	1	1	5	0	\N
+493	1	2	5	0	\N
+494	1	3	5	0	\N
+495	1	4	5	0	\N
+496	67	5	5	0	\N
+497	67	6	5	0	\N
+498	67	7	5	0	\N
+499	67	8	5	0	\N
+500	67	1	5	0	\N
+501	67	2	5	0	\N
+502	67	3	5	0	\N
+503	67	4	5	0	\N
+504	66	5	5	0	\N
+505	66	6	5	0	\N
+506	66	7	5	0	\N
+507	66	8	5	0	\N
+508	66	1	5	0	\N
+509	66	2	5	0	\N
+510	66	3	5	0	\N
+511	66	4	5	0	\N
+512	68	5	5	0	\N
+513	68	6	5	0	\N
+514	68	7	5	0	\N
+515	68	8	5	0	\N
+516	68	1	5	0	\N
+517	68	2	5	0	\N
+518	68	3	5	0	\N
+519	68	4	5	0	\N
 \.
 
 
 --
--- TOC entry 2260 (class 0 OID 0)
+-- TOC entry 2261 (class 0 OID 0)
 -- Dependencies: 177
 -- Name: results_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"results_ID_seq"', 187, true);
+SELECT pg_catalog.setval('"results_ID_seq"', 519, true);
 
 
 --
--- TOC entry 2218 (class 2606 OID 16799)
+-- TOC entry 2219 (class 2606 OID 16799)
 -- Name: clubnames_ID_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -497,7 +637,7 @@ ALTER TABLE ONLY club_names
 
 
 --
--- TOC entry 2226 (class 2606 OID 16801)
+-- TOC entry 2227 (class 2606 OID 16801)
 -- Name: judge_club_question_unique; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -506,7 +646,7 @@ ALTER TABLE ONLY results
 
 
 --
--- TOC entry 2220 (class 2606 OID 16803)
+-- TOC entry 2221 (class 2606 OID 16803)
 -- Name: judges_Username_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -515,7 +655,7 @@ ALTER TABLE ONLY judges
 
 
 --
--- TOC entry 2222 (class 2606 OID 16805)
+-- TOC entry 2223 (class 2606 OID 16805)
 -- Name: judges_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -524,7 +664,7 @@ ALTER TABLE ONLY judges
 
 
 --
--- TOC entry 2224 (class 2606 OID 16807)
+-- TOC entry 2225 (class 2606 OID 16807)
 -- Name: questions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -533,7 +673,7 @@ ALTER TABLE ONLY questions
 
 
 --
--- TOC entry 2228 (class 2606 OID 16809)
+-- TOC entry 2229 (class 2606 OID 16809)
 -- Name: serial_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -542,7 +682,7 @@ ALTER TABLE ONLY results
 
 
 --
--- TOC entry 2229 (class 2606 OID 16810)
+-- TOC entry 2230 (class 2606 OID 16810)
 -- Name: club_id_as_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -551,7 +691,7 @@ ALTER TABLE ONLY rank
 
 
 --
--- TOC entry 2231 (class 2606 OID 16815)
+-- TOC entry 2232 (class 2606 OID 16815)
 -- Name: fk_judges_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -560,7 +700,7 @@ ALTER TABLE ONLY results
 
 
 --
--- TOC entry 2230 (class 2606 OID 16820)
+-- TOC entry 2231 (class 2606 OID 16820)
 -- Name: judge_id_as_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -569,7 +709,7 @@ ALTER TABLE ONLY rank
 
 
 --
--- TOC entry 2248 (class 0 OID 0)
+-- TOC entry 2249 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -580,7 +720,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2013-02-06 11:30:41 CST
+-- Completed on 2013-02-06 16:07:41 CST
 
 --
 -- PostgreSQL database dump complete
