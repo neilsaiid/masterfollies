@@ -293,10 +293,11 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectResultsByJudge" resultType="map">
-	select distinct q.question, q.desc, r.points, r.notes, r.id
+	select q.question, q.desc, r.points, r.notes, r.id
 	from questions q
 	left join results r on r.question_id=q.id
-	WHERE (r.judge_id is null and r.club_id is null) or (r.judge_id=#{judgeId,jdbcType=INTEGER} and r.club_id=#{clubId,jdbcType=INTEGER})
+	WHERE (r.judge_id=#{judgeId,jdbcType=INTEGER} and r.club_id=#{clubId,jdbcType=INTEGER})
+order by q.id
   </select>
   <insert id="insertbatchResultsInsert">
 	insert into results (judge_id,club_id,question_id,points,notes)

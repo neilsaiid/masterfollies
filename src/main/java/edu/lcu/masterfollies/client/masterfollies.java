@@ -79,8 +79,8 @@ public class masterfollies implements EntryPoint {
 			}
 		  LoginPlace defaultPlace = new LoginPlace("login");
 		  
-		  clientFactory.getPlaceController().goTo(defaultPlace);
-
+		 // clientFactory.getPlaceController().goTo(defaultPlace);
+		  clientFactory.getHistoryHandler().handleCurrentHistory();
 
     };
 

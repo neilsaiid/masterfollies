@@ -17,7 +17,14 @@ public class ResultsPlace extends Place
 
 	public ResultsPlace(String token)
 	{
-
+		String[] strings = token.split(":");
+		judge = new Judges();
+		Integer setId = Integer.parseInt(strings[0]);
+		judge.setId(setId);
+		clubName = new ClubNames();
+		clubName.setClubName(strings[2]);
+		setId = Integer.parseInt(strings[1]);
+		clubName.setId(setId);
 		//this.results = new Results();
 	}
 	public ResultsPlace(String token,Judges judge, ClubNames clubName){
@@ -31,7 +38,9 @@ public class ResultsPlace extends Place
 		@Override
 		public String getToken(ResultsPlace place)
 		{
-			return "results";
+			Judges judge = place.getJudge();
+			ClubNames cn = place.getClubName();
+			return  ((judge == null)?"":judge.getId() + ":" + cn.getId()+":"+ cn.getClubName());
 		}
 
 		@Override

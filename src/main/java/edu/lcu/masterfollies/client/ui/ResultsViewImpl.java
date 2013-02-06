@@ -28,16 +28,14 @@ import edu.lcu.masterfollies.shared.Log;
 import com.google.gwt.user.client.ui.Button;
 
 public class ResultsViewImpl extends Composite implements ResultsView {
-	StackLayoutPanel stackLayoutPanel;
-	HTMLPanel panel;
-	private Presenter listener;
-	private Button btnNewButton;
+	
 	@Override
 	public HTMLPanel getPanel() {
 		return panel;
 	}
 
 	VerticalPanel vp;
+	private Label lblTitle;
 	
 	public ResultsViewImpl() {
 		Log.debug("About to start the stackLayoutPanel");
@@ -45,6 +43,9 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 			
 		initWidget(vp);
 		vp.setWidth("700px");
+		
+		lblTitle = new Label("");
+		vp.add(lblTitle);
 		
 		
 		btnNewButton = new Button("Club List");
@@ -75,6 +76,8 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				String desc = (String) m.get("desc");
 				Log.debug("desc: " + desc);
 				final Integer resultId  = (Integer) m.get("id");
+				Integer points = (Integer) m.get("points");
+				String notes = (String) m.get("notes");
 				
 				//stackLayoutPanel = new StackLayoutPanel(Unit.EM);
 				stackLayoutPanel.setHeight("450px");
@@ -100,6 +103,7 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				
 				SimpleRadioButton simpleRadioButton_1 = new SimpleRadioButton("Radiobutton_" + resultId);
 				verticalPanel_1.add(simpleRadioButton_1);
+				//simpleRadioButton_1.setValue(value)
 				simpleRadioButton_1.addClickHandler(new ClickHandler(){
 
 					@Override
@@ -309,6 +313,7 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				RichTextArea richTextArea = new RichTextArea();
 				panel_1.add(richTextArea);
 				richTextArea.setWidth("440px");
+				richTextArea.setText(notes);
 				richTextArea.addBlurHandler(new BlurHandler(){
 
 					@Override
@@ -335,12 +340,10 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 
 	@Override
 	public void setLblTitle(String string) {
-		// TODO Auto-generated method stub
+		lblTitle.setText(string);
 		
 	}
 	
-
-
 	@Override
 	public void setListener(Presenter listener) {
 		this.listener = listener;
@@ -365,6 +368,9 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 		return null;
 	}
 
-	
+	StackLayoutPanel stackLayoutPanel;
+	HTMLPanel panel;
+	private Presenter listener;
+	private Button btnNewButton;
 
 }

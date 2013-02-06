@@ -8,13 +8,13 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
-import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 import edu.lcu.masterfollies.client.ClientFactory;
 import edu.lcu.masterfollies.client.GreetingServiceAsync;
+import edu.lcu.masterfollies.client.place.ClubListPlace;
 import edu.lcu.masterfollies.client.place.ResultsPlace;
 import edu.lcu.masterfollies.client.ui.ResultsView;
 import edu.lcu.masterfollies.domain.ClubNames;
@@ -100,7 +100,9 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 
 			@Override
 			public void onClick(ClickEvent event) {
-				History.back();
+				
+				clientFactory.getPlaceController().goTo(new ClubListPlace(null, judge));
+				//	History.back();
 			//	display.getPanel().remove(0);
 				
 			}
