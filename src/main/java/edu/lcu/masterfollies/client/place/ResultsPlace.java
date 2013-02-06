@@ -21,6 +21,8 @@ public class ResultsPlace extends Place
 		judge = new Judges();
 		Integer setId = Integer.parseInt(strings[0]);
 		judge.setId(setId);
+		judge.setFirstName(strings[3]);
+		judge.setLastName(strings[4]);
 		clubName = new ClubNames();
 		clubName.setClubName(strings[2]);
 		setId = Integer.parseInt(strings[1]);
@@ -40,7 +42,7 @@ public class ResultsPlace extends Place
 		{
 			Judges judge = place.getJudge();
 			ClubNames cn = place.getClubName();
-			return  ((judge == null)?"":judge.getId() + ":" + cn.getId()+":"+ cn.getClubName());
+			return  ((judge == null)?"":judge.getId() + ":" + cn.getId()+":"+ cn.getClubName()+":"+judge.getFirstName()+":"+judge.getLastName());
 		}
 
 		@Override

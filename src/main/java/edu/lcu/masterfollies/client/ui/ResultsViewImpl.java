@@ -47,9 +47,7 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 		lblTitle = new Label("");
 		vp.add(lblTitle);
 		
-		
 		btnNewButton = new Button("Club List");
-		
 		
 		vp.add(btnNewButton);
 	}
@@ -66,7 +64,7 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 			
 		}
 		stackLayoutPanel = new StackLayoutPanel(Unit.EM);
-		stackLayoutPanel.setHeight("1000px");
+		stackLayoutPanel.setHeight("500px");
 		vp.add(stackLayoutPanel);
 		try {
 			for (Map<String,Object> m: results){
@@ -80,7 +78,7 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				String notes = (String) m.get("notes");
 				
 				//stackLayoutPanel = new StackLayoutPanel(Unit.EM);
-				stackLayoutPanel.setHeight("450px");
+				//stackLayoutPanel.setHeight("750px");
 				panel = new HTMLPanel("");
 				HorizontalPanel horizontalPanel = new HorizontalPanel();
 				panel.add(horizontalPanel);
@@ -103,7 +101,9 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				
 				SimpleRadioButton simpleRadioButton_1 = new SimpleRadioButton("Radiobutton_" + resultId);
 				verticalPanel_1.add(simpleRadioButton_1);
-				//simpleRadioButton_1.setValue(value)
+				if (points == 1) {
+					simpleRadioButton_1.setValue(true);
+				}	
 				simpleRadioButton_1.addClickHandler(new ClickHandler(){
 
 					@Override
@@ -125,6 +125,9 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				
 				SimpleRadioButton simpleRadioButton_2 = new SimpleRadioButton("Radiobutton_" + resultId);
 				verticalPanel_2.add(simpleRadioButton_2);
+				if (points == 2) {
+					simpleRadioButton_2.setValue(true);
+				}
 				simpleRadioButton_2.addClickHandler(new ClickHandler(){
 
 					@Override
@@ -145,6 +148,9 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				
 				SimpleRadioButton simpleRadioButton_3 = new SimpleRadioButton("Radiobutton_" + resultId);
 				verticalPanel_3.add(simpleRadioButton_3);
+				if (points == 3) {
+					simpleRadioButton_3.setValue(true);
+				}
 				simpleRadioButton_3.addClickHandler(new ClickHandler(){
 
 					@Override
@@ -165,6 +171,9 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				
 				SimpleRadioButton simpleRadioButton_4 = new SimpleRadioButton("Radiobutton_" + resultId);
 				verticalPanel_4.add(simpleRadioButton_4);
+				if (points == 4) {
+					simpleRadioButton_4.setValue(true);
+				}
 				simpleRadioButton_4.addClickHandler(new ClickHandler(){
 
 					@Override
@@ -185,6 +194,9 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				
 				SimpleRadioButton simpleRadioButton_5 = new SimpleRadioButton("Radiobutton_" + resultId);
 				verticalPanel_5.add(simpleRadioButton_5);
+				if (points == 5) {
+					simpleRadioButton_5.setValue(true);
+				}
 				simpleRadioButton_5.addClickHandler(new ClickHandler(){
 
 					@Override
@@ -205,6 +217,9 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				
 				SimpleRadioButton simpleRadioButton_6 = new SimpleRadioButton("Radiobutton_" + resultId);
 				verticalPanel_6.add(simpleRadioButton_6);
+				if (points == 6) {
+					simpleRadioButton_6.setValue(true);
+				}
 				simpleRadioButton_6.addClickHandler(new ClickHandler(){
 
 					@Override
@@ -225,6 +240,9 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				
 				SimpleRadioButton simpleRadioButton_7 = new SimpleRadioButton("Radiobutton_" + resultId);
 				verticalPanel_7.add(simpleRadioButton_7);
+				if (points == 7) {
+					simpleRadioButton_7.setValue(true);
+				}
 				simpleRadioButton_7.addClickHandler(new ClickHandler(){
 
 					@Override
@@ -245,6 +263,9 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				
 				SimpleRadioButton simpleRadioButton_8 = new SimpleRadioButton("Radiobutton_" + resultId);
 				verticalPanel_8.add(simpleRadioButton_8);
+				if (points == 8) {
+					simpleRadioButton_8.setValue(true);
+				}
 				simpleRadioButton_8.addClickHandler(new ClickHandler(){
 
 					@Override
@@ -265,6 +286,9 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				
 				SimpleRadioButton simpleRadioButton_9 = new SimpleRadioButton("Radiobutton_" + resultId);
 				verticalPanel_9.add(simpleRadioButton_9);
+				if (points == 9) {
+					simpleRadioButton_9.setValue(true);
+				}
 				simpleRadioButton_9.addClickHandler(new ClickHandler(){
 
 					@Override
@@ -285,6 +309,9 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				
 				SimpleRadioButton simpleRadioButton_10 = new SimpleRadioButton("Radiobutton_" + resultId);
 				verticalPanel_10.add(simpleRadioButton_10);
+				if (points == 10) {
+					simpleRadioButton_10.setValue(true);
+				}
 				simpleRadioButton_10.addClickHandler(new ClickHandler(){
 
 					@Override
