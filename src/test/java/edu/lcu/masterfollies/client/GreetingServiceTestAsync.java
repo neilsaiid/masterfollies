@@ -90,15 +90,16 @@ public class GreetingServiceTestAsync extends RemoteServiceServlet implements Gr
 		// TODO Auto-generated method stub
 		
 	}
+
 	@Override
-	public void selectResultsByJudge(Integer judgeId, Integer clubId,
-			AsyncCallback<List<Map<String, String>>> callback) {
+	public void updateResultsPoints(Integer resultsId, Integer value,
+			AsyncCallback<Void> callback) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public void updateResultsPoints(Integer resultsId, Integer value,
-			AsyncCallback<Void> callback) {
+	public void selectResultsByJudge(Integer judgeId, Integer clubId,
+			AsyncCallback<List<Map<String, Object>>> callback) {
 		// TODO Auto-generated method stub
 		
 	}
