@@ -12,6 +12,7 @@
   <version>1.0-SNAPSHOT</version>
   <name>GWT Maven Archetype</name>
 
+
   <properties>
     <!-- Convenience property to set the GWT version -->
     <gwtVersion>2.5.0-rc2</gwtVersion>
@@ -245,26 +246,11 @@
 					<configuration>
 						<outputDirectory>${webappDirectory}</outputDirectory>
 						<resources>
-<!-- 							<resource> -->
-<!-- 								<directory>src/main/webapp</directory> -->
-<!-- 								<filtering>true</filtering> -->
-<!-- 							</resource> -->
-<!-- 							<resource> -->
-<!-- 								<directory>src/test/java</directory> -->
-<!-- 								<filtering>true</filtering> -->
-<!-- 							</resource> -->
+
 							<resource>
 								<directory>src/test/jetty</directory>
 								<filtering>true</filtering>
 							</resource>
-<!-- 							<resource> -->
-<!-- 								<directory>src/main/java/edu/lcu/masterfollies/client</directory> -->
-<!-- 								<filtering>true</filtering> -->
-<!-- 							</resource> -->
-<!-- 							<resource> -->
-<!-- 								<directory>src/main/resources/META-INF/spring</directory> -->
-<!-- 								<filtering>true</filtering> -->
-<!-- 							</resource> -->
  							<resource>
 								<directory>src/test/resources/META-INF/spring</directory>
 								<filtering>true</filtering>
@@ -351,6 +337,7 @@
         </executions>
         <configuration>
           <webappDirectory>${webappDirectory}</webappDirectory>
+          <packagingExcludes>WEB-INF/lib/jetty-naming*.jar,WEB-INF/lib/jetty-plus*.jar</packagingExcludes>
         </configuration>
       </plugin>
       <plugin>
@@ -372,6 +359,20 @@
 			<webAppSourceDirectory>${project.basedir}/target/${project.artifactId}-${project.version}</webAppSourceDirectory>
 			<contextPath>masterfollies</contextPath>
 		</configuration>
+		<dependencies>
+	<dependency>
+		<groupId>org.mortbay.jetty</groupId>
+		<artifactId>jetty-plus</artifactId>
+		<version>6.1.26</version>
+		<type>jar</type>
+	</dependency>
+	<dependency>
+		<groupId>org.mortbay.jetty</groupId>
+		<artifactId>jetty-naming</artifactId>
+		<version>6.1.26</version>
+		<type>jar</type>
+	</dependency>
+		</dependencies>
 	</plugin>
 	
 				<plugin>
