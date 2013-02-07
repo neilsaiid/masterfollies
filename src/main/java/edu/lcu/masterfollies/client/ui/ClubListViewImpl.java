@@ -1,17 +1,11 @@
 package edu.lcu.masterfollies.client.ui;
 
-<<<<<<< HEAD
-import java.util.List;
+
 import java.util.Map;
 
 import com.google.gwt.cell.client.Cell.Context;
 import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.cell.client.ClickableTextCell;
-import com.google.gwt.cell.client.FieldUpdater;
-=======
-import com.google.gwt.cell.client.Cell.Context;
-import com.google.gwt.cell.client.ClickableTextCell;
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NativeEvent;
@@ -19,33 +13,20 @@ import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
-<<<<<<< HEAD
 import com.google.gwt.user.cellview.client.TextColumn;
-=======
-import com.google.gwt.user.cellview.client.SimplePager;
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
-<<<<<<< HEAD
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.HasData;
-=======
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.VerticalPanel;
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 import com.google.gwt.view.client.ProvidesKey;
 
 import edu.lcu.masterfollies.client.AppConstants;
 import edu.lcu.masterfollies.client.activity.ClubListActivity;
-<<<<<<< HEAD
-=======
-import edu.lcu.masterfollies.domain.ClubNames;
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 import edu.lcu.masterfollies.domain.Judges;
 import edu.lcu.masterfollies.shared.Log;
 
@@ -76,7 +57,6 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 	final Button closeButton = new Button("Close");
 	final Label textToServerLabel = new Label();
 	final HTML serverResponseLabel = new HTML();
-<<<<<<< HEAD
 	private CellTable<Map<String, Object>> tblClubList;
 	DateTimeFormat x = DateTimeFormat.getFormat("hh:mm a");
 	private Label lblTitle;
@@ -113,20 +93,7 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 	}
 
 	public void setTblClassList(CellTable<Map<String, Object>> tblCourseList) {
-=======
-	private SimplePager simplePager;
-	private CellTable<ClubNames> tblClubList;
-	DateTimeFormat x = DateTimeFormat.getFormat("hh:mm a");
-	private Label lblTitle;
-	private VerticalPanel contentTableDecorator;
-	
 
-	public CellTable<ClubNames> getTblClassList() {
-		return tblClubList;
-	}
-
-	public void setTblClassList(CellTable<ClubNames> tblCourseList) {
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 		this.tblClubList = tblCourseList;
 	}
 
@@ -150,10 +117,9 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 	public Label getErrorLabel() {
 		return errorLabel;
 	}
-<<<<<<< HEAD
-	FieldUpdater<column_Rank1, Boolean> fieldUpdater = new FieldUpdater<column_Rank1, Boolean>()
-=======
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+
+	//FieldUpdater<column_Rank1, Boolean> fieldUpdater = new FieldUpdater<column_Rank1, Boolean>()
+
 
 	public ClubListViewImpl() {
 		Log.debug("Create ClubListView");
@@ -162,7 +128,7 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 		contentTableDecorator.setWidth("100%");
 		contentTableDecorator.setWidth("50em");
 
-<<<<<<< HEAD
+
 	    ProvidesKey<Map<String, Object>> keyProvider = new ProvidesKey<Map<String, Object>>() {
 	        public Object getKey(Map<String, Object> item) {
 	          // Always do a null check.
@@ -192,38 +158,13 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 		      		   	try {
 		      		   		Log.debug("Responding to event: " + (String) object.get("club_name"));
 		      		   		listener.goToResults((String)object.get("club_name"),(Integer)object.get("club_names_id"));
-=======
-	    ProvidesKey<ClubNames> keyProvider = new ProvidesKey<ClubNames>() {
-	        public Object getKey(ClubNames item) {
-	          // Always do a null check.
-	          return (item == null) ? null : item.getId();
-	        }
-	      };
-		tblClubList = new CellTable<ClubNames>(keyProvider);
-		//tblClassList.setStyleName("contacts-ListRow td");
 
-		tblClubList.setWidth("950px");
-		//tblClassList.addStyleName("contacts-ListContents");
-		tblClubList.setPageSize(10);
-	      
-	      
-		      
-		      ClickableTextCell txtClubName = new ClickableTextCell();
-			    Column<ClubNames, String> dayColumn = new Column<ClubNames, String>(txtClubName) {
-			    	@Override
-			    	  public void onBrowserEvent(Context context, Element elem, final ClubNames object,
-			    		      NativeEvent event) {
-			    		   	//Log.debug("Change status of " + object.getEvent());
-			    		   	try {
-			    		   		Log.debug("Responding to event: " + object.getClubName());
-								listener.goToResults(object);
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 							} catch (Exception e) {
 								//  Auto-generated catch block
 								Log.debug("you got caught trying to go to a result");
 								e.printStackTrace();
 							}
-<<<<<<< HEAD
+
 		      		   	//eventBus.fireEvent(new StudentListEvent(object));
 		      		  }
 					@Override
@@ -402,58 +343,7 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 
 	}
 
-=======
-			    		   	//eventBus.fireEvent(new StudentListEvent(object));
-			    		  }
-					@Override
-					public String getValue(ClubNames object) {
-						return object.getClubName();
-					}
-			      };
-			      tblClubList.addColumn(dayColumn, "Club Name");
-			      tblClubList.setColumnWidth(dayColumn, "200px");
-		      
-		      lblTitle = new Label("Clubs");
-		      contentTableDecorator.add(lblTitle);
-		      
 
-		      
-		      simplePager = new SimplePager();
-		      simplePager.setDisplay(tblClubList);
-		      contentTableDecorator.add(simplePager);
-		tblClubList.setVisible(true);
-		simplePager.setVisible(true);
-		
-		contentTableDecorator.add(tblClubList);
-		
-		contentTableDecorator.add(errorLabel);
-
-
-		// Create the popup dialog box
-
-		dialogBox.setText("Remote Procedure Call");
-		dialogBox.setAnimationEnabled(true);
-
-		// We can set the id of a widget by accessing its Element
-		closeButton.getElement().setId("closeButton");
-
-		VerticalPanel dialogVPanel = new VerticalPanel();
-		dialogVPanel.addStyleName("dialogVPanel");
-		dialogVPanel.add(new HTML("<b>Please Wait...</b>"));
-		dialogVPanel.setHorizontalAlignment(VerticalPanel.ALIGN_RIGHT);
-		//dialogVPanel.add(closeButton);
-		dialogBox.setWidget(dialogVPanel);
-		Log.debug("Create AttendanceView DONE");
-	}
-
-	public SimplePager getSimplePager() {
-		return simplePager;
-	}
-
-	public void setSimplePager(SimplePager simplePager) {
-		this.simplePager = simplePager;
-	}
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 	
 	@Override
 	public void setPresenter(ClubListActivity clubListActivity) {
@@ -478,22 +368,18 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public CellTable<Map<String, Object>> getTblClubList() {
-=======
-	public CellTable<ClubNames> getTblClubList() {
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+
 		//  Auto-generated method stub
 		return tblClubList;
 	}
 
-<<<<<<< HEAD
+
 	@Override
 	public HasData<Map<String, Object>> getTblClubListGirls() {
 		// TODO Auto-generated method stub
 		return tblClubListGirls;
 	}
 
-=======
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 }
