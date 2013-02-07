@@ -1,5 +1,11 @@
 package edu.lcu.masterfollies.client.activity;
 
+<<<<<<< HEAD
+import java.util.List;
+import java.util.Map;
+
+=======
+>>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
@@ -46,10 +52,17 @@ public class ClubListActivity extends BasePresenter implements
 	}
 	
 	public void bind() {
+<<<<<<< HEAD
+		final AsyncDataProvider<Map<String, Object>> provider = new AsyncDataProvider<Map<String, Object>>() {
+				@Override
+				protected void onRangeChanged(HasData<Map<String, Object>> display) {
+					getClubListBoys(display, this);
+=======
 		final AsyncDataProvider<ClubNames> provider = new AsyncDataProvider<ClubNames>() {
 				@Override
 				protected void onRangeChanged(HasData<ClubNames> display) {
 					getClubList(display, this);
+>>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 				}
 			};
 		
@@ -61,15 +74,38 @@ public class ClubListActivity extends BasePresenter implements
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
+	final AsyncDataProvider<Map<String, Object>> providerGirls = new AsyncDataProvider<Map<String, Object>>() {
+			@Override
+			protected void onRangeChanged(HasData<Map<String, Object>> display) {
+				getClubListGirls(display, this);
+			}
+		};
+	
+	try {
+		providerGirls.addDataDisplay(clientFactory.getClubListView()
+				.getTblClubListGirls());
+		Log.debug("***I am AFTER the provider.addDataDisplay***");
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+=======
 
+>>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 		try {
 			Log.debug("I'm ready for the click handler");
 			ClickHandler handler = new ClickHandler() {
 				@Override
 				public void onClick(ClickEvent event) {
 					Log.debug("RUN clubname FIRE");
+<<<<<<< HEAD
+					HasData<Map<String, Object>> hasData = (HasData<Map<String, Object>>)clubListView.getTblClubList();
+					getClubListGirls(hasData, provider);
+=======
 					HasData<ClubNames> hasData = (HasData<ClubNames>)clubListView.getTblClubList();
 					getClubList(hasData, provider);
+>>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 				}
 			};
 			
@@ -85,14 +121,14 @@ public class ClubListActivity extends BasePresenter implements
 		}
 	}
 
-	private void getClubList(HasData<ClubNames> display,
-			final AsyncDataProvider<ClubNames> dp) {
-		
+<<<<<<< HEAD
+	protected void getClubListGirls(HasData<Map<String, Object>> hasData,
+			final AsyncDataProvider<Map<String, Object>> gdp) {
 		Log.debug("CLIENT getClassList");
 		this.judge = ((ClubListPlace) clientFactory.getPlaceController().getWhere()).getJudge();
-		final int start = display.getVisibleRange().getStart();
-		final int length = display.getVisibleRange().getLength();
-		AsyncCallback<ListCount<ClubNames>> callback = new AsyncCallback<ListCount<ClubNames>>() {
+		final int start = hasData.getVisibleRange().getStart();
+		final int length = hasData.getVisibleRange().getLength();
+		AsyncCallback<List<Map<String, Object>>> callback = new AsyncCallback<List<Map<String, Object>>>() {
 			@Override
 			public void onFailure(Throwable caught) {
 				Log.debug("FAIL Range " + caught.getMessage());
@@ -100,6 +136,62 @@ public class ClubListActivity extends BasePresenter implements
 				caught.printStackTrace();
 			}
 
+			@Override
+			public void onSuccess(List<Map<String, Object>> result) {
+				
+				gdp.updateRowCount(result.size(), /* exact(not estimate) = */
+						true);
+				
+				gdp.updateRowData(start, result);
+											
+				Log.debug("SUCCESS DONE");
+			}
+		};
+		rpcService.getClubListGirls(judge.getId(),callback);
+
+	}
+		
+
+	private void getClubListBoys(HasData<Map<String, Object>> display,
+			final AsyncDataProvider<Map<String, Object>> dp) {
+=======
+	private void getClubList(HasData<ClubNames> display,
+			final AsyncDataProvider<ClubNames> dp) {
+>>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+		
+		Log.debug("CLIENT getClassList");
+		this.judge = ((ClubListPlace) clientFactory.getPlaceController().getWhere()).getJudge();
+		final int start = display.getVisibleRange().getStart();
+		final int length = display.getVisibleRange().getLength();
+<<<<<<< HEAD
+		AsyncCallback<List<Map<String,Object>>> callback = new AsyncCallback<List<Map<String,Object>>>() {
+=======
+		AsyncCallback<ListCount<ClubNames>> callback = new AsyncCallback<ListCount<ClubNames>>() {
+>>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+			@Override
+			public void onFailure(Throwable caught) {
+				Log.debug("FAIL Range " + caught.getMessage());
+				Window.alert(caught.getMessage());
+				caught.printStackTrace();
+			}
+
+<<<<<<< HEAD
+
+
+			@Override
+			public void onSuccess(List<Map<String, Object>> result) {
+				
+				dp.updateRowCount(result.size(), /* exact(not estimate) = */
+						true);
+				
+				dp.updateRowData(start, result);
+												
+				Log.debug("SUCCESS DONE");
+			}
+		};
+		rpcService.getClubListBoys(judge.getId(),callback);
+
+=======
 			@Override
 			public void onSuccess(ListCount<ClubNames> result) {
 				Log.debug("result start = " + start);Log.debug("result length = " + length);
@@ -125,6 +217,7 @@ public class ClubListActivity extends BasePresenter implements
 			}
 		};
 		rpcService.getClubList(callback);
+>>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 	}
 
 	/**
@@ -182,9 +275,37 @@ public class ClubListActivity extends BasePresenter implements
 //	}
 
 	@Override
+<<<<<<< HEAD
+	public void goToResults(String nameOfClub, Integer clubId) {
+		// TODO Auto-generated method stub
+		ResultsPlace resultsPlace = new ResultsPlace("results", judge, clubId, nameOfClub);
+		clientFactory.getPlaceController().goTo(resultsPlace);
+	}
+	@Override
+	public void updateRank(Integer rankId, Integer rank){
+		AsyncCallback<Void> callback = new AsyncCallback<Void>() {
+			@Override
+			public void onFailure(Throwable caught) {
+				Log.debug("FAIL Range " + caught.getMessage());
+				Window.alert(caught.getMessage());
+				caught.printStackTrace();
+			}
+
+
+
+			@Override
+			public void onSuccess(Void result) {
+				
+				Log.debug("SUCCESS DONE");
+			}
+		};
+		rpcService.updateRankPoints(rankId, rank, callback);
+	}
+=======
 	public void goToResults(ClubNames clubNames) {
 		// TODO Auto-generated method stub
 		ResultsPlace resultsPlace = new ResultsPlace("results", judge, clubNames);
 		clientFactory.getPlaceController().goTo(resultsPlace);
 	}
+>>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 }

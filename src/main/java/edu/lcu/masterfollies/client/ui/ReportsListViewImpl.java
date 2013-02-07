@@ -1,9 +1,17 @@
 package edu.lcu.masterfollies.client.ui;
 
+<<<<<<< HEAD
+import java.util.Map;
+
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.client.ui.Button;
+=======
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+>>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -14,6 +22,10 @@ import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+<<<<<<< HEAD
+import com.google.gwt.view.client.HasData;
+=======
+>>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 
 import edu.lcu.masterfollies.client.activity.ClubListActivity;
 import edu.lcu.masterfollies.domain.ClubNames;
@@ -145,7 +157,11 @@ public class ReportsListViewImpl implements ClubListView {
 	}
 
 	@Override
+<<<<<<< HEAD
+	public CellTable<Map<String,Object>> getTblClubList() {
+=======
 	public CellTable<ClubNames> getTblClubList() {
+>>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -180,4 +196,13 @@ public class ReportsListViewImpl implements ClubListView {
 		return null;
 	}
 
+<<<<<<< HEAD
+	@Override
+	public HasData<Map<String, Object>> getTblClubListGirls() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+=======
+>>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 }
