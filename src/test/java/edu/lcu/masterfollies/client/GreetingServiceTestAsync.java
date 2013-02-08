@@ -1,5 +1,6 @@
 package edu.lcu.masterfollies.client;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,9 +13,7 @@ import org.springframework.stereotype.Service;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-import edu.lcu.masterfollies.domain.ClubNames;
 import edu.lcu.masterfollies.domain.Judges;
-import edu.lcu.masterfollies.domain.ListCount;
 
 /**
  * The server side implementation of the RPC service.
@@ -50,7 +49,7 @@ public class GreetingServiceTestAsync extends RemoteServiceServlet implements Gr
 	 * values passed in because they are stored in a hashmap retrievable with getParameters().
 	 */
 	@Override
-	public void authenticate(String user, String password,
+	public void authenticate(String user, String password, Date timestamp, 
 			AsyncCallback<Judges> callback) {
 		log.debug("GreetingServiceTestAsync authenticate()");
 		parameters = new HashMap();
@@ -63,62 +62,62 @@ public class GreetingServiceTestAsync extends RemoteServiceServlet implements Gr
 	}
 
 	@Override
-	public void batchInsert(Integer judgeId, Integer clubNameId,
+	public void batchInsert(Integer judgeId, Integer clubNameId,Date timestamp, 
 			AsyncCallback<Void> callback) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
 	public void upadateLineScore(Integer judgeId, Integer clubNameId,
-			Integer questionId, Integer points, AsyncCallback<Void> callback) {
+			Integer questionId, Integer points, Date timestamp, AsyncCallback<Void> callback) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
 	public void updateRankScore(Integer judgeId, Integer clubNameId,
-			Integer rank, AsyncCallback<Void> callback) {
+			Integer rank, Date timestamp, AsyncCallback<Void> callback) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public void updateNotes(Integer questionId, String notes,
+	public void updateNotes(Integer questionId, String notes,Date timestamp, 
 			AsyncCallback<Void> callback) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateResultsPoints(Integer resultsId, Integer value,
+	public void updateResultsPoints(Integer resultsId, Integer value,Date timestamp, 
 			AsyncCallback<Void> callback) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public void selectResultsByJudge(Integer judgeId, Integer clubId,
+	public void selectResultsByJudge(Integer judgeId, Integer clubId,Date timestamp, 
 			AsyncCallback<List<Map<String, Object>>> callback) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public void selectClubListandRankByJudgeID(Integer judgeId, Boolean girl,
+	public void selectClubListandRankByJudgeID(Integer judgeId, Boolean girl,Date timestamp, 
 			AsyncCallback<List<Map<String, Object>>> callback) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public void getClubListBoys(Integer judgeId,
+	public void getClubListBoys(Integer judgeId,Date timestamp, 
 			AsyncCallback<List<Map<String, Object>>> callback) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public void getClubListGirls(Integer judgeId,
+	public void getClubListGirls(Integer judgeId,Date timestamp, 
 			AsyncCallback<List<Map<String, Object>>> callback) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public void updateRankPoints(Integer rankId, Integer rank,
+	public void updateRankPoints(Integer rankId, Integer rank,Date timestamp, 
 			AsyncCallback<Void> callback) {
 		// TODO Auto-generated method stub
 		

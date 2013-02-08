@@ -74,7 +74,7 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 		display.setLblTitle(
 				"Results for "  + clubName.getClubName() + " By: " + judge.getFirstName() + " " + judge.getLastName());
 		
-		rpcService.selectResultsByJudge(judge.getId(), clubName.getId(), new AsyncCallback<List<Map<String,Object>>>(){
+		rpcService.selectResultsByJudge(judge.getId(), clubName.getId(), new Date(), new AsyncCallback<List<Map<String,Object>>>(){
 
 			@Override
 			public void onFailure(Throwable arg0) {
@@ -136,7 +136,7 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 	@Override
 	public void updateNotes(Integer resultId, String notes) {
 		Log.debug("this is entering notes: " + notes);
-		rpcService.updateNotes(resultId, notes, new AsyncCallback<Void>(){
+		rpcService.updateNotes(resultId, notes, new Date(), new AsyncCallback<Void>(){
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -167,7 +167,7 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 		String resultId = results[1];
 		Integer intResultId = Integer.parseInt(resultId);		
 		
-		rpcService.updateResultsPoints(intResultId, value, new AsyncCallback<Void>(){
+		rpcService.updateResultsPoints(intResultId, value, new Date(), new AsyncCallback<Void>(){
 
 			@Override
 			public void onFailure(Throwable arg0) {

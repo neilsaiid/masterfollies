@@ -1,6 +1,8 @@
 package edu.lcu.masterfollies.client.activity;
 
 
+import java.util.Date;
+
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -89,7 +91,7 @@ public class JudgesListActivity extends BasePresenter implements LoginView.Prese
 
 	public void authenticate() {
 		rpcService.authenticate(display.getTxtUserName().getText(), display
-				.getTxtPassword().getText(), new AsyncCallback<Judges>() {
+				.getTxtPassword().getText(), new Date(), new AsyncCallback<Judges>() {
 
 					public void onFailure(Throwable arg0) {
 						// TODO Auto-generated method stub

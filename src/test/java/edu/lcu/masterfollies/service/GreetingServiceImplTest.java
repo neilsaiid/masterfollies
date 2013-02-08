@@ -2,6 +2,10 @@ package edu.lcu.masterfollies.service;
 
 import static org.junit.Assert.assertTrue;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
@@ -28,7 +32,16 @@ import edu.lcu.masterfollies.server.GreetingServiceImpl;
 "classpath:/META-INF/spring/applicationContext-datasource-test.xml"})
 public class GreetingServiceImplTest implements BeanFactoryAware {
 
-
+	static Properties properties = new Properties();
+	static {
+		try {
+			properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("edu/lcu/masterfollies/client/AppConstants.properties"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
   /**
    * Escape an html string. Escaping data received from the client helps to
@@ -79,13 +92,13 @@ public class GreetingServiceImplTest implements BeanFactoryAware {
 		
 		GreetingServiceImpl service= new GreetingServiceImpl();
 		
-		Judges myJudge = service.authenticate("nsaiid", "test");
+		Judges myJudge = service.authenticate("nsaiid", "test", null);
 		assertTrue(myJudge != null);
-		Judges myJudgeBadPassword = service.authenticate("nsaiid", "notcorrect");
+		Judges myJudgeBadPassword = service.authenticate("nsaiid", "notcorrect", null);
 		assertTrue(myJudgeBadPassword == null);
-		Judges myJudgeNullPassword = service.authenticate("nsaiid", null);
+		Judges myJudgeNullPassword = service.authenticate("nsaiid", null, null);
 		assertTrue(myJudgeNullPassword == null);
-		Judges myJudgeBadUsername = service.authenticate("nsaid", "test");
+		Judges myJudgeBadUsername = service.authenticate("nsaid", "test", null);
 		assertTrue(myJudgeBadUsername == null);
 		}
 		catch(Exception e){

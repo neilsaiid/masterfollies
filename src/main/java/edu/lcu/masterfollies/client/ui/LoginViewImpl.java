@@ -14,6 +14,8 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
+import edu.lcu.masterfollies.client.masterfollies;
+
 public class LoginViewImpl extends DialogBox implements LoginView {
 	
 	  interface MyUiBinder extends UiBinder<Widget, LoginViewMobileImpl> {}
@@ -33,12 +35,14 @@ public class LoginViewImpl extends DialogBox implements LoginView {
 		setWidget(verticalPanelRoot);
 		verticalPanelRoot.setSize("369px", "242px");
 		
-		VerticalPanel verticalPanel_1 = new VerticalPanel();
-		verticalPanelRoot.add(verticalPanel_1);
-		verticalPanel_1.setSize("368px", "105px");
-		Label lblTitle = new Label("Welcome to the  Master Follies Judging app. ");
-		verticalPanel_1.add(lblTitle);
-		lblTitle.addStyleName("loginTitle");
+
+		HorizontalPanel horizontalPanelTitle = new HorizontalPanel();
+		verticalPanelRoot.add(horizontalPanelTitle);
+		horizontalPanelTitle.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		Label lblTitle = new Label("Welcome to the  Master Follies Judging app.");
+		lblTitle.setStyleName("loginTitle");
+		horizontalPanelTitle.add(lblTitle);
+
 		
 		Label lblUsernameAndPassword = new Label("Username and Password are case sensitive");
 		lblUsernameAndPassword.addStyleName("loginSubTitle");
@@ -83,6 +87,9 @@ public class LoginViewImpl extends DialogBox implements LoginView {
 		horizontalPanel2.add(btnOK);
 		horizontalPanel2.addStyleName("loginButton");
 		btnOK.setStyleName("blackglossyCSSButtonbutton");
+		
+		Label lblVersion = new Label("[ver. " + masterfollies.constants.version() + "]");
+		horizontalPanel2.add(lblVersion);
 		
 		btnCancel = new Button("New button");
 		btnCancel.setText("Cancel");
