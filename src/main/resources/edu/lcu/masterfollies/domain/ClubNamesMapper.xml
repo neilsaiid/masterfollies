@@ -250,5 +250,6 @@
 	from club_names
 	join rank on rank.club_id = club_names.id 
 	where rank.judge_id = #{judge_id,jdbcType=INTEGER} and girl = #{girl,jdbcType=BIT}
+	order by club_names.club_name
   </select>
 </mapper>

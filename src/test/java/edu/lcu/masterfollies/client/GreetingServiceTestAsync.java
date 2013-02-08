@@ -61,11 +61,7 @@ public class GreetingServiceTestAsync extends RemoteServiceServlet implements Gr
 		callback.onSuccess(authenticateResult);
 		
 	}
-	@Override
-	public void getClubList(AsyncCallback<ListCount<ClubNames>> callback) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	@Override
 	public void batchInsert(Integer judgeId, Integer clubNameId,
 			AsyncCallback<Void> callback) {
@@ -100,6 +96,30 @@ public class GreetingServiceTestAsync extends RemoteServiceServlet implements Gr
 	@Override
 	public void selectResultsByJudge(Integer judgeId, Integer clubId,
 			AsyncCallback<List<Map<String, Object>>> callback) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void selectClubListandRankByJudgeID(Integer judgeId, Boolean girl,
+			AsyncCallback<List<Map<String, Object>>> callback) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void getClubListBoys(Integer judgeId,
+			AsyncCallback<List<Map<String, Object>>> callback) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void getClubListGirls(Integer judgeId,
+			AsyncCallback<List<Map<String, Object>>> callback) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void updateRankPoints(Integer rankId, Integer rank,
+			AsyncCallback<Void> callback) {
 		// TODO Auto-generated method stub
 		
 	}
