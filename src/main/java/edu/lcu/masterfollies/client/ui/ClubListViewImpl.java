@@ -20,9 +20,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.HasData;
 import com.google.gwt.view.client.ProvidesKey;
@@ -139,7 +137,8 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 		      
 		      verticalPanel_Boys.add(tblClubList);
 		      tblClubList.setSize("750px", "400px");
-		      tblClubList.addStyleName("contacts-ListContents");
+//		      tblClubList
+		      tblClubList.addStyleName("tblClubList-large-font");
 		      tblClubList.setPageSize(10);
 		      Column<Map<String, Object>, String> ClubNameBoys = new Column<Map<String, Object>, String>(txtClubName) {
 		      	@Override
