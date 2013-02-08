@@ -6,6 +6,7 @@ package edu.lcu.masterfollies.server;
 
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -84,7 +85,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	 * @return
 	 */
 	@Override
-	public Judges authenticate(String user, String password) {
+	public Judges authenticate(String user, String password, Date timestamp) {
 		Log.debug("Authenticate " + user);
 		if ((user == null) || (password == null))
 			return null;
@@ -114,34 +115,34 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 	@Override
 
-	public List<Map<String,Object>> getClubListBoys(Integer judgeId){
-		return selectClubListandRankByJudgeID(judgeId, false);
+	public List<Map<String,Object>> getClubListBoys(Integer judgeId, Date timestamp){
+		return selectClubListandRankByJudgeID(judgeId, false, null);
 	}
 
 	@Override
-	public List<Map<String,Object>> getClubListGirls(Integer judgeId){
-		return selectClubListandRankByJudgeID(judgeId, true);
+	public List<Map<String,Object>> getClubListGirls(Integer judgeId, Date timestamp){
+		return selectClubListandRankByJudgeID(judgeId, true, null);
 
 	}
 	@Override
-	public Void batchInsert(Integer judgeId, Integer clubNameId) {
+	public Void batchInsert(Integer judgeId, Integer clubNameId, Date timestamp) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public Void upadateLineScore(Integer judgeId, Integer clubNameId,
-			Integer questionId, Integer points) {
+			Integer questionId, Integer points, Date timestamp) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public Void updateRankScore(Integer judgeId, Integer clubNameId,
-			Integer rank) {
+			Integer rank, Date timestamp) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public Void updateNotes(Integer resultsId, String notes) {
+	public Void updateNotes(Integer resultsId, String notes, Date timestamp) {
 		Results rt = new Results();
 		rt.setNotes(notes);
 		rt.setId(resultsId);
@@ -150,7 +151,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public List<Map<String,Object>> selectResultsByJudge(Integer judgeId, Integer clubId) {
+	public List<Map<String,Object>> selectResultsByJudge(Integer judgeId, Integer clubId, Date timestamp) {
 		
 		List<Map<String, Object>> x = resultsMapper.selectResultsByJudge(judgeId,clubId);
 		Log.debug("X is: " + x);
@@ -163,7 +164,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 
 	
 	@Override
-	public List<Map<String,Object>> selectClubListandRankByJudgeID(Integer judgeId, Boolean girl) {
+	public List<Map<String,Object>> selectClubListandRankByJudgeID(Integer judgeId, Boolean girl, Date timestamp) {
 		
 		List<Map<String, Object>> x = clubNamesMapper.selectClubListandRankByJudgeID(judgeId, girl);
 		Log.debug("Clubs and ranks are: " + x);
@@ -175,7 +176,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public Void updateResultsPoints(Integer resultsId, Integer value) {
+	public Void updateResultsPoints(Integer resultsId, Integer value, Date timestamp) {
 		Results rt = new Results();
 		rt.setId(resultsId);
 		rt.setPoints(value);
@@ -185,7 +186,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public Void updateRankPoints(Integer rankId, Integer rank){
+	public Void updateRankPoints(Integer rankId, Integer rank, Date timestamp){
 		Rank rt = new Rank();
 		rt.setId(rankId);
 		rt.setRank(rank);

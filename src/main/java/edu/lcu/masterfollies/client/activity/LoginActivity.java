@@ -1,6 +1,8 @@
 package edu.lcu.masterfollies.client.activity;
 
 
+import java.util.Date;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
@@ -15,7 +17,6 @@ import com.google.gwt.user.client.ui.DialogBox;
 import edu.lcu.masterfollies.client.ClientFactory;
 import edu.lcu.masterfollies.client.GreetingServiceAsync;
 import edu.lcu.masterfollies.client.place.ClubListPlace;
-import edu.lcu.masterfollies.client.place.LoginPlace;
 import edu.lcu.masterfollies.client.ui.LoginView;
 import edu.lcu.masterfollies.domain.Judges;
 import edu.lcu.masterfollies.shared.Log;
@@ -91,7 +92,7 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 
 	public void authenticate() {
 		rpcService.authenticate(display.getTxtUserName().getText(), display
-				.getTxtPassword().getText(), new AsyncCallback<Judges>() {
+				.getTxtPassword().getText(), new Date(), new AsyncCallback<Judges>() {
 
 					public void onFailure(Throwable arg0) {
 						//  Auto-generated method stub

@@ -79,13 +79,13 @@ public class GreetingServiceImplTest implements BeanFactoryAware {
 		
 		GreetingServiceImpl service= new GreetingServiceImpl();
 		
-		Judges myJudge = service.authenticate("nsaiid", "test");
+		Judges myJudge = service.authenticate("nsaiid", "test", null);
 		assertTrue(myJudge != null);
-		Judges myJudgeBadPassword = service.authenticate("nsaiid", "notcorrect");
+		Judges myJudgeBadPassword = service.authenticate("nsaiid", "notcorrect", null);
 		assertTrue(myJudgeBadPassword == null);
-		Judges myJudgeNullPassword = service.authenticate("nsaiid", null);
+		Judges myJudgeNullPassword = service.authenticate("nsaiid", null, null);
 		assertTrue(myJudgeNullPassword == null);
-		Judges myJudgeBadUsername = service.authenticate("nsaid", "test");
+		Judges myJudgeBadUsername = service.authenticate("nsaid", "test", null);
 		assertTrue(myJudgeBadUsername == null);
 		}
 		catch(Exception e){

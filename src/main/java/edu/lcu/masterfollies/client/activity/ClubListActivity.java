@@ -1,6 +1,7 @@
 package edu.lcu.masterfollies.client.activity;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -133,7 +134,7 @@ public class ClubListActivity extends BasePresenter implements
 				Log.debug("SUCCESS DONE");
 			}
 		};
-		rpcService.getClubListGirls(judge.getId(),callback);
+		rpcService.getClubListGirls(judge.getId(), new Date(),callback);
 
 	}
 		
@@ -168,7 +169,7 @@ public class ClubListActivity extends BasePresenter implements
 				Log.debug("SUCCESS DONE");
 			}
 		};
-		rpcService.getClubListBoys(judge.getId(),callback);
+		rpcService.getClubListBoys(judge.getId(),new Date(), callback);
 
 	}
 
@@ -240,7 +241,7 @@ public class ClubListActivity extends BasePresenter implements
 				Log.debug("SUCCESS DONE");
 			}
 		};
-		rpcService.updateRankPoints(rankId, rank, callback);
+		rpcService.updateRankPoints(rankId, rank, new Date(), callback);
 	}
 
 }
