@@ -1,13 +1,8 @@
 package edu.lcu.masterfollies.domain;
 
-import edu.lcu.masterfollies.domain.ClubNames;
-import edu.lcu.masterfollies.domain.ClubNamesExample;
 import java.util.List;
-<<<<<<< HEAD
 import java.util.Map;
 
-=======
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 import org.apache.ibatis.annotations.Param;
 
 public interface ClubNamesMapper {
@@ -98,9 +93,8 @@ public interface ClubNamesMapper {
      * @mbggenerated Tue Feb 05 11:54:28 CST 2013
      */
     int updateByPrimaryKey(ClubNames record);
-<<<<<<< HEAD
+
     
     List<Map<String,Object>> selectClubListandRankByJudgeID(@Param("judge_id") Integer judgeId,@Param("girl") Boolean girl);
-=======
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+
 }

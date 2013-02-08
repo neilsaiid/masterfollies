@@ -1,11 +1,9 @@
 package edu.lcu.masterfollies.client.activity;
 
-<<<<<<< HEAD
+
 import java.util.List;
 import java.util.Map;
 
-=======
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
@@ -23,9 +21,7 @@ import edu.lcu.masterfollies.client.GreetingServiceAsync;
 import edu.lcu.masterfollies.client.place.ClubListPlace;
 import edu.lcu.masterfollies.client.place.ResultsPlace;
 import edu.lcu.masterfollies.client.ui.ClubListView;
-import edu.lcu.masterfollies.domain.ClubNames;
 import edu.lcu.masterfollies.domain.Judges;
-import edu.lcu.masterfollies.domain.ListCount;
 import edu.lcu.masterfollies.shared.Log;
 
 public class ClubListActivity extends BasePresenter implements
@@ -52,17 +48,12 @@ public class ClubListActivity extends BasePresenter implements
 	}
 	
 	public void bind() {
-<<<<<<< HEAD
+
 		final AsyncDataProvider<Map<String, Object>> provider = new AsyncDataProvider<Map<String, Object>>() {
 				@Override
 				protected void onRangeChanged(HasData<Map<String, Object>> display) {
 					getClubListBoys(display, this);
-=======
-		final AsyncDataProvider<ClubNames> provider = new AsyncDataProvider<ClubNames>() {
-				@Override
-				protected void onRangeChanged(HasData<ClubNames> display) {
-					getClubList(display, this);
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+
 				}
 			};
 		
@@ -74,7 +65,7 @@ public class ClubListActivity extends BasePresenter implements
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
+
 	final AsyncDataProvider<Map<String, Object>> providerGirls = new AsyncDataProvider<Map<String, Object>>() {
 			@Override
 			protected void onRangeChanged(HasData<Map<String, Object>> display) {
@@ -90,22 +81,17 @@ public class ClubListActivity extends BasePresenter implements
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-=======
 
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 		try {
 			Log.debug("I'm ready for the click handler");
 			ClickHandler handler = new ClickHandler() {
 				@Override
 				public void onClick(ClickEvent event) {
 					Log.debug("RUN clubname FIRE");
-<<<<<<< HEAD
+
 					HasData<Map<String, Object>> hasData = (HasData<Map<String, Object>>)clubListView.getTblClubList();
 					getClubListGirls(hasData, provider);
-=======
-					HasData<ClubNames> hasData = (HasData<ClubNames>)clubListView.getTblClubList();
-					getClubList(hasData, provider);
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+
 				}
 			};
 			
@@ -121,7 +107,7 @@ public class ClubListActivity extends BasePresenter implements
 		}
 	}
 
-<<<<<<< HEAD
+
 	protected void getClubListGirls(HasData<Map<String, Object>> hasData,
 			final AsyncDataProvider<Map<String, Object>> gdp) {
 		Log.debug("CLIENT getClassList");
@@ -154,28 +140,21 @@ public class ClubListActivity extends BasePresenter implements
 
 	private void getClubListBoys(HasData<Map<String, Object>> display,
 			final AsyncDataProvider<Map<String, Object>> dp) {
-=======
-	private void getClubList(HasData<ClubNames> display,
-			final AsyncDataProvider<ClubNames> dp) {
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+
 		
 		Log.debug("CLIENT getClassList");
 		this.judge = ((ClubListPlace) clientFactory.getPlaceController().getWhere()).getJudge();
 		final int start = display.getVisibleRange().getStart();
 		final int length = display.getVisibleRange().getLength();
-<<<<<<< HEAD
+
 		AsyncCallback<List<Map<String,Object>>> callback = new AsyncCallback<List<Map<String,Object>>>() {
-=======
-		AsyncCallback<ListCount<ClubNames>> callback = new AsyncCallback<ListCount<ClubNames>>() {
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+
 			@Override
 			public void onFailure(Throwable caught) {
 				Log.debug("FAIL Range " + caught.getMessage());
 				Window.alert(caught.getMessage());
 				caught.printStackTrace();
 			}
-
-<<<<<<< HEAD
 
 
 			@Override
@@ -191,33 +170,6 @@ public class ClubListActivity extends BasePresenter implements
 		};
 		rpcService.getClubListBoys(judge.getId(),callback);
 
-=======
-			@Override
-			public void onSuccess(ListCount<ClubNames> result) {
-				Log.debug("result start = " + start);Log.debug("result length = " + length);
-				Log.debug("result count = " + result.getCount());
-				Log.debug("result data");
-				if (result.getData() != null) {
-					for (ClubNames s: result.getData()) {
-						Log.debug("course = " + s);
-					}
-				}
-				dp.updateRowCount(result.getCount(), /* exact(not estimate) = */
-						true);
-				
-				dp.updateRowData(start, result.getData());
-								
-				if (result.getEnv() != null ) {
-					String message = (String) result.getEnv().get("message");
-					if (message != null)
-						Window.alert(message);
-				}
-				
-				Log.debug("SUCCESS DONE");
-			}
-		};
-		rpcService.getClubList(callback);
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 	}
 
 	/**
@@ -254,13 +206,6 @@ public class ClubListActivity extends BasePresenter implements
 		return null;
 	}
 
-//	@Override
-//	public void goToStudent(Course course) {
-//		StudentPlace place = new StudentPlace(course.toTag());
-//		place.setParent(clientFactory.getPlaceController().getWhere());
-//		goTo(place);
-//	}
-
 	/**
 	 * Navigate to a new Place in the browser
 	 */
@@ -268,14 +213,10 @@ public class ClubListActivity extends BasePresenter implements
 		clientFactory.getPlaceController().goTo(place);
 	}
 
-//	@Override
-//	public void goToResults(ClubNames clubNames) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+
 
 	@Override
-<<<<<<< HEAD
+
 	public void goToResults(String nameOfClub, Integer clubId) {
 		// TODO Auto-generated method stub
 		ResultsPlace resultsPlace = new ResultsPlace("results", judge, clubId, nameOfClub);
@@ -301,11 +242,5 @@ public class ClubListActivity extends BasePresenter implements
 		};
 		rpcService.updateRankPoints(rankId, rank, callback);
 	}
-=======
-	public void goToResults(ClubNames clubNames) {
-		// TODO Auto-generated method stub
-		ResultsPlace resultsPlace = new ResultsPlace("results", judge, clubNames);
-		clientFactory.getPlaceController().goTo(resultsPlace);
-	}
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+
 }

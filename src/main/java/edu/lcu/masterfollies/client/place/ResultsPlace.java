@@ -33,7 +33,6 @@ public class ResultsPlace extends Place
 		this.judge = judge;
 		this.clubName = clubName;
 	}
-<<<<<<< HEAD
 	public ResultsPlace(String token,Judges judge, Integer clubId, String club_name){
 		clubName = new ClubNames();
 		clubName.setClubName(club_name);
@@ -41,9 +40,6 @@ public class ResultsPlace extends Place
 		this.judge = judge;
 		this.clubName = clubName;
 	}
-=======
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
-
 	
 	public static class Tokenizer implements PlaceTokenizer<ResultsPlace>
 	{

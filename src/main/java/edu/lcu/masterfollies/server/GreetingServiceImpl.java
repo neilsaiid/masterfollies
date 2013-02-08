@@ -16,21 +16,12 @@ import org.springframework.beans.factory.annotation.Configurable;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import edu.lcu.masterfollies.client.GreetingService;
-<<<<<<< HEAD
-=======
-import edu.lcu.masterfollies.domain.ClubNames;
-import edu.lcu.masterfollies.domain.ClubNamesExample;
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 import edu.lcu.masterfollies.domain.ClubNamesMapper;
 import edu.lcu.masterfollies.domain.Judges;
 import edu.lcu.masterfollies.domain.JudgesExample;
 import edu.lcu.masterfollies.domain.JudgesMapper;
-<<<<<<< HEAD
 import edu.lcu.masterfollies.domain.Rank;
 import edu.lcu.masterfollies.domain.RankMapper;
-=======
-import edu.lcu.masterfollies.domain.ListCount;
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 import edu.lcu.masterfollies.domain.Results;
 import edu.lcu.masterfollies.domain.ResultsMapper;
 import edu.lcu.masterfollies.shared.Log;
@@ -46,10 +37,8 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	private JudgesMapper judgesMapper;
 	private ClubNamesMapper clubNamesMapper;
 	private ResultsMapper resultsMapper;
-<<<<<<< HEAD
 	private RankMapper rankMapper;
-=======
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+
 
 	@Autowired
 	public void setPersonMapper(JudgesMapper judgesMapper) {
@@ -60,22 +49,17 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	public void setClubNamesMapper(ClubNamesMapper clubNamesMapper) {
 		this.clubNamesMapper = clubNamesMapper;
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 
 	@Autowired
 	public void setResultsMapper(ResultsMapper resultsMapper) {
 		this.resultsMapper = resultsMapper;
 	}
-<<<<<<< HEAD
+
 	@Autowired
 	public void setRankMapper(RankMapper rankMapper) {
 		this.rankMapper = rankMapper;
 	}
-=======
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+
 	BeanFactory bf = null;
 	
 	/**
@@ -129,7 +113,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		return j;
 	}
 	@Override
-<<<<<<< HEAD
+
 	public List<Map<String,Object>> getClubListBoys(Integer judgeId){
 		return selectClubListandRankByJudgeID(judgeId, false);
 	}
@@ -137,21 +121,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public List<Map<String,Object>> getClubListGirls(Integer judgeId){
 		return selectClubListandRankByJudgeID(judgeId, true);
-=======
-	public ListCount<ClubNames> getClubList(){
-		try {
-			ClubNamesExample ce = new ClubNamesExample();
-			ce.createCriteria().andClubNameIsNotNull();
-			List<ClubNames> result = (List<ClubNames>) clubNamesMapper.selectByExample(ce);
-			Integer count = clubNamesMapper.countByExample(ce);
-			ListCount<ClubNames> lc = new ListCount<ClubNames>(result,count);
-			return lc;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	return null;
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+
 	}
 	@Override
 	public Void batchInsert(Integer judgeId, Integer clubNameId) {
@@ -190,7 +160,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		Log.debug("Returning x");
 		return x;
 	}
-<<<<<<< HEAD
+
 	
 	@Override
 	public List<Map<String,Object>> selectClubListandRankByJudgeID(Integer judgeId, Boolean girl) {
@@ -203,8 +173,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		Log.debug("Returning x");
 		return x;
 	}
-=======
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+
 	@Override
 	public Void updateResultsPoints(Integer resultsId, Integer value) {
 		Results rt = new Results();
@@ -214,7 +183,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		resultsMapper.updateByPrimaryKeySelective(rt);
 		return null;
 	}
-<<<<<<< HEAD
+
 	@Override
 	public Void updateRankPoints(Integer rankId, Integer rank){
 		Rank rt = new Rank();
@@ -224,7 +193,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		rankMapper.updateByPrimaryKeySelective(rt);
 		return null;
 	}
-=======
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+
+
 	
 }

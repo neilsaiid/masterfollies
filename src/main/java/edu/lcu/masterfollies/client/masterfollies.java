@@ -70,7 +70,7 @@ public class masterfollies implements EntryPoint {
 			RootPanel.get("content").add(appWidget);
 			String userAgent = Navigator.getUserAgent();
 			boolean mobileApple = userAgent.contains("iPad;") || userAgent.contains("iPhone;");
-<<<<<<< HEAD
+
 			MasterfolliesResources.INSTANCE.css().ensureInjected();
 //			if (!mobileApple) {
 //				MasterfolliesResources.INSTANCE.css().ensureInjected();
@@ -78,15 +78,6 @@ public class masterfollies implements EntryPoint {
 //			else {
 //				MasterfolliesResources.INSTANCE.cssIpad().ensureInjected();
 //			}
-=======
-			
-			if (!mobileApple) {
-				MasterfolliesResources.INSTANCE.css().ensureInjected();
-			}
-			else {
-				MasterfolliesResources.INSTANCE.cssIpad().ensureInjected();
-			}
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 		  LoginPlace defaultPlace = new LoginPlace("login");
 		  
 		 // clientFactory.getPlaceController().goTo(defaultPlace);

@@ -245,13 +245,10 @@
       girl = #{girl,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
-<<<<<<< HEAD
  <select id="selectClubListandRankByJudgeID" resultType="map">
 	select club_names.id as club_names_id, club_names.club_name, club_names.girl, rank.id as rank_id, rank
 	from club_names
 	join rank on rank.club_id = club_names.id 
 	where rank.judge_id = #{judge_id,jdbcType=INTEGER} and girl = #{girl,jdbcType=BIT}
   </select>
-=======
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 </mapper>
