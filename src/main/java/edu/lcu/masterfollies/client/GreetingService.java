@@ -32,6 +32,7 @@ public interface GreetingService extends RemoteService {
 List<Map<String, Object>> getClubListBoys(Integer judgeId, Date timestamp);
 List<Map<String, Object>> getClubListGirls(Integer judgeId, Date timestamp);
 Void updateRankPoints(Integer rankId, Integer rank, Date timestamp);
+String getContext(Date date);
 
   
 }

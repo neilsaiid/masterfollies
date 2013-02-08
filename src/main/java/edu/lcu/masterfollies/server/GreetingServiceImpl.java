@@ -6,9 +6,12 @@ package edu.lcu.masterfollies.server;
 
 
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +65,27 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 
 	BeanFactory bf = null;
+	
+	static Properties properties = new Properties();
+	static {
+		try {
+			properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("edu/lcu/masterfollies/client/AppConstants.properties"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	@Override
+	public String getContext(Date date) {
+		Log.debug("in server; properties = " + properties);
+		String context  = properties.get("version") + "~" + ((this.getThreadLocalRequest()==null)?"null":this.getThreadLocalRequest().getRequestURL());
+		Log.debug("contxt returning = " + context);
+		return context;// this.getThreadLocalRequest().getQueryString();
+	}
 	
 	/**
 	 * Simple client side verification that the fields have been populated.
