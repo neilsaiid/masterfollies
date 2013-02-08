@@ -67,20 +67,6 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 	private VerticalPanel verticalPanel_Girls;
 	private CellTable<Map<String, Object>> tblClubListGirls;
 	private TextColumn<Map<String, Object>> ClubNameGirls;
-	private HorizontalPanel horizontalPanel;
-	private Label lblFirstPlace;
-	private ListBox listBoxFirstPlace;
-	private Label lblSecondPlace;
-	private ListBox listBoxSecondPlace;
-	private Label lblThirdPlace;
-	private ListBox listBoxThirdPlace;
-	private HorizontalPanel horizontalPanel_1;
-	private Label label;
-	private ListBox listBox;
-	private Label label_1;
-	private ListBox listBox_1;
-	private Label label_2;
-	private ListBox listBox_2;
 	private Column<Map<String, Object>, Boolean> column_Rank3;
 	private Column<Map<String, Object>, Boolean> column_Rank2;
 	private Column<Map<String, Object>, Boolean> column_Rank1;
@@ -144,6 +130,7 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 		      
 		      lblTitle = new Label("Clubs");
 		      contentTableDecorator.add(lblTitle);
+		      lblTitle.addStyleName("gwt-Label-Judge-Title");
 		      
 		      verticalPanel_Boys = new VerticalPanel();
 		      contentTableDecorator.add(verticalPanel_Boys);
@@ -281,31 +268,6 @@ public class ClubListViewImpl extends Composite implements ClubListView {
          
           });
 		      tblClubList.setVisible(true);
-		
-		horizontalPanel = new HorizontalPanel();
-		contentTableDecorator.add(horizontalPanel);
-		horizontalPanel.setWidth("711px");
-		
-		lblFirstPlace = new Label("First Place:");
-		horizontalPanel.add(lblFirstPlace);
-		
-		listBoxFirstPlace = new ListBox();
-		horizontalPanel.add(listBoxFirstPlace);
-		listBoxFirstPlace.setVisibleItemCount(4);
-		
-		lblSecondPlace = new Label("Second Place:");
-		horizontalPanel.add(lblSecondPlace);
-		
-		listBoxSecondPlace = new ListBox();
-		horizontalPanel.add(listBoxSecondPlace);
-		listBoxSecondPlace.setVisibleItemCount(4);
-		
-		lblThirdPlace = new Label("Third Place:");
-		horizontalPanel.add(lblThirdPlace);
-		
-		listBoxThirdPlace = new ListBox();
-		listBoxThirdPlace.setVisibleItemCount(4);
-		horizontalPanel.add(listBoxThirdPlace);
 	//	/******* START OF GIRLS PANELS ******************/
 		verticalPanel_Girls = new VerticalPanel();
 		contentTableDecorator.add(verticalPanel_Girls);
@@ -438,31 +400,6 @@ public class ClubListViewImpl extends Composite implements ClubListView {
             }
  
   });
-		
-		horizontalPanel_1 = new HorizontalPanel();
-		contentTableDecorator.add(horizontalPanel_1);
-		horizontalPanel_1.setWidth("709px");
-		
-		label = new Label("First Place:");
-		horizontalPanel_1.add(label);
-		
-		listBox = new ListBox();
-		listBox.setVisibleItemCount(4);
-		horizontalPanel_1.add(listBox);
-		
-		label_1 = new Label("Second Place:");
-		horizontalPanel_1.add(label_1);
-		
-		listBox_1 = new ListBox();
-		listBox_1.setVisibleItemCount(4);
-		horizontalPanel_1.add(listBox_1);
-		
-		label_2 = new Label("Third Place:");
-		horizontalPanel_1.add(label_2);
-		
-		listBox_2 = new ListBox();
-		listBox_2.setVisibleItemCount(4);
-		horizontalPanel_1.add(listBox_2);
 		
 		contentTableDecorator.add(errorLabel);
 

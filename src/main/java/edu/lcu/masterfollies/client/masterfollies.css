@@ -55,12 +55,21 @@ body{
 	position:relative;
 	z-index:4;
 }
+.loginTitle {
+    color: steelblue;
+    font-size: calc(33px);
+    text-align: center;
+}
+.loginSubTitle {
+    color: black;
+    font-size: calc(18px);
+    text-align: center;
+}
 
 .contacts-ListRow td {
   border-bottom: 1px solid #E2E2E2;
   padding: 5px;
   background-color: #FFFFFF;
-<<<<<<< HEAD
   font-size: large;
 }
 .tblClubList-large-font{
@@ -69,13 +78,8 @@ body{
 
 table {
     border-collapse: collapse;
-    font-size: calc(24px);
-=======
-}
+    font-size: large;
 
-table {
-  border-collapse: collapse;
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
 }
 
 td {
@@ -83,10 +87,8 @@ td {
   margin: 0px;
   padding: 0px;
   spacing: 0px;
-<<<<<<< HEAD
   font-size: large;
-=======
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+
 }
 
 th, td {
@@ -94,7 +96,7 @@ th, td {
 }
   
 td.add-contact-label {
-  text-align: left;
+  text-align: center;
 }
 
 add-contact-input {
@@ -180,14 +182,23 @@ td.contacts-ListName {
 .gwt-Label-Error {
 	color: red;
 }
-<<<<<<< HEAD
-.gwt-Label {
-    font-family: caption;
-    font-size: calc(24px);
-    text-align: center;
+.gwt-Label-Judge-Title{
+	color: steelblue;
+	font-family: caption;
+    font-size: calc(28px);
+    margin-left: calc(202px);
+    text-align: start;
 }
-=======
->>>>>>> 8878c4e4ca54b13003c87e3e558b1088325d36d1
+.gwt-Label-Username{
+	font-size: calc(16px);
+}
+
+.gwt-Label {
+    
+}
+.contacts-ListContents{
+	font-size: large;
+}
 
 a:hover.login {
 	color: white;

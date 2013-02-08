@@ -177,7 +177,7 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 
 			@Override
 			public void onSuccess(Void result) {
-				Window.alert("it has been updated");
+			//	Window.alert("it has been updated");
 				
 			};
 		});

@@ -31,16 +31,17 @@ public class LoginViewImpl extends DialogBox implements LoginView {
 		
 		VerticalPanel verticalPanelRoot = new VerticalPanel();
 		setWidget(verticalPanelRoot);
+		verticalPanelRoot.setSize("369px", "242px");
 		
-		HorizontalPanel horizontalPanelTitle = new HorizontalPanel();
-		verticalPanelRoot.add(horizontalPanelTitle);
-		horizontalPanelTitle.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		VerticalPanel verticalPanel_1 = new VerticalPanel();
+		verticalPanelRoot.add(verticalPanel_1);
+		verticalPanel_1.setSize("368px", "105px");
 		Label lblTitle = new Label("Welcome to the  Master Follies Judging app. ");
-		lblTitle.setStyleName("loginTitle");
-		horizontalPanelTitle.add(lblTitle);
+		verticalPanel_1.add(lblTitle);
+		lblTitle.addStyleName("loginTitle");
 		
 		Label lblUsernameAndPassword = new Label("Username and Password are case sensitive");
-		lblUsernameAndPassword.setStyleName("loginTitle");
+		lblUsernameAndPassword.addStyleName("loginSubTitle");
 		verticalPanelRoot.add(lblUsernameAndPassword);
 		
 		VerticalPanel verticalPanel = new VerticalPanel();
@@ -49,18 +50,26 @@ public class LoginViewImpl extends DialogBox implements LoginView {
 		
 		HorizontalPanel horizontalPanel = new HorizontalPanel();
 		verticalPanel.add(horizontalPanel);
+		horizontalPanel.setSize("366px", "28px");
 		
 		Label lblNewLabel_1 = new Label("Username");
+		lblNewLabel_1.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		lblNewLabel_1.addStyleName("gwt-Label-Username");
 		horizontalPanel.add(lblNewLabel_1);
+		lblNewLabel_1.setSize("76px", "23px");
 		
 		txtUserName = new TextBox();
 		horizontalPanel.add(txtUserName);
 
 		HorizontalPanel horizontalPanel1 = new HorizontalPanel();
 		verticalPanel.add(horizontalPanel1);
+		horizontalPanel1.setWidth("364px");
 		
 		Label lblNewLabel = new Label("Password");
+		lblNewLabel.addStyleName("gwt-Label-Username");
+		lblNewLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		horizontalPanel1.add(lblNewLabel);
+		lblNewLabel.setSize("76px", "23px");
 		
 		txtPassword = new PasswordTextBox();
 		horizontalPanel1.add(txtPassword);
