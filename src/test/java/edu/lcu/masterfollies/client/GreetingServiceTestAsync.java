@@ -122,6 +122,11 @@ public class GreetingServiceTestAsync extends RemoteServiceServlet implements Gr
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void getContext(Date date, AsyncCallback<String> callback) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 
