@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.2.2
 -- Dumped by pg_dump version 9.2.2
--- Started on 2013-02-06 16:07:41 CST
+-- Started on 2013-02-08 10:04:18 CST
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -21,7 +21,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2250 (class 0 OID 0)
+-- TOC entry 2252 (class 0 OID 0)
 -- Dependencies: 178
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -58,7 +58,12 @@ insert into results (judge_id, club_id, question_id, points, notes)
 select j.id as judge_id, c.id as club_id,q.id as question_id,0 as points, null as notes
 from questions q
 cross join club_names c 
-cross join judges j$$;
+cross join judges j;
+delete from rank;
+insert into rank(judge_id, club_id, rank)
+select  judges.id, club_names.id, rank
+	from judges, club_names
+	left join rank on rank.club_id = club_names.id$$;
 
 
 ALTER FUNCTION public.batch_insert_all() OWNER TO postgres;
@@ -97,7 +102,7 @@ CREATE SEQUENCE "clubnames_ID_seq"
 ALTER TABLE public."clubnames_ID_seq" OWNER TO postgres;
 
 --
--- TOC entry 2251 (class 0 OID 0)
+-- TOC entry 2253 (class 0 OID 0)
 -- Dependencies: 169
 -- Name: clubnames_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -138,7 +143,7 @@ CREATE SEQUENCE "judges_ID_seq"
 ALTER TABLE public."judges_ID_seq" OWNER TO postgres;
 
 --
--- TOC entry 2252 (class 0 OID 0)
+-- TOC entry 2254 (class 0 OID 0)
 -- Dependencies: 171
 -- Name: judges_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -176,7 +181,7 @@ CREATE SEQUENCE "questions_ID_seq"
 ALTER TABLE public."questions_ID_seq" OWNER TO postgres;
 
 --
--- TOC entry 2253 (class 0 OID 0)
+-- TOC entry 2255 (class 0 OID 0)
 -- Dependencies: 173
 -- Name: questions_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -200,7 +205,7 @@ CREATE TABLE rank (
 ALTER TABLE public.rank OWNER TO postgres;
 
 --
--- TOC entry 2254 (class 0 OID 0)
+-- TOC entry 2256 (class 0 OID 0)
 -- Dependencies: 174
 -- Name: COLUMN rank.club_id; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -225,7 +230,7 @@ CREATE SEQUENCE rank_id_seq
 ALTER TABLE public.rank_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2255 (class 0 OID 0)
+-- TOC entry 2257 (class 0 OID 0)
 -- Dependencies: 175
 -- Name: rank_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -266,7 +271,7 @@ CREATE SEQUENCE "results_ID_seq"
 ALTER TABLE public."results_ID_seq" OWNER TO postgres;
 
 --
--- TOC entry 2256 (class 0 OID 0)
+-- TOC entry 2258 (class 0 OID 0)
 -- Dependencies: 177
 -- Name: results_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -315,7 +320,7 @@ ALTER TABLE ONLY results ALTER COLUMN id SET DEFAULT nextval('"results_ID_seq"':
 
 
 --
--- TOC entry 2233 (class 0 OID 16756)
+-- TOC entry 2235 (class 0 OID 16756)
 -- Dependencies: 168
 -- Data for Name: club_names; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -333,7 +338,7 @@ COPY club_names (id, club_name, girl) FROM stdin;
 
 
 --
--- TOC entry 2257 (class 0 OID 0)
+-- TOC entry 2259 (class 0 OID 0)
 -- Dependencies: 169
 -- Name: clubnames_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -342,7 +347,7 @@ SELECT pg_catalog.setval('"clubnames_ID_seq"', 50, true);
 
 
 --
--- TOC entry 2235 (class 0 OID 16764)
+-- TOC entry 2237 (class 0 OID 16764)
 -- Dependencies: 170
 -- Data for Name: judges; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -357,7 +362,7 @@ COPY judges (id, first_name, last_name, user_name, password, is_super) FROM stdi
 
 
 --
--- TOC entry 2258 (class 0 OID 0)
+-- TOC entry 2260 (class 0 OID 0)
 -- Dependencies: 171
 -- Name: judges_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -366,7 +371,7 @@ SELECT pg_catalog.setval('"judges_ID_seq"', 68, true);
 
 
 --
--- TOC entry 2237 (class 0 OID 16772)
+-- TOC entry 2239 (class 0 OID 16772)
 -- Dependencies: 172
 -- Data for Name: questions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -381,7 +386,7 @@ COPY questions (id, question, "desc") FROM stdin;
 
 
 --
--- TOC entry 2259 (class 0 OID 0)
+-- TOC entry 2261 (class 0 OID 0)
 -- Dependencies: 173
 -- Name: questions_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -390,241 +395,281 @@ SELECT pg_catalog.setval('"questions_ID_seq"', 5, true);
 
 
 --
--- TOC entry 2239 (class 0 OID 16780)
+-- TOC entry 2241 (class 0 OID 16780)
 -- Dependencies: 174
 -- Data for Name: rank; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY rank (judge_id, club_id, rank, id) FROM stdin;
+4	2	\N	41
+67	2	\N	43
+66	2	\N	44
+68	2	\N	45
+4	5	\N	46
+1	5	\N	47
+67	5	\N	48
+66	5	\N	49
+68	5	\N	50
+4	8	\N	51
+1	8	\N	52
+67	8	\N	53
+66	8	\N	54
+68	8	\N	55
+4	6	\N	56
+1	6	\N	57
+67	6	\N	58
+66	6	\N	59
+68	6	\N	60
+4	4	\N	61
+1	4	\N	62
+67	4	\N	63
+66	4	\N	64
+68	4	\N	65
+4	1	\N	66
+67	1	\N	68
+66	1	\N	69
+68	1	\N	70
+4	3	\N	71
+1	3	\N	72
+67	3	\N	73
+66	3	\N	74
+68	3	\N	75
+4	7	\N	76
+1	7	\N	77
+67	7	\N	78
+66	7	\N	79
+68	7	\N	80
+1	2	1	42
+1	1	2	67
 \.
 
 
 --
--- TOC entry 2260 (class 0 OID 0)
+-- TOC entry 2262 (class 0 OID 0)
 -- Dependencies: 175
 -- Name: rank_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('rank_id_seq', 1, false);
+SELECT pg_catalog.setval('rank_id_seq', 80, true);
 
 
 --
--- TOC entry 2241 (class 0 OID 16785)
+-- TOC entry 2243 (class 0 OID 16785)
 -- Dependencies: 176
 -- Data for Name: results; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY results (id, judge_id, club_id, question_id, points, notes) FROM stdin;
-320	4	5	1	0	\N
-321	4	6	1	0	\N
-322	4	7	1	0	\N
-323	4	8	1	0	\N
-324	4	1	1	0	\N
-325	4	2	1	0	\N
-326	4	3	1	0	\N
-327	4	4	1	0	\N
-328	1	5	1	0	\N
-329	1	6	1	0	\N
-330	1	7	1	0	\N
-331	1	8	1	0	\N
-332	1	1	1	0	\N
-333	1	2	1	0	\N
-334	1	3	1	0	\N
-335	1	4	1	0	\N
-336	67	5	1	0	\N
-337	67	6	1	0	\N
-338	67	7	1	0	\N
-339	67	8	1	0	\N
-340	67	1	1	0	\N
-341	67	2	1	0	\N
-342	67	3	1	0	\N
-343	67	4	1	0	\N
-344	66	5	1	0	\N
-345	66	6	1	0	\N
-346	66	7	1	0	\N
-347	66	8	1	0	\N
-348	66	1	1	0	\N
-349	66	2	1	0	\N
-350	66	3	1	0	\N
-351	66	4	1	0	\N
-352	68	5	1	0	\N
-353	68	6	1	0	\N
-354	68	7	1	0	\N
-355	68	8	1	0	\N
-356	68	1	1	0	\N
-357	68	2	1	0	\N
-358	68	3	1	0	\N
-359	68	4	1	0	\N
-360	4	5	2	0	\N
-361	4	6	2	0	\N
-362	4	7	2	0	\N
-363	4	8	2	0	\N
-364	4	1	2	0	\N
-365	4	2	2	0	\N
-366	4	3	2	0	\N
-367	4	4	2	0	\N
-368	1	5	2	0	\N
-369	1	6	2	0	\N
-370	1	7	2	0	\N
-371	1	8	2	0	\N
-372	1	1	2	0	\N
-373	1	2	2	0	\N
-374	1	3	2	0	\N
-375	1	4	2	0	\N
-376	67	5	2	0	\N
-377	67	6	2	0	\N
-378	67	7	2	0	\N
-379	67	8	2	0	\N
-380	67	1	2	0	\N
-381	67	2	2	0	\N
-382	67	3	2	0	\N
-383	67	4	2	0	\N
-384	66	5	2	0	\N
-385	66	6	2	0	\N
-386	66	7	2	0	\N
-387	66	8	2	0	\N
-388	66	1	2	0	\N
-389	66	2	2	0	\N
-390	66	3	2	0	\N
-391	66	4	2	0	\N
-392	68	5	2	0	\N
-393	68	6	2	0	\N
-394	68	7	2	0	\N
-395	68	8	2	0	\N
-396	68	1	2	0	\N
-397	68	2	2	0	\N
-398	68	3	2	0	\N
-399	68	4	2	0	\N
-400	4	5	3	0	\N
-401	4	6	3	0	\N
-402	4	7	3	0	\N
-403	4	8	3	0	\N
-404	4	1	3	0	\N
-405	4	2	3	0	\N
-406	4	3	3	0	\N
-407	4	4	3	0	\N
-408	1	5	3	0	\N
-409	1	6	3	0	\N
-410	1	7	3	0	\N
-411	1	8	3	0	\N
-412	1	1	3	0	\N
-413	1	2	3	0	\N
-414	1	3	3	0	\N
-415	1	4	3	0	\N
-416	67	5	3	0	\N
-417	67	6	3	0	\N
-418	67	7	3	0	\N
-419	67	8	3	0	\N
-420	67	1	3	0	\N
-421	67	2	3	0	\N
-422	67	3	3	0	\N
-423	67	4	3	0	\N
-424	66	5	3	0	\N
-425	66	6	3	0	\N
-426	66	7	3	0	\N
-427	66	8	3	0	\N
-428	66	1	3	0	\N
-429	66	2	3	0	\N
-430	66	3	3	0	\N
-431	66	4	3	0	\N
-432	68	5	3	0	\N
-433	68	6	3	0	\N
-434	68	7	3	0	\N
-435	68	8	3	0	\N
-436	68	1	3	0	\N
-437	68	2	3	0	\N
-438	68	3	3	0	\N
-439	68	4	3	0	\N
-440	4	5	4	0	\N
-441	4	6	4	0	\N
-442	4	7	4	0	\N
-443	4	8	4	0	\N
-444	4	1	4	0	\N
-445	4	2	4	0	\N
-446	4	3	4	0	\N
-447	4	4	4	0	\N
-448	1	5	4	0	\N
-449	1	6	4	0	\N
-450	1	7	4	0	\N
-451	1	8	4	0	\N
-452	1	1	4	0	\N
-453	1	2	4	0	\N
-454	1	3	4	0	\N
-455	1	4	4	0	\N
-456	67	5	4	0	\N
-457	67	6	4	0	\N
-458	67	7	4	0	\N
-459	67	8	4	0	\N
-460	67	1	4	0	\N
-461	67	2	4	0	\N
-462	67	3	4	0	\N
-463	67	4	4	0	\N
-464	66	5	4	0	\N
-465	66	6	4	0	\N
-466	66	7	4	0	\N
-467	66	8	4	0	\N
-468	66	1	4	0	\N
-469	66	2	4	0	\N
-470	66	3	4	0	\N
-471	66	4	4	0	\N
-472	68	5	4	0	\N
-473	68	6	4	0	\N
-474	68	7	4	0	\N
-475	68	8	4	0	\N
-476	68	1	4	0	\N
-477	68	2	4	0	\N
-478	68	3	4	0	\N
-479	68	4	4	0	\N
-480	4	5	5	0	\N
-481	4	6	5	0	\N
-482	4	7	5	0	\N
-483	4	8	5	0	\N
-484	4	1	5	0	\N
-485	4	2	5	0	\N
-486	4	3	5	0	\N
-487	4	4	5	0	\N
-488	1	5	5	0	\N
-489	1	6	5	0	\N
-490	1	7	5	0	\N
-491	1	8	5	0	\N
-492	1	1	5	0	\N
-493	1	2	5	0	\N
-494	1	3	5	0	\N
-495	1	4	5	0	\N
-496	67	5	5	0	\N
-497	67	6	5	0	\N
-498	67	7	5	0	\N
-499	67	8	5	0	\N
-500	67	1	5	0	\N
-501	67	2	5	0	\N
-502	67	3	5	0	\N
-503	67	4	5	0	\N
-504	66	5	5	0	\N
-505	66	6	5	0	\N
-506	66	7	5	0	\N
-507	66	8	5	0	\N
-508	66	1	5	0	\N
-509	66	2	5	0	\N
-510	66	3	5	0	\N
-511	66	4	5	0	\N
-512	68	5	5	0	\N
-513	68	6	5	0	\N
-514	68	7	5	0	\N
-515	68	8	5	0	\N
-516	68	1	5	0	\N
-517	68	2	5	0	\N
-518	68	3	5	0	\N
-519	68	4	5	0	\N
+528	1	5	1	1	\N
+520	4	5	1	0	\N
+521	4	6	1	0	\N
+522	4	7	1	0	\N
+535	1	4	1	2	\N
+523	4	8	1	0	\N
+524	4	1	1	0	\N
+525	4	2	1	0	\N
+526	4	3	1	0	\N
+527	4	4	1	0	\N
+529	1	6	1	0	\N
+530	1	7	1	0	\N
+531	1	8	1	0	\N
+532	1	1	1	0	\N
+533	1	2	1	0	\N
+534	1	3	1	0	\N
+536	67	5	1	0	\N
+537	67	6	1	0	\N
+538	67	7	1	0	\N
+539	67	8	1	0	\N
+540	67	1	1	0	\N
+541	67	2	1	0	\N
+542	67	3	1	0	\N
+543	67	4	1	0	\N
+544	66	5	1	0	\N
+545	66	6	1	0	\N
+546	66	7	1	0	\N
+547	66	8	1	0	\N
+548	66	1	1	0	\N
+549	66	2	1	0	\N
+550	66	3	1	0	\N
+551	66	4	1	0	\N
+552	68	5	1	0	\N
+553	68	6	1	0	\N
+554	68	7	1	0	\N
+555	68	8	1	0	\N
+556	68	1	1	0	\N
+557	68	2	1	0	\N
+558	68	3	1	0	\N
+559	68	4	1	0	\N
+560	4	5	2	0	\N
+561	4	6	2	0	\N
+562	4	7	2	0	\N
+563	4	8	2	0	\N
+564	4	1	2	0	\N
+565	4	2	2	0	\N
+566	4	3	2	0	\N
+567	4	4	2	0	\N
+568	1	5	2	0	\N
+569	1	6	2	0	\N
+570	1	7	2	0	\N
+571	1	8	2	0	\N
+572	1	1	2	0	\N
+573	1	2	2	0	\N
+574	1	3	2	0	\N
+575	1	4	2	0	\N
+576	67	5	2	0	\N
+577	67	6	2	0	\N
+578	67	7	2	0	\N
+579	67	8	2	0	\N
+580	67	1	2	0	\N
+581	67	2	2	0	\N
+582	67	3	2	0	\N
+583	67	4	2	0	\N
+584	66	5	2	0	\N
+585	66	6	2	0	\N
+586	66	7	2	0	\N
+587	66	8	2	0	\N
+588	66	1	2	0	\N
+589	66	2	2	0	\N
+590	66	3	2	0	\N
+591	66	4	2	0	\N
+592	68	5	2	0	\N
+593	68	6	2	0	\N
+594	68	7	2	0	\N
+595	68	8	2	0	\N
+596	68	1	2	0	\N
+597	68	2	2	0	\N
+598	68	3	2	0	\N
+599	68	4	2	0	\N
+600	4	5	3	0	\N
+601	4	6	3	0	\N
+602	4	7	3	0	\N
+603	4	8	3	0	\N
+604	4	1	3	0	\N
+605	4	2	3	0	\N
+606	4	3	3	0	\N
+607	4	4	3	0	\N
+608	1	5	3	0	\N
+609	1	6	3	0	\N
+610	1	7	3	0	\N
+611	1	8	3	0	\N
+612	1	1	3	0	\N
+613	1	2	3	0	\N
+614	1	3	3	0	\N
+615	1	4	3	0	\N
+616	67	5	3	0	\N
+617	67	6	3	0	\N
+618	67	7	3	0	\N
+619	67	8	3	0	\N
+620	67	1	3	0	\N
+621	67	2	3	0	\N
+622	67	3	3	0	\N
+623	67	4	3	0	\N
+624	66	5	3	0	\N
+625	66	6	3	0	\N
+626	66	7	3	0	\N
+627	66	8	3	0	\N
+628	66	1	3	0	\N
+629	66	2	3	0	\N
+630	66	3	3	0	\N
+631	66	4	3	0	\N
+632	68	5	3	0	\N
+633	68	6	3	0	\N
+634	68	7	3	0	\N
+635	68	8	3	0	\N
+636	68	1	3	0	\N
+637	68	2	3	0	\N
+638	68	3	3	0	\N
+639	68	4	3	0	\N
+640	4	5	4	0	\N
+641	4	6	4	0	\N
+642	4	7	4	0	\N
+643	4	8	4	0	\N
+644	4	1	4	0	\N
+645	4	2	4	0	\N
+646	4	3	4	0	\N
+647	4	4	4	0	\N
+648	1	5	4	0	\N
+649	1	6	4	0	\N
+650	1	7	4	0	\N
+651	1	8	4	0	\N
+652	1	1	4	0	\N
+653	1	2	4	0	\N
+654	1	3	4	0	\N
+655	1	4	4	0	\N
+656	67	5	4	0	\N
+657	67	6	4	0	\N
+658	67	7	4	0	\N
+659	67	8	4	0	\N
+660	67	1	4	0	\N
+661	67	2	4	0	\N
+662	67	3	4	0	\N
+663	67	4	4	0	\N
+664	66	5	4	0	\N
+665	66	6	4	0	\N
+666	66	7	4	0	\N
+667	66	8	4	0	\N
+668	66	1	4	0	\N
+669	66	2	4	0	\N
+670	66	3	4	0	\N
+671	66	4	4	0	\N
+672	68	5	4	0	\N
+673	68	6	4	0	\N
+674	68	7	4	0	\N
+675	68	8	4	0	\N
+676	68	1	4	0	\N
+677	68	2	4	0	\N
+678	68	3	4	0	\N
+679	68	4	4	0	\N
+680	4	5	5	0	\N
+681	4	6	5	0	\N
+682	4	7	5	0	\N
+683	4	8	5	0	\N
+684	4	1	5	0	\N
+685	4	2	5	0	\N
+686	4	3	5	0	\N
+687	4	4	5	0	\N
+688	1	5	5	0	\N
+689	1	6	5	0	\N
+690	1	7	5	0	\N
+691	1	8	5	0	\N
+692	1	1	5	0	\N
+693	1	2	5	0	\N
+694	1	3	5	0	\N
+695	1	4	5	0	\N
+696	67	5	5	0	\N
+697	67	6	5	0	\N
+698	67	7	5	0	\N
+699	67	8	5	0	\N
+700	67	1	5	0	\N
+701	67	2	5	0	\N
+702	67	3	5	0	\N
+703	67	4	5	0	\N
+704	66	5	5	0	\N
+705	66	6	5	0	\N
+706	66	7	5	0	\N
+707	66	8	5	0	\N
+708	66	1	5	0	\N
+709	66	2	5	0	\N
+710	66	3	5	0	\N
+711	66	4	5	0	\N
+712	68	5	5	0	\N
+713	68	6	5	0	\N
+714	68	7	5	0	\N
+715	68	8	5	0	\N
+716	68	1	5	0	\N
+717	68	2	5	0	\N
+718	68	3	5	0	\N
+719	68	4	5	0	\N
 \.
 
 
 --
--- TOC entry 2261 (class 0 OID 0)
+-- TOC entry 2263 (class 0 OID 0)
 -- Dependencies: 177
 -- Name: results_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"results_ID_seq"', 519, true);
+SELECT pg_catalog.setval('"results_ID_seq"', 719, true);
 
 
 --
@@ -637,7 +682,16 @@ ALTER TABLE ONLY club_names
 
 
 --
--- TOC entry 2227 (class 2606 OID 16801)
+-- TOC entry 2227 (class 2606 OID 16842)
+-- Name: id_as_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY rank
+    ADD CONSTRAINT id_as_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2229 (class 2606 OID 16801)
 -- Name: judge_club_question_unique; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -673,7 +727,7 @@ ALTER TABLE ONLY questions
 
 
 --
--- TOC entry 2229 (class 2606 OID 16809)
+-- TOC entry 2231 (class 2606 OID 16809)
 -- Name: serial_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -682,7 +736,7 @@ ALTER TABLE ONLY results
 
 
 --
--- TOC entry 2230 (class 2606 OID 16810)
+-- TOC entry 2232 (class 2606 OID 16831)
 -- Name: club_id_as_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -691,7 +745,7 @@ ALTER TABLE ONLY rank
 
 
 --
--- TOC entry 2232 (class 2606 OID 16815)
+-- TOC entry 2234 (class 2606 OID 16815)
 -- Name: fk_judges_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -700,7 +754,7 @@ ALTER TABLE ONLY results
 
 
 --
--- TOC entry 2231 (class 2606 OID 16820)
+-- TOC entry 2233 (class 2606 OID 16836)
 -- Name: judge_id_as_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -709,7 +763,7 @@ ALTER TABLE ONLY rank
 
 
 --
--- TOC entry 2249 (class 0 OID 0)
+-- TOC entry 2251 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -720,7 +774,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2013-02-06 16:07:41 CST
+-- Completed on 2013-02-08 10:04:18 CST
 
 --
 -- PostgreSQL database dump complete
