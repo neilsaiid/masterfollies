@@ -1,0 +1,4 @@
+database.password=
+database.url=jdbc:sqlserver://edu.lcu.LCUNET.LCULove;ServerName=LCULove\LCUAPPS;databaseName=MasterFollies
+database.user=
+database.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
