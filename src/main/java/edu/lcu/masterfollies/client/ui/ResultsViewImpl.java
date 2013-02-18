@@ -71,8 +71,8 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				
 				String question = (String) m.get("question");
 				Log.debug("Question: " + question);
-				String desc = (String) m.get("desc");
-				Log.debug("desc: " + desc);
+				String description = (String) m.get("description");
+				Log.debug("description: " + description);
 				final Integer resultId  = (Integer) m.get("id");
 				Integer points = (Integer) m.get("points");
 				String notes = (String) m.get("notes");
@@ -84,8 +84,8 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				panel.add(horizontalPanel);
 				horizontalPanel.setSize("442px", "41px");
 				
-				HTML htmlDescHtml = new HTML(desc, true);
-				horizontalPanel.add(htmlDescHtml);
+				HTML htmldescriptionHtml = new HTML(description, true);
+				horizontalPanel.add(htmldescriptionHtml);
 				
 				HorizontalPanel horizontalPanel_1 = new HorizontalPanel();
 				panel.add(horizontalPanel_1);

@@ -293,7 +293,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectResultsByJudge" resultType="map">
-	select q.question, q.desc, r.points, r.notes, r.id
+	select q.question, q.description, r.points, r.notes, r.id
 	from questions q
 	left join results r on r.question_id=q.id
 	WHERE (r.judge_id=#{judgeId,jdbcType=INTEGER} and r.club_id=#{clubId,jdbcType=INTEGER})
