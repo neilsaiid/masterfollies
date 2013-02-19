@@ -82,6 +82,13 @@
 		<type>jar</type>
 		<scope>runtime</scope>
 	</dependency>
+	<dependency>
+		<groupId>com.microsoft</groupId>
+		<artifactId>sqljdbc4</artifactId>
+		<version>4.0</version>
+		<scope>system</scope>
+		<systemPath>${project.basedir}/src/lib/sqljdbc4.jar</systemPath>
+    </dependency>
 
 	<dependency>
 		<groupId>org.mortbay.jetty</groupId>

@@ -5,13 +5,22 @@
 
 <generatorConfiguration>
   <properties url="file:///Users/nsaiid9381/masterfollies/build.properties"/>
-  <classPathEntry location="/Users/nsaiid9381/Downloads/postgresql-9.2-1002.jdbc4.jar" />
+<!--   <classPathEntry location="/Users/nsaiid9381/Downloads/postgresql-9.2-1002.jdbc4.jar" /> -->
+  <classPathEntry location="/Users/nsaiid9381/masterfollies/src/lib/sqljdbc4.jar"/>
 
   <context id="DB2Tables" targetRuntime="MyBatis3" >
-      <jdbcConnection driverClass="org.postgresql.Driver"
-              connectionURL="jdbc:postgresql://localhost:5432/MasterFollies"
-                      userId="postgres" password="bCj7AEc">
-      </jdbcConnection>
+<!--       <jdbcConnection 
+				driverClass="org.postgresql.Driver" -->
+<!--            connectionURL="jdbc:postgresql://localhost:5432/MasterFollies" -->
+<!--            userId="postgres" 
+				password="bCj7AEc"> -->
+<!--       </jdbcConnection> -->
+	<jdbcConnection 
+		driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+		connectionURL="jdbc:sqlserver://edu.lcu.LCUNET.LCULove;ServerName=LCULove\LCUAPPS;databaseName=MasterFollies"
+		userId="Follies"
+		password="mV%sa4l">
+	</jdbcConnection>
 
     <javaModelGenerator targetPackage="edu.lcu.masterfollies.domain" targetProject="MBGTestProject/src">
           <property name="enableSubPackages" value="false" />
@@ -48,6 +57,9 @@
     	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
     	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
      	
+     <table tableName="list_show_order" domainObjectName="ListShowOrder" >    	
+    	<generatedKey sqlStatement="JDBC" column="id" identity="true"></generatedKey>
+    	<ignoreColumn column="version" /><ignoreColumn column="createDate" /></table>
 
     	
   </context>
