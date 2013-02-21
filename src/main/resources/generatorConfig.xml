@@ -4,9 +4,17 @@
     "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-  <properties url="file:///Users/nsaiid9381/masterfollies/build.properties"/>
+  <properties url="${database.propertiesURL}"/>
+  
+		<!-- classpath to use when connecting to local DB -->
 <!--   <classPathEntry location="/Users/nsaiid9381/Downloads/postgresql-9.2-1002.jdbc4.jar" /> -->
-  <classPathEntry location="/Users/nsaiid9381/masterfollies/src/lib/sqljdbc4.jar"/>
+		
+		<!-- classPath to use when on the MAC connecting to msSQL -->
+<!--   <classPathEntry location="/Users/nsaiid9381/masterfollies/src/lib/sqljdbc4.jar"/> -->
+
+<!-- ClassPath to use when on the PC connecting to msSQL -->
+  <classPathEntry location="${database.driverClassPath}"/>
+  
 
   <context id="DB2Tables" targetRuntime="MyBatis3" >
 <!--       <jdbcConnection 

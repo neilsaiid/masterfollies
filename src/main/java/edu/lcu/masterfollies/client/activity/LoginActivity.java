@@ -43,7 +43,12 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 	public void bind() {
 	    addHandler(this.display.getOKButton().addClickHandler(new ClickHandler() {   
 	        public void onClick(ClickEvent event) {
-	          authenticate();
+	          try {
+				authenticate();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	        }
 	      }));
 	    
