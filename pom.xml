@@ -14,6 +14,7 @@
 
 
   <properties>
+  <mybatis.generator.configurationFile>${basedir}/target/masterfollies-1.0/WEB-INF/classes/generatorConfig.xml</mybatis.generator.configurationFile>
     <!-- Convenience property to set the GWT version -->
     <gwtVersion>2.5.0-rc2</gwtVersion>
     <!-- GWT needs at least java 1.5 -->

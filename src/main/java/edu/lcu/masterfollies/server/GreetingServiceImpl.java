@@ -140,11 +140,20 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	@Override
 
 	public List<Map<String,Object>> getClubListBoys(Integer judgeId, Date timestamp){
-		return selectClubListandRankByJudgeID(judgeId, false, null);
+		try {
+			Log.debug("GET CLUB LIST BOYS");
+			return selectClubListandRankByJudgeID(judgeId, false, null);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		return null;
 	}
 
 	@Override
 	public List<Map<String,Object>> getClubListGirls(Integer judgeId, Date timestamp){
+		Log.debug("GET CLUB LIST GIRLS");
 		return selectClubListandRankByJudgeID(judgeId, true, null);
 
 	}
@@ -189,7 +198,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	
 	@Override
 	public List<Map<String,Object>> selectClubListandRankByJudgeID(Integer judgeId, Boolean girl, Date timestamp) {
-		
+		Log.debug("#4");
 		List<Map<String, Object>> x = clubNamesMapper.selectClubListandRankByJudgeID(judgeId, girl);
 		Log.debug("Clubs and ranks are: " + x);
 		for(Map<String,Object> map:x){
