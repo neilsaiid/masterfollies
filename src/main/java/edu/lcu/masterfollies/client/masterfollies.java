@@ -2,10 +2,13 @@ package edu.lcu.masterfollies.client;
 
 import java.util.Date;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
@@ -20,7 +23,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import edu.lcu.masterfollies.client.mvp.AppActivityMapper;
 import edu.lcu.masterfollies.client.mvp.AppPlaceHistoryMapper;
 import edu.lcu.masterfollies.client.place.LoginPlace;
-import edu.lcu.masterfollies.shared.Log;
+
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -48,11 +51,27 @@ public class masterfollies implements EntryPoint {
 			.create(GreetingService.class);
 
 	// private final Messages messages = GWT.create(Messages.class);
+	public void onModuleLoad() {
+	    /*
+	     * Install an UncaughtExceptionHandler which will produce <code>FATAL</code> log messages
+	     */
+	    Log.setUncaughtExceptionHandler();
+		
+		clientFactory = GWT.create(ClientFactory.class);
+	
 
+	    // use deferred command to catch initialization exceptions in onModuleLoad2
+	    Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+	      @Override
+	      public void execute() {
+	        onModuleLoad2();
+	      }
+	    });
+  }
 	/**
 	 * This is the entry point method.
 	 */
-	public void onModuleLoad() {
+	public void onModuleLoad2() {
 
 		final String version = masterfollies.constants.version();
 
