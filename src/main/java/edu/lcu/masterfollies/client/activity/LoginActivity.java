@@ -15,6 +15,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.DialogBox;
 
 import edu.lcu.masterfollies.client.ClientFactory;
+import edu.lcu.masterfollies.client.GreetingServiceAsync;
 import edu.lcu.masterfollies.client.place.ClubListPlace;
 import edu.lcu.masterfollies.client.ui.LoginView;
 import edu.lcu.masterfollies.domain.Judges;
