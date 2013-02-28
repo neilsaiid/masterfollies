@@ -10,6 +10,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -211,6 +212,7 @@ public class ClubListActivity extends BasePresenter implements
 	 * Navigate to a new Place in the browser
 	 */
 	public void goTo(Place place) {
+		History.fireCurrentHistoryState();
 		clientFactory.getPlaceController().goTo(place);
 	}
 

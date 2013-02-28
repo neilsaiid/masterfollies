@@ -8,6 +8,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
@@ -99,13 +100,24 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 
 			@Override
 			public void onClick(ClickEvent event) {
-				
-				clientFactory.getPlaceController().goTo(new ClubListPlace(null, judge));
+				ClubListPlace clp = new ClubListPlace(null, judge);
+				ClubListPlace.Tokenizer t = new ClubListPlace.Tokenizer();
+			//	History.newItem(t.getToken(clp));
+				clientFactory.getPlaceController().goTo(clp);
 				//	History.back();
 			//	display.getPanel().remove(0);
 				
 			}
 			
+		});
+		Log.debug("pushed the back button");
+		display.getbtnBack().addClickHandler(new ClickHandler(){
+			@Override
+			public void onClick(ClickEvent event){
+				clientFactory.getHistoryHandler().handleCurrentHistory();
+				//History.back();
+				//clientFactory.getPlaceController().goTo(History.back());
+			}
 		});
 	}
 	

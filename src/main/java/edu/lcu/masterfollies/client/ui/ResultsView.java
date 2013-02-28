@@ -44,9 +44,13 @@ public interface ResultsView extends IsWidget {
 
 
 	Button getBtnNewButton();
+	
 
 
 	HTMLPanel getPanel();
+
+
+	public FocusWidget getbtnBack();
 
 
 }

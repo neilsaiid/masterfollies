@@ -9,11 +9,14 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.Cookies;
+import com.google.gwt.user.client.HistoryListener;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.Window.Navigator;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -28,7 +31,7 @@ import edu.lcu.masterfollies.client.place.LoginPlace;
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class masterfollies implements EntryPoint {
+public class masterfollies implements EntryPoint, ValueChangeHandler {
 
 	private Place defaultPlace = new LoginPlace("login");
 	private SimplePanel appWidget = new SimplePanel();
@@ -64,6 +67,7 @@ public class masterfollies implements EntryPoint {
 	    Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 	      @Override
 	      public void execute() {
+	    	  
 	        onModuleLoad2();
 	      }
 	    });
@@ -158,6 +162,13 @@ public class masterfollies implements EntryPoint {
 		};
 		clientFactory.getRpcService().getContext(new Date(), callback);
 
+	}
+	
+	@Override
+	public void onValueChange(ValueChangeEvent event) {
+		clientFactory.getHistoryHandler().handleCurrentHistory();
+				
+		
 	};
 
 }

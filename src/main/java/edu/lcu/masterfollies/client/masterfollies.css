@@ -182,6 +182,11 @@ td.contacts-ListName {
 .gwt-Label-Error {
 	color: red;
 }
+.gwt-Results-Label{
+	font-size: x-large;
+	color: grey;
+	font-family: Trebuchet MS;
+}
 .gwt-Label-Judge-Title{
 	color: steelblue;
 	font-family: caption;

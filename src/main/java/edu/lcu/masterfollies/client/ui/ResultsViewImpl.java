@@ -10,7 +10,9 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FocusWidget;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -25,7 +27,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import edu.lcu.masterfollies.domain.Results;
 import edu.lcu.masterfollies.shared.Log;
-import com.google.gwt.user.client.ui.Button;
 
 public class ResultsViewImpl extends Composite implements ResultsView {
 	
@@ -44,12 +45,25 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 		initWidget(vp);
 		vp.setWidth("700px");
 		
+		horizontalPanel_2 = new HorizontalPanel();
+		vp.add(horizontalPanel_2);
+		horizontalPanel_2.setSize("700px", "38px");
+		
 		lblTitle = new Label("");
-		vp.add(lblTitle);
+		lblTitle.setStyleName("gwt-Results-Label");
+		horizontalPanel_2.add(lblTitle);
 		
 		btnNewButton = new Button("Club List");
+		horizontalPanel_2.add(btnNewButton);
+		btnNewButton.setSize("74px", "36px");
 		
-		vp.add(btnNewButton);
+		btnBack = new Button("Back");
+		horizontalPanel_2.add(btnBack);
+		btnBack.setSize("50px", "36px");
+		
+		btnNextShow = new Button("Next Show");
+		horizontalPanel_2.add(btnNextShow);
+		btnNextShow.setSize("100px", "36px");
 	}
 	@Override
 	public Button getBtnNewButton() {
@@ -399,5 +413,14 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 	HTMLPanel panel;
 	private Presenter listener;
 	private Button btnNewButton;
+	private HorizontalPanel horizontalPanel_2;
+	private Button btnBack;
+	private Button btnNextShow;
+
+	@Override
+	public FocusWidget getbtnBack() {
+		
+		return btnBack;
+	}
 
 }
