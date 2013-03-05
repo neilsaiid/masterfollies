@@ -45,9 +45,9 @@ public class JudgesTest implements BeanFactoryAware {
 		JudgesMapper j = (JudgesMapper) bf.getBean(JudgesMapper.class);
 		//Judges judges = new Judges("Neil","Saiid","nsaiid","test");
 		Judges judge = new Judges();
-		judge.setFirstName("neil");
-		judge.setLastName("Saiid");
-		judge.setUserName("nsaiid");
+		judge.setFirstName("Auto");
+		judge.setLastName("Generated");
+		judge.setUserName("ag");
 		judge.setPassword("test");
 		//judge.setIsSuper(true);
 		log.debug("id= " + judge.getId());

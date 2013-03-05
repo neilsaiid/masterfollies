@@ -4,7 +4,7 @@
     <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="masterfolliesDataSource">
         <property name="driverClassName" value="${database.driverClassName}"/>
         <property name="url" value="${database.url}"/>
-        <property name="username" value="${database.username}"/>
+        <property name="username" value="${database.user}"/>
         <property name="password" value="${database.password}"/>
 <!--         <property name="validationQuery" value="SELECT 1"/> -->
 <!--         <property name="testOnBorrow" value="true"/> -->

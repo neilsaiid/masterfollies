@@ -292,4 +292,5 @@
       is_super = #{isSuper,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+ 
 </mapper>

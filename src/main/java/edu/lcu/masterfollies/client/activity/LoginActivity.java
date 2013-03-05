@@ -47,7 +47,7 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 	          try {
 				authenticate();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				// Auto-generated catch block
 				e.printStackTrace();
 			}
 	        }
@@ -97,7 +97,7 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 	}
 
 	public void authenticate() {
-		rpcService.authenticate(display.getTxtUserName().getText(), display
+ 		rpcService.authenticate(display.getTxtUserName().getText(), display
 				.getTxtPassword().getText(), new Date(), new AsyncCallback<Judges>() {
 
 					public void onFailure(Throwable arg0) {

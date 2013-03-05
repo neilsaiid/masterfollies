@@ -94,16 +94,16 @@ public class JudgesListActivity extends BasePresenter implements LoginView.Prese
 				.getTxtPassword().getText(), new Date(), new AsyncCallback<Judges>() {
 
 					public void onFailure(Throwable arg0) {
-						// TODO Auto-generated method stub
+						// Auto-generated method stub
 						
 					}
 
 					public void onSuccess(Judges arg0) {
-						// TODO Auto-generated method stub
+						// Auto-generated method stub
 						if(arg0==null){
 							return;//message to user that they didn't type valid username or pass
 						}
-						// TODO user has successfully logged on
+						// user has successfully logged on
 					}
 
 			
