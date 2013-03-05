@@ -21,28 +21,25 @@ import edu.lcu.masterfollies.client.activity.ClubListActivity;
  */
 public interface ClubListView extends IsWidget
 {
-	public void setEventBus(HandlerManager eventBus);
-
-	public CellTable<Map<String, Object>> getTblClubList();
-
-
 	public interface Presenter
 	{
 		void goTo(Place place);
-
-
 		void goToResults(String nameOfClub, Integer clubId);
-
 		void updateRank(Integer rankId, Integer rank);
 
 	}
 
+	public CellTable<Map<String, Object>> getTblClubList();
+	public HasData<Map<String, Object>> getTblClubListGirls();
+	public Button getRefreshButton();
+	public Panel getPanel();
+	
+	public void setEventBus(HandlerManager eventBus);
 	public void setPresenter(ClubListActivity clubListActivity);
 	public void setLblTitle(String string);
 	public void setLoadtime(String loadtime);
-	public Button getRefreshButton();
-	public Panel getPanel();
+	
 
-	public HasData<Map<String, Object>> getTblClubListGirls();
+	
 
 }

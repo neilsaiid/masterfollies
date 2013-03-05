@@ -46,6 +46,7 @@
     
         
   <source path='client'/>
+  <source path='client/place'/>
   <source path='shared'/>
   <source path='domain'/>
   <inherits name="com.google.gwt.i18n.I18N"/>

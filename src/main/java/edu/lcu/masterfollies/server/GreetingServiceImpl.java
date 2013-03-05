@@ -126,7 +126,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		
 			
 		if ((result==null) || (result.size()==0)){
-			Log.debug("(>^^)> returning null <(^^<)");
+			Log.debug("(>^^)> from GreetingServiceImpl returning null <(^^<)");
 			return null;
 		}
 		for(Judges j:result){
@@ -141,10 +141,10 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 
 	public List<Map<String,Object>> getClubListBoys(Integer judgeId, Date timestamp){
 		try {
-			Log.debug("GET CLUB LIST BOYS");
+			Log.debug("from GreetingServiceImpl GET CLUB LIST BOYS");
 			return selectClubListandRankByJudgeID(judgeId, false, null);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			//  Auto-generated catch block
 			e.printStackTrace();
 			
 		}
@@ -153,25 +153,30 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public List<Map<String,Object>> getClubListGirls(Integer judgeId, Date timestamp){
-		Log.debug("GET CLUB LIST GIRLS");
-		return selectClubListandRankByJudgeID(judgeId, true, null);
-
+		try {
+			Log.debug("from GreetingServiceImpl GET CLUB LIST GIRLS");
+			return selectClubListandRankByJudgeID(judgeId, true, null);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	@Override
 	public Void batchInsert(Integer judgeId, Integer clubNameId, Date timestamp) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return null;
 	}
 	@Override
 	public Void upadateLineScore(Integer judgeId, Integer clubNameId,
 			Integer questionId, Integer points, Date timestamp) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return null;
 	}
 	@Override
 	public Void updateRankScore(Integer judgeId, Integer clubNameId,
 			Integer rank, Date timestamp) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return null;
 	}
 	@Override
@@ -187,24 +192,24 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	public List<Map<String,Object>> selectResultsByJudge(Integer judgeId, Integer clubId, Date timestamp) {
 		
 		List<Map<String, Object>> x = resultsMapper.selectResultsByJudge(judgeId,clubId);
-		Log.debug("X is: " + x);
+		Log.debug("from GreetingServiceImpl X is: " + x);
 		for(Map<String,Object> map:x){
 			//Log.debug("map = " + map);
 		}
-		Log.debug("Returning x");
+		Log.debug("from GreetingServiceImpl Returning x");
 		return x;
 	}
 
 	
 	@Override
 	public List<Map<String,Object>> selectClubListandRankByJudgeID(Integer judgeId, Boolean girl, Date timestamp) {
-		Log.debug("#4");
+		Log.debug("from GreetingServiceImpl #4");
 		List<Map<String, Object>> x = clubNamesMapper.selectClubListandRankByJudgeID(judgeId, girl);
 		Log.debug("Clubs and ranks are: " + x);
 		for(Map<String,Object> map:x){
 			//Log.debug("map = " + map);
 		}
-		Log.debug("Returning x");
+		Log.debug("from GreetingServiceImpl Returning x");
 		return x;
 	}
 

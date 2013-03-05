@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <!-- POM file generated with GWT webAppCreator -->
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>edulcu</groupId>
-  <artifactId>masterfollies</artifactId>
-  <packaging>war</packaging>
-  <version>1.0</version>
-  <name>GWT Maven Archetype</name>
+	<!-- POM file generated with GWT webAppCreator -->
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>edulcu</groupId>
+	<artifactId>masterfollies</artifactId>
+	<packaging>war</packaging>
+	<version>1.0</version>
+	<name>GWT Maven Archetype</name>
 
 
-  <properties>
-  <mybatis.generator.configurationFile>${basedir}/target/masterfollies-1.0/WEB-INF/classes/generatorConfig.xml</mybatis.generator.configurationFile>
-    <!-- Convenience property to set the GWT version -->
-    <gwtVersion>2.5.0-rc2</gwtVersion>
-    <!-- GWT needs at least java 1.5 -->
-    <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.version>3.1.1.RELEASE</spring.version>
-    <aspectj.version>1.6.11.M2</aspectj.version>
-    <slf4j.version>1.5.6</slf4j.version>
-    
-    <!--  Mybatis generator properties -->
-    <mybatis.generator.overwrite>true</mybatis.generator.overwrite>
-	<mybatis.generator.jdbcPassword>${database.password}</mybatis.generator.jdbcPassword>
-	<mybatis-generator-core.version>1.3.1</mybatis-generator-core.version>
-  </properties>
+	<properties>
+		<mybatis.generator.configurationFile>${basedir}/target/masterfollies-1.0/WEB-INF/classes/generatorConfig.xml</mybatis.generator.configurationFile>
+		<!-- Convenience property to set the GWT version -->
+		<gwtVersion>2.5.0-rc2</gwtVersion>
+		<!-- GWT needs at least java 1.5 -->
+		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>3.1.1.RELEASE</spring.version>
+		<aspectj.version>1.6.11.M2</aspectj.version>
+		<slf4j.version>1.5.6</slf4j.version>
+
+		<!-- Mybatis generator properties -->
+		<mybatis.generator.overwrite>true</mybatis.generator.overwrite>
+		<mybatis.generator.jdbcPassword>${database.password}</mybatis.generator.jdbcPassword>
+		<mybatis-generator-core.version>1.3.1</mybatis-generator-core.version>
+	</properties>
 
 	<repositories>
 		<repository>
@@ -69,213 +67,219 @@
 		</repository>
 	</repositories>
 
-  <dependencies>
-  		<dependency>
+	<dependencies>
+		<dependency>
 			<groupId>com.googlecode.gwt-test-utils</groupId>
 			<artifactId>gwt-test-utils</artifactId>
 			<version>0.43</version>
 			<scope>test</scope>
 		</dependency>
-	<dependency>
-		<groupId>org.mortbay.jetty</groupId>
-		<artifactId>jetty-util</artifactId>
-		<version>6.1.26</version>
-		<type>jar</type>
-		<scope>runtime</scope>
-	</dependency>
-	<dependency>
-		<groupId>com.microsoft</groupId>
-		<artifactId>sqljdbc4</artifactId>
-		<version>4.0</version>
-		<scope>system</scope>
-		<systemPath>${project.basedir}/src/lib/sqljdbc4.jar</systemPath>
-    </dependency>
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty-util</artifactId>
+			<version>6.1.26</version>
+			<type>jar</type>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.microsoft</groupId>
+			<artifactId>sqljdbc4</artifactId>
+			<version>4.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/lib/sqljdbc4.jar</systemPath>
+		</dependency>
 
-	<dependency>
-		<groupId>org.mortbay.jetty</groupId>
-		<artifactId>jetty-plus</artifactId>
-		<version>6.1.26</version>
-		<type>jar</type>
-		<scope>compile</scope>
-	</dependency>
-	<dependency>
-		<groupId>org.mortbay.jetty</groupId>
-		<artifactId>jetty-naming</artifactId>
-		<version>6.1.26</version>
-		<type>jar</type>
-		<scope>compile</scope>
-	</dependency>
-	<dependency>
-		<groupId>commons-dbcp</groupId>
-		<artifactId>commons-dbcp</artifactId>
-		<version>1.3</version>
-	</dependency>
-  <!-- aspectj dependency called back to properties to manage version -->
-    
-    <!-- Spring dependancy called back to properties to manage version -->
-	<dependency>
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty-plus</artifactId>
+			<version>6.1.26</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty-naming</artifactId>
+			<version>6.1.26</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.3</version>
+		</dependency>
+		<!-- aspectj dependency called back to properties to manage version -->
+
+		<!-- Spring dependancy called back to properties to manage version -->
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
 
-	</dependency>
-	<dependency>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-    <dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-test</artifactId>
-		<version>${spring.version}</version>
-		<scope>test</scope>
-		<exclusions>
-			<exclusion>
-				<groupId>commons-logging</groupId>
-				<artifactId>commons-logging</artifactId>
-			</exclusion>
-		</exclusions>
-	</dependency>
-  	<dependency>
-		<groupId>org.mybatis</groupId>
-		<artifactId>mybatis-spring</artifactId>
-		<version>1.1.0</version>
-	</dependency>
-	<dependency>
-		<groupId>org.mybatis.generator</groupId>
-		<artifactId>mybatis-generator-core</artifactId>
-		<version>${mybatis-generator-core.version}</version>
-	</dependency>
-    <dependency>
-      <groupId>com.google.gwt</groupId>
-      <artifactId>gwt-servlet</artifactId>
-      <version>${gwtVersion}</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.google.gwt</groupId>
-      <artifactId>gwt-user</artifactId>
-      <version>${gwtVersion}</version>
-      <scope>provided</scope>
-    </dependency>
- 	<dependency>
-	   <groupId>com.allen-sauer.gwt.log</groupId>
-	   <artifactId>gwt-log</artifactId>
-	   <version>3.1.7</version>
-	</dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.7</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-      <version>1.0.0.GA</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-      <version>1.0.0.GA</version>
-      <classifier>sources</classifier>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-    	<groupId>org.aspectj</groupId>
-    	<artifactId>aspectjrt</artifactId>
-    	<version>1.6.11.M2</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.aspectj</groupId>
-    	<artifactId>aspectjweaver</artifactId>
-    	<version>1.6.11.M2</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.springframework</groupId>
-    	<artifactId>spring-aspects</artifactId>
-    	<version>${spring.version}</version>
-    </dependency>
-    <dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<version>${mybatis-generator-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwtVersion}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwtVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.allen-sauer.gwt.dnd</groupId>
+			<artifactId>gwt-dnd</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.allen-sauer.gwt.log</groupId>
+			<artifactId>gwt-log</artifactId>
+			<version>3.1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.0.0.GA</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.0.0.GA</version>
+			<classifier>sources</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.6.11.M2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.6.11.M2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>javax.persistence</groupId>
 			<artifactId>persistence-api</artifactId>
 			<version>1.0</version>
 			<scope>provided</scope>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
-				<dependency>
-					<groupId>postgresql</groupId>
-					<artifactId>postgresql</artifactId>
-					<version>9.2-1002.jdbc4</version>
-				</dependency>
-	<dependency>
-		<groupId>org.mortbay.jetty</groupId>
-		<artifactId>jetty-util</artifactId>
-		<version>6.1.26</version>
-		<type>jar</type>
-		<scope>runtime</scope>
-	</dependency>
-  </dependencies>
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.2-1002.jdbc4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty-util</artifactId>
+			<version>6.1.26</version>
+			<type>jar</type>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
 
-  <build>
-    <!-- Generate compiled stuff in the folder used for developing mode -->
-    <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+	<build>
+		<!-- Generate compiled stuff in the folder used for developing mode -->
+		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
 		<filters>
 			<filter>build.properties</filter>
 		</filters>
-	<resources>
-		<resource>
-			<directory>src/test/resources</directory>
-			<filtering>true</filtering>
-		</resource>
-		<resource>
-			<directory>src/main/resources</directory>
-			<filtering>true</filtering>
-		</resource>
-	</resources>
-    <plugins>
-    <!-- tells maven to do compile time weaving -->
-    <plugin>
-			<artifactId>maven-resources-plugin</artifactId>
-			<version>2.4.2</version>
-			<executions>
-				<execution>
-					<phase>validate</phase>
-					<goals>
-						<goal>copy-resources</goal>
-					</goals>
-					<configuration>
-						<outputDirectory>${webappDirectory}</outputDirectory>
-						<resources>
+		<resources>
+			<resource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<!-- tells maven to do compile time weaving -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.4.2</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${webappDirectory}</outputDirectory>
+							<resources>
 
-							<resource>
-								<directory>src/test/jetty</directory>
-								<filtering>true</filtering>
-							</resource>
- 							<resource>
-								<directory>src/test/resources/META-INF/spring</directory>
-								<filtering>true</filtering>
-							</resource>
-							<resource>
-								<directory>src/test/resources/META-INF</directory>
-								<filtering>true</filtering>
-								<includes>
+								<resource>
+									<directory>src/test/jetty</directory>
+									<filtering>true</filtering>
+								</resource>
+								<resource>
+									<directory>src/test/resources/META-INF/spring</directory>
+									<filtering>true</filtering>
+								</resource>
+								<resource>
+									<directory>src/test/resources/META-INF</directory>
+									<filtering>true</filtering>
+									<includes>
 										<include>**/*.properties</include>
 									</includes>
-							</resource>
-						</resources>
-					</configuration>
-				</execution>
-			</executions>
-		</plugin>
-	   	<plugin>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>aspectj-maven-plugin</artifactId>
 				<version>1.3.1</version>
@@ -298,92 +302,92 @@
 					</execution>
 				</executions>
 			</plugin>
-    <!-- MyBatis Plugin -->
-		<plugin>
-			<groupId>org.mybatis.generator</groupId>
-			<artifactId>mybatis-generator-maven-plugin</artifactId>
-			<version>${mybatis-generator-core.version}</version>
-		</plugin>
-	
+			<!-- MyBatis Plugin -->
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>${mybatis-generator-core.version}</version>
+			</plugin>
 
-      <!-- GWT Maven Plugin -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>gwt-maven-plugin</artifactId>
-        <version>2.5.0-rc2</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>compile</goal>
-              <goal>test</goal>
-              <goal>i18n</goal>
-              <goal>generateAsync</goal>
-            </goals>
-          </execution>
-        </executions>
-        <!-- Plugin configuration. There are many available options, see 
-          gwt-maven-plugin documentation at codehaus.org -->
-        <configuration>
-          <runTarget>masterfollies.html</runTarget>
-          <hostedWebapp>${webappDirectory}</hostedWebapp>
-          <i18nMessagesBundle>edu.lcu.masterfollies.client.Messages</i18nMessagesBundle>
-        </configuration>
-      </plugin>
 
-      <!-- Copy static web files before executing gwt:run -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.1.1</version>
-        <executions>
-          <execution>
-            <phase>compile</phase>
-            <goals>
-              <goal>exploded</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <webappDirectory>${webappDirectory}</webappDirectory>
-          <packagingExcludes>WEB-INF/lib/jetty-naming*.jar,WEB-INF/lib/jetty-plus*.jar</packagingExcludes>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
-        <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
-        </configuration>
-      </plugin>
+			<!-- GWT Maven Plugin -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>2.5.0-rc2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>test</goal>
+							<goal>i18n</goal>
+							<goal>generateAsync</goal>
+						</goals>
+					</execution>
+				</executions>
+				<!-- Plugin configuration. There are many available options, see gwt-maven-plugin 
+					documentation at codehaus.org -->
+				<configuration>
+					<runTarget>masterfollies.html</runTarget>
+					<hostedWebapp>${webappDirectory}</hostedWebapp>
+					<i18nMessagesBundle>edu.lcu.masterfollies.client.Messages</i18nMessagesBundle>
+				</configuration>
+			</plugin>
 
-	<plugin>
-		<groupId>org.mortbay.jetty</groupId>
-		<artifactId>maven-jetty-plugin</artifactId>
-		<version>6.1.26</version>
-		<configuration>
-			<jettyEnvXml>${project.basedir}/target/masterfollies-1.0-SNAPSHOT/WEB-INF/jetty-web.xml</jettyEnvXml>
-			<webAppSourceDirectory>${project.basedir}/target/${project.artifactId}-${project.version}</webAppSourceDirectory>
-			<contextPath>masterfollies</contextPath>
-		</configuration>
-		<dependencies>
-	<dependency>
-		<groupId>org.mortbay.jetty</groupId>
-		<artifactId>jetty-plus</artifactId>
-		<version>6.1.26</version>
-		<type>jar</type>
-	</dependency>
-	<dependency>
-		<groupId>org.mortbay.jetty</groupId>
-		<artifactId>jetty-naming</artifactId>
-		<version>6.1.26</version>
-		<type>jar</type>
-	</dependency>
-		</dependencies>
-	</plugin>
-	
-				<plugin>
+			<!-- Copy static web files before executing gwt:run -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>exploded</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<webappDirectory>${webappDirectory}</webappDirectory>
+					<packagingExcludes>WEB-INF/lib/jetty-naming*.jar,WEB-INF/lib/jetty-plus*.jar</packagingExcludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.26</version>
+				<configuration>
+					<jettyEnvXml>${project.basedir}/target/masterfollies-1.0-SNAPSHOT/WEB-INF/jetty-web.xml</jettyEnvXml>
+					<webAppSourceDirectory>${project.basedir}/target/${project.artifactId}-${project.version}</webAppSourceDirectory>
+					<contextPath>masterfollies</contextPath>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.mortbay.jetty</groupId>
+						<artifactId>jetty-plus</artifactId>
+						<version>6.1.26</version>
+						<type>jar</type>
+					</dependency>
+					<dependency>
+						<groupId>org.mortbay.jetty</groupId>
+						<artifactId>jetty-naming</artifactId>
+						<version>6.1.26</version>
+						<type>jar</type>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.5</version>
 				<configuration>
@@ -404,8 +408,8 @@
 					</systemProperties>
 				</configuration>
 			</plugin>
-      
-    </plugins>
-  </build>
+
+		</plugins>
+	</build>
 
 </project>

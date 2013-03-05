@@ -74,7 +74,8 @@ public class ResultsTest implements BeanFactoryAware {
 		ResultsExample re = new ResultsExample();
 		re.createCriteria().andClubIdEqualTo(1).andJudgeIdEqualTo(1);
 		rm.deleteByExample(re);
-		rm.insertbatchResultsInsert(1, 1);
+		//rm.insertbatchResultsInsert(1, 1);
+		
 		List<Map<String, Object>> results = rm.selectResultsByJudge(1, 1);
 		log.debug("resutl map=" + results);
 		

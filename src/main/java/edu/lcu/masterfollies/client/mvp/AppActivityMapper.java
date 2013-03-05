@@ -8,9 +8,11 @@ import edu.lcu.masterfollies.client.ClientFactory;
 import edu.lcu.masterfollies.client.activity.ClubListActivity;
 import edu.lcu.masterfollies.client.activity.LoginActivity;
 import edu.lcu.masterfollies.client.activity.ResultsActivity;
+import edu.lcu.masterfollies.client.activity.SuperActivity;
 import edu.lcu.masterfollies.client.place.ClubListPlace;
 import edu.lcu.masterfollies.client.place.LoginPlace;
 import edu.lcu.masterfollies.client.place.ResultsPlace;
+import edu.lcu.masterfollies.client.place.SuperPlace;
 
 public class AppActivityMapper implements ActivityMapper {
 
@@ -41,6 +43,8 @@ public class AppActivityMapper implements ActivityMapper {
 	    	return new ClubListActivity(null, clientFactory);
 	    else if (place instanceof ResultsPlace)
 	    	return new ResultsActivity(clientFactory);
+	    else if (place instanceof SuperPlace)
+	    	return new SuperActivity(null, clientFactory);
 
 		return null;
 	}

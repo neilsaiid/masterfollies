@@ -32,7 +32,6 @@ import edu.lcu.masterfollies.shared.Log;
 
 public class ClubListViewImpl extends Composite implements ClubListView {
 	private Judges judge;
-	
 	private HandlerManager eventBus = null;
 	private Presenter listener;
 	
@@ -408,7 +407,7 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 	
 	@Override
 	public void setPresenter(ClubListActivity clubListActivity) {
-		Log.debug("this should be listening to this view for events");
+		Log.debug("ClubListViewImpl line 411");
 		listener = clubListActivity;
 	}
 
@@ -431,15 +430,12 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 	@Override
 
 	public CellTable<Map<String, Object>> getTblClubList() {
-
-		//  Auto-generated method stub
 		return tblClubList;
 	}
 
 
 	@Override
 	public HasData<Map<String, Object>> getTblClubListGirls() {
-		// TODO Auto-generated method stub
 		return tblClubListGirls;
 	}
 

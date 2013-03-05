@@ -11,6 +11,7 @@ import com.google.gwt.place.shared.WithTokenizers;
  */
 @WithTokenizers({edu.lcu.masterfollies.client.place.LoginPlace.Tokenizer.class,
 	edu.lcu.masterfollies.client.place.ClubListPlace.Tokenizer.class,
-	edu.lcu.masterfollies.client.place.ResultsPlace.Tokenizer.class})
+	edu.lcu.masterfollies.client.place.ResultsPlace.Tokenizer.class,
+	edu.lcu.masterfollies.client.place.SuperPlace.Tokenizer.class})
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }

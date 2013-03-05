@@ -179,7 +179,7 @@ public class ClubListActivity extends BasePresenter implements
 	 */
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		Log.debug("Start Activity");
+		Log.debug("Start Method in ClubListAcivity");
 		
 		
 		try {
@@ -221,7 +221,7 @@ public class ClubListActivity extends BasePresenter implements
 	@Override
 
 	public void goToResults(String nameOfClub, Integer clubId) {
-		// TODO Auto-generated method stub
+		
 		ResultsPlace resultsPlace = new ResultsPlace("results", judge, clubId, nameOfClub);
 		clientFactory.getPlaceController().goTo(resultsPlace);
 	}

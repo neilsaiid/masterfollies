@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.DialogBox;
 import edu.lcu.masterfollies.client.ClientFactory;
 import edu.lcu.masterfollies.client.GreetingServiceAsync;
 import edu.lcu.masterfollies.client.place.ClubListPlace;
+import edu.lcu.masterfollies.client.place.SuperPlace;
 import edu.lcu.masterfollies.client.ui.LoginView;
 import edu.lcu.masterfollies.domain.Judges;
 import edu.lcu.masterfollies.shared.Log;
@@ -100,12 +101,11 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 				.getTxtPassword().getText(), new Date(), new AsyncCallback<Judges>() {
 
 					public void onFailure(Throwable arg0) {
-						//  Auto-generated method stub
+						
 						
 					}
 
 					public void onSuccess(Judges arg0) {
-						//  Auto-generated method stub
 						if(arg0==null){
 							Log.debug("don't Hide");
 							if (arg0 == null) {
@@ -114,12 +114,19 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 							}return;
 						}
 						//  user has successfully logged on
+						if(arg0.getIsSuper() != null && arg0.getIsSuper()) {
+							Log.debug("User is Super");
+							SuperPlace superPlace = new SuperPlace("superhome",arg0);
+							clientFactory.getPlaceController().goTo(superPlace);
+						}
+						else {
 						display.asDialog().hide();
 						Log.debug("Judge is: "+arg0);
 						ClubListPlace clubListPlace = new ClubListPlace("clublist",arg0);
 						  
 						 clientFactory.getPlaceController().goTo(clubListPlace);
 						//goto new (ClubListPlace)
+						}
 					}
 
 			
