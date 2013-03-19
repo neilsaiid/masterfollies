@@ -7,6 +7,7 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
 import edu.lcu.masterfollies.client.ui.ClubListView;
 import edu.lcu.masterfollies.client.ui.LoginView;
 import edu.lcu.masterfollies.client.ui.ResultsView;
+import edu.lcu.masterfollies.client.ui.SuperView;
 
 public interface ClientFactory
 {
@@ -18,4 +19,5 @@ public interface ClientFactory
 	PlaceHistoryHandler getHistoryHandler();
 	ClubListView getClubListView();
 	ResultsView getResultsView();
+	SuperView getSuperView();
 }

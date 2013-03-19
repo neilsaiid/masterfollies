@@ -28,7 +28,6 @@ public interface ClubListView extends IsWidget
 		void updateRank(Integer rankId, Integer rank);
 
 	}
-
 	public CellTable<Map<String, Object>> getTblClubList();
 	public HasData<Map<String, Object>> getTblClubListGirls();
 	public Button getRefreshButton();
@@ -38,8 +37,4 @@ public interface ClubListView extends IsWidget
 	public void setPresenter(ClubListActivity clubListActivity);
 	public void setLblTitle(String string);
 	public void setLoadtime(String loadtime);
-	
-
-	
-
 }

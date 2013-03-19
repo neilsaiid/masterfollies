@@ -44,7 +44,7 @@ public class ClubListActivity extends BasePresenter implements
 		this.rpcService = clientFactory.getRpcService();
 		this.eventBus = clientFactory.getEventBus();
 
-		Log.debug("***I am before the bind method call***");
+		Log.debug("***I am before the bind method call in ClubListActivity***");
 
 		bind();
 	}
@@ -55,7 +55,6 @@ public class ClubListActivity extends BasePresenter implements
 				@Override
 				protected void onRangeChanged(HasData<Map<String, Object>> display) {
 					getClubListBoys(display, this);
-
 				}
 			};
 		
@@ -64,7 +63,7 @@ public class ClubListActivity extends BasePresenter implements
 					.getTblClubList());
 			Log.debug("***I am AFTER the provider.addDataDisplay***");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -80,35 +79,29 @@ public class ClubListActivity extends BasePresenter implements
 				.getTblClubListGirls());
 		Log.debug("***I am AFTER the provider.addDataDisplay***");
 	} catch (Exception e) {
-		// TODO Auto-generated catch block
+		// Auto-generated catch block
 		e.printStackTrace();
 	}
-
 		try {
 			Log.debug("I'm ready for the click handler");
 			ClickHandler handler = new ClickHandler() {
 				@Override
 				public void onClick(ClickEvent event) {
 					Log.debug("RUN clubname FIRE");
-
 					HasData<Map<String, Object>> hasData = (HasData<Map<String, Object>>)clubListView.getTblClubList();
 					getClubListGirls(hasData, provider);
-
 				}
-			};
-			
-			clubListView = clientFactory.getClubListView();
-			
+			};			
+			clubListView = clientFactory.getClubListView();			
 			Button refresh = clubListView.getRefreshButton();
 			if (refresh != null)  {
 				addHandler(refresh.addClickHandler(handler));
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 
 	protected void getClubListGirls(HasData<Map<String, Object>> hasData,
 			final AsyncDataProvider<Map<String, Object>> gdp) {
@@ -123,34 +116,25 @@ public class ClubListActivity extends BasePresenter implements
 				Window.alert(caught.getMessage());
 				caught.printStackTrace();
 			}
-
 			@Override
 			public void onSuccess(List<Map<String, Object>> result) {
-				
 				gdp.updateRowCount(result.size(), /* exact(not estimate) = */
 						true);
-				
-				gdp.updateRowData(start, result);
-											
+				gdp.updateRowData(start, result);						
 				Log.debug("SUCCESS DONE");
 			}
 		};
 		rpcService.getClubListGirls(judge.getId(), new Date(),callback);
-
 	}
 		
 
 	private void getClubListBoys(HasData<Map<String, Object>> display,
-			final AsyncDataProvider<Map<String, Object>> dp) {
-
-		
+			final AsyncDataProvider<Map<String, Object>> dp) {		
 		Log.debug("CLIENT getClassList");
 		this.judge = ((ClubListPlace) clientFactory.getPlaceController().getWhere()).getJudge();
 		final int start = display.getVisibleRange().getStart();
 		final int length = display.getVisibleRange().getLength();
-
 		AsyncCallback<List<Map<String,Object>>> callback = new AsyncCallback<List<Map<String,Object>>>() {
-
 			@Override
 			public void onFailure(Throwable caught) {
 				Log.debug("FAIL Range " + caught.getMessage());
@@ -158,15 +142,11 @@ public class ClubListActivity extends BasePresenter implements
 				caught.printStackTrace();
 			}
 
-
 			@Override
-			public void onSuccess(List<Map<String, Object>> result) {
-				
+			public void onSuccess(List<Map<String, Object>> result) {				
 				dp.updateRowCount(result.size(), /* exact(not estimate) = */
-						true);
-				
-				dp.updateRowData(start, result);
-												
+						true);				
+				dp.updateRowData(start, result);												
 				Log.debug("SUCCESS DONE");
 			}
 		};
@@ -193,7 +173,7 @@ public class ClubListActivity extends BasePresenter implements
 			clubListView.setPresenter(this);
 			containerWidget.setWidget(clubListView.asWidget());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			//  Auto-generated catch block
 			e.printStackTrace();
 		}
 		Log.debug("End of start Activity***");

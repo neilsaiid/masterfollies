@@ -10,7 +10,6 @@ import edu.lcu.masterfollies.shared.Log;
 public class SuperPlace extends Place
 {
 	private Judges judge;
-	//private static Log log = LogFactory.getLog(GreetingServiceImpl.class);
 	public SuperPlace(String token, Judges judge)
 	{
 		Log.debug("Judge is: " + judge + " inside of SuperPlace");
@@ -18,7 +17,7 @@ public class SuperPlace extends Place
 	}
 	public SuperPlace(String token)
 	{
-		Log.debug("clubListPalce, how are we here?!");
+		Log.debug("SuperPlace, how are we here?!");
 		String[] tokens = token.split(":");
 		judge = new Judges();
 		judge.setFirstName(tokens[1]);

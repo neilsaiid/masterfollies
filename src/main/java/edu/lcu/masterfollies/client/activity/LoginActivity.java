@@ -102,7 +102,6 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 
 					public void onFailure(Throwable arg0) {
 						
-						
 					}
 
 					public void onSuccess(Judges arg0) {
@@ -113,24 +112,24 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 									"Name or password is incorrect; attempt " + ++attempt);
 							}return;
 						}
+						
 						//  user has successfully logged on
+						display.asDialog().hide();
+						
 						if(arg0.getIsSuper() != null && arg0.getIsSuper()) {
-							Log.debug("User is Super");
+							
+							Log.debug("Judge " + arg0.getFirstName() + " " + arg0.getLastName() + " is Super");
 							SuperPlace superPlace = new SuperPlace("superhome",arg0);
 							clientFactory.getPlaceController().goTo(superPlace);
-						}
+						} 
 						else {
-						display.asDialog().hide();
-						Log.debug("Judge is: "+arg0);
-						ClubListPlace clubListPlace = new ClubListPlace("clublist",arg0);
+							Log.debug("Judge is: "+arg0);
+							ClubListPlace clubListPlace = new ClubListPlace("clublist",arg0);
 						  
-						 clientFactory.getPlaceController().goTo(clubListPlace);
-						//goto new (ClubListPlace)
-						}
-					}
-
-			
-			
+							clientFactory.getPlaceController().goTo(clubListPlace);
+							//goto new (ClubListPlace)
+						}//end if
+					} // end onSuccess
 					});
 	}
 

@@ -10,6 +10,7 @@ import edu.lcu.masterfollies.client.mvp.AppPlaceHistoryMapper;
 import edu.lcu.masterfollies.client.ui.ClubListView;
 import edu.lcu.masterfollies.client.ui.LoginView;
 import edu.lcu.masterfollies.client.ui.ResultsView;
+import edu.lcu.masterfollies.client.ui.SuperView;
 
 public class ClientFactoryImpl implements ClientFactory
 {
@@ -22,6 +23,7 @@ public class ClientFactoryImpl implements ClientFactory
 	private final LoginView loginView = GWT.create(LoginView.class);
 	private final ClubListView clubListView = GWT.create(ClubListView.class);
 	private final ResultsView resultsView = GWT.create(ResultsView.class);
+	private final SuperView superView = GWT.create(SuperView.class);
 	
 	public ResultsView getResultsView() {
 		return resultsView;
@@ -64,7 +66,7 @@ public class ClientFactoryImpl implements ClientFactory
 
 
 	public PlaceHistoryHandler getHistoryHandler() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return historyHandler;
 	}
 
@@ -74,6 +76,15 @@ public class ClientFactoryImpl implements ClientFactory
 	@Override
 	public ClubListView getClubListView() {		
 		return clubListView;
+	}
+
+
+
+
+	@Override
+	public SuperView getSuperView() {
+		// Auto-generated method stub
+		return superView;
 	}
 
 

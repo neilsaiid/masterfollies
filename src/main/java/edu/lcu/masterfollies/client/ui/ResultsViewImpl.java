@@ -39,31 +39,36 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 	private Label lblTitle;
 	
 	public ResultsViewImpl() {
-		Log.debug("About to start the stackLayoutPanel");
-		vp = new VerticalPanel();
+		try {
+			Log.debug("ResultViewImpl About to start the stackLayoutPanel");
+			vp = new VerticalPanel();
+				
+			initWidget(vp);
+			vp.setWidth("700px");
 			
-		initWidget(vp);
-		vp.setWidth("700px");
-		
-		horizontalPanel_2 = new HorizontalPanel();
-		vp.add(horizontalPanel_2);
-		horizontalPanel_2.setSize("700px", "38px");
-		
-		lblTitle = new Label("");
-		lblTitle.setStyleName("gwt-Results-Label");
-		horizontalPanel_2.add(lblTitle);
-		
-		btnNewButton = new Button("Club List");
-		horizontalPanel_2.add(btnNewButton);
-		btnNewButton.setSize("74px", "36px");
-		
-		btnBack = new Button("Back");
-		horizontalPanel_2.add(btnBack);
-		btnBack.setSize("50px", "36px");
-		
-		btnNextShow = new Button("Next Show");
-		horizontalPanel_2.add(btnNextShow);
-		btnNextShow.setSize("100px", "36px");
+			horizontalPanel_2 = new HorizontalPanel();
+			vp.add(horizontalPanel_2);
+			horizontalPanel_2.setSize("700px", "38px");
+			
+			lblTitle = new Label("");
+			lblTitle.setStyleName("gwt-Results-Label");
+			horizontalPanel_2.add(lblTitle);
+			
+			btnNewButton = new Button("Club List");
+			horizontalPanel_2.add(btnNewButton);
+			btnNewButton.setSize("74px", "36px");
+			
+			btnBack = new Button("Back");
+			horizontalPanel_2.add(btnBack);
+			btnBack.setSize("50px", "36px");
+			
+			btnNextShow = new Button("Next Show");
+			horizontalPanel_2.add(btnNextShow);
+			btnNextShow.setSize("100px", "36px");
+		} catch (Exception e) {
+			// Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	@Override
 	public Button getBtnNewButton() {
@@ -372,7 +377,6 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 				
 			} // end for loop
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -393,13 +397,13 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 
 	@Override
 	public CellTable<Results> getTblResultsList() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void setTab() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		
 	}
 

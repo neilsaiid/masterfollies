@@ -96,4 +96,6 @@ public interface ClubNamesMapper {
 
 	List<Map<String, Object>> selectClubListandRankByJudgeID(@Param("judge_id")Integer judgeId,
 			@Param("girl")Boolean girl);
+	
+	List<ClubNames> selectClubNamesByCurrentClubOrder();
 }

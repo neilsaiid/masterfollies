@@ -7,6 +7,12 @@
 			<param name="ConversionPattern" value="%d{ISO8601} forms [%X{remoteAddr} %X{X-Forwarded-For} %X{logSequence}] %5p [%t] (%F:%L) - %m%n" />
 		</layout>
 	</appender>
+	<appender name="stderr" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- Pattern to output the caller's file name and line number -->
+			<param name="ConversionPattern" value="%d{ISO8601} forms [%X{remoteAddr} %X{X-Forwarded-For} %X{logSequence}] %5p [%t] (%F:%L) - %m%n" />
+		</layout>
+	</appender>
 	<appender name="R" class="org.apache.log4j.RollingFileAppender">
 		<param name="file" value="example.log" />
 		<param name="MaxFileSize" value="100KB" />

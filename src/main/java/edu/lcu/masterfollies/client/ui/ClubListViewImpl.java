@@ -407,7 +407,7 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 	
 	@Override
 	public void setPresenter(ClubListActivity clubListActivity) {
-		Log.debug("ClubListViewImpl line 411");
+		Log.debug("setPresenter in ClubListViewImpl");
 		listener = clubListActivity;
 	}
 

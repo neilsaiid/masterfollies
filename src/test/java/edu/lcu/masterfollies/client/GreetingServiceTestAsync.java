@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import edu.lcu.masterfollies.domain.ClubNames;
 import edu.lcu.masterfollies.domain.Judges;
 
 /**
@@ -124,6 +125,17 @@ public class GreetingServiceTestAsync extends RemoteServiceServlet implements Gr
 	}
 	@Override
 	public void getContext(Date date, AsyncCallback<String> callback) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void getClubOrderList(AsyncCallback<List<ClubNames>> callback) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void selectClubNamesByCurrentClubOrder(
+			AsyncCallback<List<ClubNames>> callback) {
 		// TODO Auto-generated method stub
 		
 	}

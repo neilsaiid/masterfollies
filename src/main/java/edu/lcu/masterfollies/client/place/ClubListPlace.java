@@ -9,11 +9,7 @@ import edu.lcu.masterfollies.shared.Log;
 
 public class ClubListPlace extends Place
 {
-	//private static Log log = LogFactory.getLog(GreetingServiceImpl.class);
-	
 	private Judges judge;
-
-
 	public ClubListPlace(String token, Judges judge)
 	{
 		Log.debug("Judge is: " + judge);

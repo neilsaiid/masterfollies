@@ -284,4 +284,8 @@
 	where rank.judge_id = #{judge_id,jdbcType=INTEGER} and girl = #{girl,jdbcType=BIT}
 	order by club_names.club_name
   </select>
+  <select id="selectClubNamesByCurrentClubOrder" resultMap="BaseResultMap">
+  select id, club_name, club_order from club_names
+  order by club_order asc
+  </select>
 </mapper>

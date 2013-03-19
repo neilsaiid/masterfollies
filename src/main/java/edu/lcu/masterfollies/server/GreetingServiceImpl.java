@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Configurable;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import edu.lcu.masterfollies.client.GreetingService;
+import edu.lcu.masterfollies.domain.ClubNames;
 import edu.lcu.masterfollies.domain.ClubNamesMapper;
 import edu.lcu.masterfollies.domain.Judges;
 import edu.lcu.masterfollies.domain.JudgesExample;
@@ -63,6 +64,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	public void setRankMapper(RankMapper rankMapper) {
 		this.rankMapper = rankMapper;
 	}
+	
 
 	BeanFactory bf = null;
 	
@@ -138,6 +140,52 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		return j;
 	}
 	@Override
+	public List<ClubNames> changeClubOrder(String clubName, Boolean up) {
+		
+		List<ClubNames> x = clubNamesMapper.selectClubNamesByCurrentClubOrder();
+		int counter = 0;
+		for (ClubNames i: x){
+			
+			if (clubName.equals(i.getClubName())) {
+				int place = i.getClubOrder();
+				break;
+			}
+			counter ++;
+			
+		}
+		if (counter == 0 || counter > x.size())
+			return x;
+		
+		ClubNames c1 = x.get(counter);
+		ClubNames c2 = x.get(counter - 1);
+
+		int orderOfC1 = c1.getClubOrder();
+		
+		c1.setClubOrder(c2.getClubOrder());
+		c2.setClubOrder(orderOfC1);
+		
+		//use myBatis to update by primary key
+		clubNamesMapper.updateByPrimaryKeySelective(c1);
+		clubNamesMapper.updateByPrimaryKeySelective(c2);
+		
+		List<ClubNames> y = clubNamesMapper.selectClubNamesByCurrentClubOrder();
+		return y;
+		
+	}
+	@Override
+	public List<ClubNames> getClubOrderList(){
+		try {
+			Log.debug("from GreetingServiceImpl getClubOrderList");
+			List<ClubNames> x = selectClubNamesByCurrentClubOrder();
+			return x;
+		} catch (Exception e) {
+			// Auto-generated catch block
+			e.printStackTrace();
+		}
+		Log.debug("GreetingServiceImpl should not see this");
+		return null;
+	}
+	@Override
 
 	public List<Map<String,Object>> getClubListBoys(Integer judgeId, Date timestamp){
 		try {
@@ -157,7 +205,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 			Log.debug("from GreetingServiceImpl GET CLUB LIST GIRLS");
 			return selectClubListandRankByJudgeID(judgeId, true, null);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -231,6 +279,14 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		
 		rankMapper.updateByPrimaryKeySelective(rt);
 		return null;
+	}
+	@Override
+	public List<ClubNames> selectClubNamesByCurrentClubOrder(){
+		List<ClubNames> cn = clubNamesMapper.selectClubNamesByCurrentClubOrder();
+		for(ClubNames map:cn){
+			
+		}
+		return cn;
 	}
 
 

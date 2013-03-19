@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.logging.Log;
@@ -17,6 +18,8 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import edu.lcu.masterfollies.domain.ClubNames;
+import edu.lcu.masterfollies.domain.ClubNamesMapper;
 import edu.lcu.masterfollies.domain.Judges;
 import edu.lcu.masterfollies.domain.JudgesMapper;
 import edu.lcu.masterfollies.server.GreetingServiceImpl;
@@ -113,8 +116,33 @@ public class GreetingServiceImplTest implements BeanFactoryAware {
 		}
 		
     }
-  
-  
+  @Test
+	public void testChangeClubOrder() {
+		GreetingServiceImpl service = bf.getBean(GreetingServiceImpl.class);
+		List<ClubNames> order = service.getClubOrderList();
+		ClubNames firstClub = order.get(0);
+		String clubName = firstClub.getClubName();
+		for (ClubNames i: order){
+			log.debug("club : " +  i);
+			}
+		//TODO move club down
+		List<ClubNames> clubReturn = service.changeClubOrder(clubName, false);
+		for (ClubNames i: clubReturn){
+			log.debug("club : " +  i);
+			}
+		assertTrue (!clubReturn.get(0).getClubName().equals(clubName));
+		assertTrue (clubReturn.get(1).getClubName().equals(clubName));
+		
+		
+		//TODO check that it moved the club up to start position
+		clubReturn = service.changeClubOrder(clubName, true);
+		for (ClubNames i: clubReturn){
+			log.debug("club : " +  i);
+			}
+		assertTrue (clubReturn.get(0).getClubName().equals(clubName));
+		assertTrue (!clubReturn.get(1).getClubName().equals(clubName));
+		
+  }
   
   
 }

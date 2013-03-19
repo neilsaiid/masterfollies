@@ -17,9 +17,7 @@ import edu.lcu.masterfollies.domain.Results;
 public interface ResultsView extends IsWidget {
 	public Widget asWidget();
 
-	
 	public void setListener(Presenter listener);
-	
 	public interface Presenter
 	{
 		public void batchInsert (final Integer judgeId, Integer clubNameId);
@@ -29,27 +27,14 @@ public interface ResultsView extends IsWidget {
 		
 		void goTo(Place place);
 		void updateResultsPoints(String radioButtonName, Integer value);
-
-		
 	}
 	void setTab();
 	TabBar getTabBar();
 	CellTable<Results> getTblResultsList();
-
-
 	public void setLblTitle(String string);
-
-
 	void setResults(List<Map<String, Object>> results);
-
-
 	Button getBtnNewButton();
-	
-
-
 	HTMLPanel getPanel();
-
-
 	public FocusWidget getbtnBack();
 
 

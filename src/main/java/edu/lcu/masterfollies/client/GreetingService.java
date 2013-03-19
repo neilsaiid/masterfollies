@@ -7,6 +7,7 @@ import java.util.Map;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
+import edu.lcu.masterfollies.domain.ClubNames;
 import edu.lcu.masterfollies.domain.Judges;
 
 /**
@@ -29,10 +30,13 @@ public interface GreetingService extends RemoteService {
 
 
   List<Map<String, Object>> selectClubListandRankByJudgeID(Integer judgeId, Boolean girl, Date timestamp);
-List<Map<String, Object>> getClubListBoys(Integer judgeId, Date timestamp);
-List<Map<String, Object>> getClubListGirls(Integer judgeId, Date timestamp);
-Void updateRankPoints(Integer rankId, Integer rank, Date timestamp);
-String getContext(Date date);
+  List<Map<String, Object>> getClubListBoys(Integer judgeId, Date timestamp);
+  List<Map<String, Object>> getClubListGirls(Integer judgeId, Date timestamp);
+  Void updateRankPoints(Integer rankId, Integer rank, Date timestamp);
+  String getContext(Date date);
+  List<ClubNames> getClubOrderList();
+  List<ClubNames> selectClubNamesByCurrentClubOrder();
+  List<ClubNames> changeClubOrder(String clubName, Boolean up);
 
   
 }

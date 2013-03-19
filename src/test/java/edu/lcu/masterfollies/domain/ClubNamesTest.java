@@ -1,5 +1,5 @@
 package edu.lcu.masterfollies.domain;
-import static org.junit.Assert.assertTrue;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -48,6 +48,32 @@ public class ClubNamesTest implements BeanFactoryAware {
 		//assertTrue(p.equals(judge));
 		c.deleteByPrimaryKey(cn.getId());
 		log.debug("Club: " + cn.getClubName() +	" has been deleted successfully.");
+	}
+	@Test
+	public void testSelectClubNamesByCurrentClubOrder(){
+		ClubNamesMapper c = (ClubNamesMapper) bf.getBean(ClubNamesMapper.class);
+		List<ClubNames> x = c.selectClubNamesByCurrentClubOrder();
+		for (ClubNames i: x){
+		log.debug("club : " +  i);
+		}
+		ClubNames c1 = x.get(0);
+		ClubNames c2 = x.get(1);
+		
+		log.debug("C1 is: " + c1.getClubOrder());
+		int orderOfC1 = c1.getClubOrder();
+		
+		c1.setClubOrder(c2.getClubOrder());
+		c2.setClubOrder(orderOfC1);
+		
+		//use myBatis to update by primary key
+		c.updateByPrimaryKeySelective(c1);
+		c.updateByPrimaryKeySelective(c2);
+		
+		List<ClubNames> y = c.selectClubNamesByCurrentClubOrder();
+		for (ClubNames i: y){
+		log.debug("club : " +  i);
+		}	
+	
 	}
 }
 	
