@@ -153,8 +153,24 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 			counter ++;
 			
 		}
-		if (counter == 0 || counter > x.size())
-			return x;
+		if (!up || counter > x.size()) {
+			//use this if the boolean is false and user is moving someone down
+			ClubNames c1 = x.get(counter);
+			ClubNames c2 = x.get(counter + 1);
+
+			int orderOfC1 = c1.getClubOrder();
+			
+			c1.setClubOrder(c2.getClubOrder());
+			c2.setClubOrder(orderOfC1);
+			
+			//use myBatis to update by primary key
+			clubNamesMapper.updateByPrimaryKeySelective(c1);
+			clubNamesMapper.updateByPrimaryKeySelective(c2);
+			
+			List<ClubNames> y = clubNamesMapper.selectClubNamesByCurrentClubOrder();
+			return y;
+		}
+			
 		
 		ClubNames c1 = x.get(counter);
 		ClubNames c2 = x.get(counter - 1);

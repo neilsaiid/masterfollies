@@ -139,6 +139,12 @@ public class GreetingServiceTestAsync extends RemoteServiceServlet implements Gr
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void changeClubOrder(String clubName, Boolean up,
+			AsyncCallback<List<ClubNames>> callback) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 

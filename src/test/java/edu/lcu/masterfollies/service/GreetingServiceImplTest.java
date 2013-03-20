@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import edu.lcu.masterfollies.client.GreetingService;
 import edu.lcu.masterfollies.domain.ClubNames;
 import edu.lcu.masterfollies.domain.ClubNamesMapper;
 import edu.lcu.masterfollies.domain.Judges;
@@ -118,7 +119,8 @@ public class GreetingServiceImplTest implements BeanFactoryAware {
     }
   @Test
 	public void testChangeClubOrder() {
-		GreetingServiceImpl service = bf.getBean(GreetingServiceImpl.class);
+	  ClubNamesMapper c = (ClubNamesMapper) bf.getBean(ClubNamesMapper.class);
+		GreetingServiceImpl service = new GreetingServiceImpl();
 		List<ClubNames> order = service.getClubOrderList();
 		ClubNames firstClub = order.get(0);
 		String clubName = firstClub.getClubName();

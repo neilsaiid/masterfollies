@@ -2,6 +2,7 @@ package edu.lcu.masterfollies.client.activity;
 
 
 import java.util.Date;
+import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -17,8 +18,10 @@ import com.google.gwt.user.client.ui.DialogBox;
 import edu.lcu.masterfollies.client.ClientFactory;
 import edu.lcu.masterfollies.client.GreetingServiceAsync;
 import edu.lcu.masterfollies.client.place.ClubListPlace;
+import edu.lcu.masterfollies.client.place.ResultsPlace;
 import edu.lcu.masterfollies.client.place.SuperPlace;
 import edu.lcu.masterfollies.client.ui.LoginView;
+import edu.lcu.masterfollies.domain.ClubNames;
 import edu.lcu.masterfollies.domain.Judges;
 import edu.lcu.masterfollies.shared.Log;
 
@@ -104,7 +107,8 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 						
 					}
 
-					public void onSuccess(Judges arg0) {
+					public void onSuccess(final Judges arg0) {
+						
 						if(arg0==null){
 							Log.debug("don't Hide");
 							if (arg0 == null) {
@@ -124,9 +128,32 @@ public class LoginActivity extends BasePresenter implements LoginView.Presenter 
 						} 
 						else {
 							Log.debug("Judge is: "+arg0);
-							ClubListPlace clubListPlace = new ClubListPlace("clublist",arg0);
-						  
-							clientFactory.getPlaceController().goTo(clubListPlace);
+							rpcService.getClubOrderList(new AsyncCallback<List<ClubNames>>(){
+
+								@Override
+								public void onFailure(Throwable caught) {
+									Log.debug("failed authenticate of LoginActivity");
+									
+								}
+
+								@Override
+								public void onSuccess(List<ClubNames> result) {
+									Log.debug("LoginActivity result: " + result);
+									Log.debug("LoginActivity result size is: "+ result.size());
+									ClubNames firstClub = result.get(0);
+									Integer firstClubId = firstClub.getId();
+									String firstClubName = firstClub.getClubName();
+									
+									ResultsPlace resultsPlace = new ResultsPlace("results", arg0, firstClubId, firstClubName);
+									clientFactory.getPlaceController().goTo(resultsPlace);
+									
+								}
+							
+							});
+//							ClubListPlace clubListPlace = new ClubListPlace("clublist",arg0);
+//							
+//						  
+//							clientFactory.getPlaceController().goTo(clubListPlace);
 							//goto new (ClubListPlace)
 						}//end if
 					} // end onSuccess

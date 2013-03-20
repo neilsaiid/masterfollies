@@ -38,10 +38,10 @@ public class SuperViewImpl extends Composite implements SuperView {
 		
 			listBox_2 = new ListBox();
 			
-			listBox_2.setVisibleItemCount(20);
+			listBox_2.setVisibleItemCount(5);
 			layoutPanel.add(listBox_2);
 			layoutPanel.setWidgetLeftWidth(listBox_2, 0.0, Unit.PX, 160.0, Unit.PX);
-			layoutPanel.setWidgetTopHeight(listBox_2, 24.0, Unit.PX, 164.0, Unit.PX);
+			layoutPanel.setWidgetTopHeight(listBox_2, 24.0, Unit.PX, 160.0, Unit.PX);
 			listBox_2.setSize("160px", "160px");
 			
 			btnDownArrow = new Button("&#8595;");

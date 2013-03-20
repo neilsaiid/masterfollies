@@ -77,7 +77,7 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 
 	@Override
 	public void setResults(List<Map<String, Object>> results) {
-		Log.debug("Starting For Loop");
+		Log.debug("Results View Impl Starting For Loop");
 		if (stackLayoutPanel != null){
 			vp.remove(stackLayoutPanel);
 			

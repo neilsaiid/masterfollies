@@ -6,6 +6,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -37,11 +38,16 @@ public class SuperActivity extends BasePresenter implements
 		Log.debug("SuperActivity before bind()");
 		bind();
 	}
-	public void reorderList(){
-		int place = display.getListBox_2().getSelectedIndex();
+	public void reorderList(final Boolean up){
+		final int place = display.getListBox_2().getSelectedIndex();
+		if (place < 0){
+			Window.alert("Please select a Club from the list");
+			return;
+		}
+		
 		String clubName = display.getListBox_2().getItemText(place);
 		
-		rpcService.changeClubOrder(clubName, true, new AsyncCallback<List<ClubNames>>(){
+		rpcService.changeClubOrder(clubName, up, new AsyncCallback<List<ClubNames>>(){
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -56,6 +62,11 @@ public class SuperActivity extends BasePresenter implements
 		          for (ClubNames clubName: result) {
 		        	   x.addItem(clubName.getClubName());
 		          }
+		          if (up){
+		        	  x.setSelectedIndex(place - 1);
+		          }
+		          else
+		        	  x.setSelectedIndex(place + 1);
 		        FlexTable f = display.getFlexTable(); {
 		        	for (ClubNames m: result){
 						String clubName = (String) m.getClubName();
@@ -107,7 +118,7 @@ public class SuperActivity extends BasePresenter implements
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				reorderList(); 
+				reorderList(true); 
 				
 			}
 		}));
@@ -115,7 +126,8 @@ public class SuperActivity extends BasePresenter implements
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				reorderList();
+				
+				reorderList(false);
 				
 			}
 		}));
@@ -146,22 +158,11 @@ public class SuperActivity extends BasePresenter implements
 				int row = 0;
 				ListBox x = display.getListBox_2();
 		          for (ClubNames clubName: result) {
-		        	   x.addItem(clubName.getClubName());
-		          }
-		        FlexTable f = display.getFlexTable(); {
-		        	for (ClubNames m: result){
-						String clubName = (String) m.getClubName();
-		        		
-					    f.setText(row, 0, clubName);
-					    row += 1;
-		        	}
-			     
-		        }
-		          
+		        	   x.addItem(clubName.getClubName());      
 			}
-			
-		});
 		
+	}
+		});
 	}
 
 	public void goTo(Place place) {
