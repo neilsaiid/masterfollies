@@ -1,5 +1,7 @@
 package edu.lcu.masterfollies.client;
 
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
@@ -11,9 +13,21 @@ import edu.lcu.masterfollies.client.ui.ClubListView;
 import edu.lcu.masterfollies.client.ui.LoginView;
 import edu.lcu.masterfollies.client.ui.ResultsView;
 import edu.lcu.masterfollies.client.ui.SuperView;
+import edu.lcu.masterfollies.domain.ClubNames;
 
 public class ClientFactoryImpl implements ClientFactory
 {
+	private List<ClubNames> clubOrderList;
+	@Override
+	public List<ClubNames> getClubOrderList() {
+		return clubOrderList;
+	}
+
+	@Override
+	public void setClubOrderList(List<ClubNames> clubOrderList) {
+		this.clubOrderList = clubOrderList;
+	}
+
 	private final EventBus eventBus = new SimpleEventBus();
 	private final PlaceController placeController = new PlaceController(eventBus);
 	

@@ -121,4 +121,6 @@ public interface ResultsMapper {
     int updateByPrimaryKey(Results record);
 
 	List<Map<String, Object>> selectResultsByJudge(@Param("judgeId")Integer judgeId, @Param("clubId")Integer clubId);
+	int insertbatchResultsInsert(@Param("judgeId")Integer judgeId, @Param("clubId")Integer clubId);
+
 }

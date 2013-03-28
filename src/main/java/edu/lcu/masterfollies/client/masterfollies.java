@@ -1,6 +1,7 @@
 package edu.lcu.masterfollies.client;
 
 import java.util.Date;
+import java.util.List;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
 import com.allen_sauer.gwt.log.client.Log;
@@ -22,12 +23,14 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.Window.Navigator;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 
 import edu.lcu.masterfollies.client.mvp.AppActivityMapper;
 import edu.lcu.masterfollies.client.mvp.AppPlaceHistoryMapper;
 import edu.lcu.masterfollies.client.place.LoginPlace;
+import edu.lcu.masterfollies.domain.ClubNames;
 
 
 /**
@@ -93,13 +96,31 @@ public class masterfollies implements EntryPoint, ValueChangeHandler {
 	      }
 	    });
   }
+	public void getClubOrderList() {
+		clientFactory.getRpcService().getClubOrderList(new AsyncCallback<List<ClubNames>>(){
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Log.debug("SuperActivity Failed in getClubOrderList");
+			}
+
+			@Override
+			public void onSuccess(List<ClubNames> result) {
+				clientFactory.setClubOrderList(result);
+				
+			}
+		});
+	}
+	
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad2() {
 
 		final String version = masterfollies.constants.version();
-
+		getClubOrderList();
+		
+		
 		Log.debug("OML");
 		clientFactory = GWT.create(ClientFactory.class);
 

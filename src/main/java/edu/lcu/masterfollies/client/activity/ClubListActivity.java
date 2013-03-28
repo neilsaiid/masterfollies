@@ -118,6 +118,8 @@ public class ClubListActivity extends BasePresenter implements
 			}
 			@Override
 			public void onSuccess(List<Map<String, Object>> result) {
+				Log.debug("GDP = " + gdp);
+				Log.debug("RESULT = " + result);
 				gdp.updateRowCount(result.size(), /* exact(not estimate) = */
 						true);
 				gdp.updateRowData(start, result);						

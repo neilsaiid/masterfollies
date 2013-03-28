@@ -292,5 +292,9 @@
       is_super = #{isSuper,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectJudgeListAll" resultType="edu.lcu.masterfollies.domain.Judges">
+	select *
+	from judges
+  </select>
  
 </mapper>

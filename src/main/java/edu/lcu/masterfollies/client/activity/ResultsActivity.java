@@ -11,6 +11,7 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.gwt.user.client.ui.ListBox;
 
 import edu.lcu.masterfollies.client.ClientFactory;
 import edu.lcu.masterfollies.client.GreetingServiceAsync;
@@ -78,7 +79,6 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 
 			@Override
 			public void onFailure(Throwable arg0) {
-				// TODO Auto-generated method stub
 				Log.debug("FAIL x");
 			}
 			
@@ -119,7 +119,20 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 				//clientFactory.getPlaceController().goTo(History.back());
 			}
 		});
+		Log.debug("Pushed Next Show in Results Activity");
+		display.getBtnNextShow().addClickHandler(new ClickHandler(){
+			
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				
+				
+				
+			}
+			
+		});
 	}
+	
 	
 	@Override
 	public void batchInsert(Integer judgeId, Integer clubNameId) {
@@ -151,7 +164,7 @@ public class ResultsActivity extends BasePresenter implements ResultsView.Presen
 
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
+				// Auto-generated method stub
 				
 			}
 

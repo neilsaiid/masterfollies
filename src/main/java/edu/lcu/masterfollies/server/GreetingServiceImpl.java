@@ -206,7 +206,19 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	public List<Map<String,Object>> getClubListBoys(Integer judgeId, Date timestamp){
 		try {
 			Log.debug("from GreetingServiceImpl GET CLUB LIST BOYS");
-			return selectClubListandRankByJudgeID(judgeId, false, null);
+			List<Map<String, Object>> ret =  selectClubListandRankByJudgeID(judgeId, false, null);
+			if(ret.size() == 0){
+				
+				for(ClubNames club:getClubOrderList()){
+					Rank r = new Rank();
+					r.setClubId(club.getId());
+					r.setJudgeId(judgeId);
+					r.setRank(0);
+					rankMapper.insert(r);
+				}
+				ret =  selectClubListandRankByJudgeID(judgeId, false, null);
+			}
+			return ret;
 		} catch (Exception e) {
 			//  Auto-generated catch block
 			e.printStackTrace();
@@ -219,7 +231,18 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	public List<Map<String,Object>> getClubListGirls(Integer judgeId, Date timestamp){
 		try {
 			Log.debug("from GreetingServiceImpl GET CLUB LIST GIRLS");
-			return selectClubListandRankByJudgeID(judgeId, true, null);
+			List<Map<String, Object>> ret =  selectClubListandRankByJudgeID(judgeId, true, null);
+			if(ret.size() == 0){
+				
+				for(ClubNames club:getClubOrderList()){
+					Rank r = new Rank();
+					r.setClubId(club.getId());
+					r.setJudgeId(judgeId);
+					r.setRank(0);
+					rankMapper.insert(r);
+				}
+				ret =  selectClubListandRankByJudgeID(judgeId, false, null);
+			}
 		} catch (Exception e) {
 			// Auto-generated catch block
 			e.printStackTrace();
@@ -261,6 +284,10 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 			//Log.debug("map = " + map);
 		}
 		Log.debug("from GreetingServiceImpl Returning x");
+		if(x == null || x.size() == 0){
+			resultsMapper.insertbatchResultsInsert(judgeId,clubId);
+			x = resultsMapper.selectResultsByJudge(judgeId,clubId);
+		}
 		return x;
 	}
 

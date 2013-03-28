@@ -93,4 +93,5 @@ public interface JudgesMapper {
      * @mbggenerated Tue Feb 05 11:54:28 CST 2013
      */
     int updateByPrimaryKey(Judges record);
+    List<Judges> selectJudgeListAll();
 }

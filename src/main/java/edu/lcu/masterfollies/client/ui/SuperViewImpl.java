@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -16,12 +17,16 @@ import com.google.gwt.user.client.ui.TabLayoutPanel;
 import edu.lcu.masterfollies.client.activity.SuperActivity;
 import edu.lcu.masterfollies.domain.ClubNames;
 import edu.lcu.masterfollies.shared.Log;
+import com.google.gwt.user.cellview.client.Column;
+import com.google.gwt.cell.client.EditTextCell;
+import com.google.gwt.cell.client.CheckboxCell;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.CheckBox;
 
 public class SuperViewImpl extends Composite implements SuperView {
 	private SuperActivity listener;
 	private TabLayoutPanel tabLayoutPanel;
 	private ListBox listBox_2;
-	private FlexTable flexTable;
 	private Button btnDownArrow;
 	private Button btnUpArrow;
 	
@@ -34,7 +39,7 @@ public class SuperViewImpl extends Composite implements SuperView {
 		
 		LayoutPanel layoutPanel = new LayoutPanel();
 		tabLayoutPanel.add(layoutPanel, "Club", false);
-		layoutPanel.setHeight("704px");
+		layoutPanel.setSize("722px", "704px");
 		
 			listBox_2 = new ListBox();
 			
@@ -59,19 +64,91 @@ public class SuperViewImpl extends Composite implements SuperView {
 			layoutPanel.setWidgetLeftWidth(btnUpArrow, 166.0, Unit.PX, 41.0, Unit.PX);
 			layoutPanel.setWidgetTopHeight(btnUpArrow, 54.0, Unit.PX, 45.0, Unit.PX);
 			listBox_2.clear();
-			
-		    flexTable = new FlexTable();
-			layoutPanel.add(flexTable);
-			//layoutPanel.setWidgetTopHeight(flexTable, 24.0, Unit.PX, 24.0, Unit.PX);
-			flexTable.setWidth("160px");
-			layoutPanel.setWidgetLeftWidth(flexTable, 223.0, Unit.PX, 160.0, Unit.PX);
-			
+		
 	
 		LayoutPanel layoutPanel_1 = new LayoutPanel();
 		tabLayoutPanel.add(layoutPanel_1, "Judge", false);
 		
+		Label lblAddAJudge = new Label("Add a Judge - * indicated reqiured");
+		layoutPanel_1.add(lblAddAJudge);
+		layoutPanel_1.setWidgetLeftWidth(lblAddAJudge, 0.0, Unit.PX, 477.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(lblAddAJudge, 0.0, Unit.PX, 18.0, Unit.PX);
+		
+		Label lblFirstName = new Label("First Name");
+		layoutPanel_1.add(lblFirstName);
+		layoutPanel_1.setWidgetLeftWidth(lblFirstName, 0.0, Unit.PX, 75.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(lblFirstName, 40.0, Unit.PX, 18.0, Unit.PX);
+		
+		Label lblLastName = new Label("Last Name");
+		layoutPanel_1.add(lblLastName);
+		layoutPanel_1.setWidgetLeftWidth(lblLastName, 0.0, Unit.PX, 75.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(lblLastName, 71.0, Unit.PX, 18.0, Unit.PX);
+		
+		Label lblUserName = new Label("User Name*");
+		layoutPanel_1.add(lblUserName);
+		layoutPanel_1.setWidgetLeftWidth(lblUserName, 0.0, Unit.PX, 75.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(lblUserName, 102.0, Unit.PX, 18.0, Unit.PX);
+		
+		Label lblPassword = new Label("Password*");
+		layoutPanel_1.add(lblPassword);
+		layoutPanel_1.setWidgetLeftWidth(lblPassword, 0.0, Unit.PX, 75.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(lblPassword, 133.0, Unit.PX, 18.0, Unit.PX);
+		
+		Label lblSuperJudge = new Label("Super Judge");
+		layoutPanel_1.add(lblSuperJudge);
+		layoutPanel_1.setWidgetLeftWidth(lblSuperJudge, 0.0, Unit.PX, 75.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(lblSuperJudge, 157.0, Unit.PX, 18.0, Unit.PX);
+		
+		TextBox textBoxFirstName = new TextBox();
+		layoutPanel_1.add(textBoxFirstName);
+		layoutPanel_1.setWidgetLeftWidth(textBoxFirstName, 81.0, Unit.PX, 157.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(textBoxFirstName, 33.0, Unit.PX, 25.0, Unit.PX);
+		
+		TextBox textBoxLastName = new TextBox();
+		layoutPanel_1.add(textBoxLastName);
+		layoutPanel_1.setWidgetLeftWidth(textBoxLastName, 81.0, Unit.PX, 157.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(textBoxLastName, 64.0, Unit.PX, 25.0, Unit.PX);
+		
+		TextBox textBoxUserName = new TextBox();
+		layoutPanel_1.add(textBoxUserName);
+		layoutPanel_1.setWidgetLeftWidth(textBoxUserName, 81.0, Unit.PX, 157.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(textBoxUserName, 95.0, Unit.PX, 25.0, Unit.PX);
+		
+		TextBox textBoxPassword = new TextBox();
+		layoutPanel_1.add(textBoxPassword);
+		layoutPanel_1.setWidgetLeftWidth(textBoxPassword, 81.0, Unit.PX, 157.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(textBoxPassword, 126.0, Unit.PX, 25.0, Unit.PX);
+		
+		CheckBox chckbxCheckOnlyIf = new CheckBox("Check *ONLY* if Super");
+		layoutPanel_1.add(chckbxCheckOnlyIf);
+		layoutPanel_1.setWidgetLeftWidth(chckbxCheckOnlyIf, 81.0, Unit.PX, 157.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(chckbxCheckOnlyIf, 157.0, Unit.PX, 19.0, Unit.PX);
+		
+		Button btnNewJudge = new Button("Add Judge");
+		layoutPanel_1.add(btnNewJudge);
+		layoutPanel_1.setWidgetLeftWidth(btnNewJudge, 105.0, Unit.PX, 86.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(btnNewJudge, 194.0, Unit.PX, 24.0, Unit.PX);
+		
+		Label lblCurrentJudgeList = new Label("Current Judge list");
+		layoutPanel_1.add(lblCurrentJudgeList);
+		layoutPanel_1.setWidgetLeftWidth(lblCurrentJudgeList, 365.0, Unit.PX, 201.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(lblCurrentJudgeList, 0.0, Unit.PX, 18.0, Unit.PX);
+		
+		ListBox listBoxCurrentJudge = new ListBox();
+		layoutPanel_1.add(listBoxCurrentJudge);
+		layoutPanel_1.setWidgetLeftWidth(listBoxCurrentJudge, 365.0, Unit.PX, 201.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(listBoxCurrentJudge, 24.0, Unit.PX, 151.0, Unit.PX);
+		listBoxCurrentJudge.setVisibleItemCount(5);
+		
+		Button btnDeleteJudge = new Button("Delete Judge");
+		layoutPanel_1.add(btnDeleteJudge);
+		layoutPanel_1.setWidgetLeftWidth(btnDeleteJudge, 401.0, Unit.PX, 115.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(btnDeleteJudge, 194.0, Unit.PX, 24.0, Unit.PX);
+		
+
+		
 		initWidget(tabLayoutPanel);
-		tabLayoutPanel.setHeight("302px");
+		tabLayoutPanel.setSize("715px", "580px");
 		}
 	    
 	
@@ -79,27 +156,10 @@ public class SuperViewImpl extends Composite implements SuperView {
 	public ListBox getListBox_2() {
 		return listBox_2;
 	}
-
-    @Override
-	public FlexTable getFlexTable() {
-		// TODO Auto-generated method stub
-		return flexTable;
-	}
     
    @Override
 	public void displayOrder(List<ClubNames> results) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setOrder() {
-		
-	}
-
-	@Override
-	public void setEventBus(HandlerManager eventBus) {
-		// Auto-generated method stub
 		
 	}
 
@@ -129,5 +189,16 @@ public class SuperViewImpl extends Composite implements SuperView {
 	}
 
 
-	
+	@Override
+	public void setOrder() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void setEventBus(HandlerManager eventBus) {
+		// TODO Auto-generated method stub
+		
+	}
 }

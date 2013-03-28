@@ -35,7 +35,6 @@ public interface SuperView extends IsWidget {
 
 	public void displayOrder(List<ClubNames> results);
 	ListBox getListBox_2();
-	FlexTable getFlexTable();
 	HasClickHandlers getUpArrow();
 	HasClickHandlers getDownArrow();
 

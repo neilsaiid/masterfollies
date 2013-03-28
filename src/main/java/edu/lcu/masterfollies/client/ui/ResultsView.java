@@ -34,6 +34,7 @@ public interface ResultsView extends IsWidget {
 	public void setLblTitle(String string);
 	void setResults(List<Map<String, Object>> results);
 	Button getBtnNewButton();
+	Button getBtnNextShow();
 	HTMLPanel getPanel();
 	public FocusWidget getbtnBack();
 

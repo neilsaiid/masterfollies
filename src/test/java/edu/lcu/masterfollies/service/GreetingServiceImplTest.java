@@ -4,7 +4,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.logging.Log;
@@ -18,11 +20,14 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import edu.lcu.masterfollies.client.GreetingService;
 import edu.lcu.masterfollies.domain.ClubNames;
 import edu.lcu.masterfollies.domain.ClubNamesMapper;
 import edu.lcu.masterfollies.domain.Judges;
 import edu.lcu.masterfollies.domain.JudgesMapper;
+import edu.lcu.masterfollies.domain.RankExample;
+import edu.lcu.masterfollies.domain.RankMapper;
+import edu.lcu.masterfollies.domain.ResultsExample;
+import edu.lcu.masterfollies.domain.ResultsMapper;
 import edu.lcu.masterfollies.server.GreetingServiceImpl;
 
 /**
@@ -144,6 +149,109 @@ public class GreetingServiceImplTest implements BeanFactoryAware {
 		assertTrue (clubReturn.get(0).getClubName().equals(clubName));
 		assertTrue (!clubReturn.get(1).getClubName().equals(clubName));
 		
+  }
+  @Test
+  public void testResultsAutoPopulateWhenMissingData(){
+	  JudgesMapper jm = (JudgesMapper) bf.getBean(JudgesMapper.class);
+	  Judges judge = new Judges();
+		judge.setFirstName("insert");
+		judge.setLastName("tester");
+		judge.setUserName("it");
+		judge.setPassword("test");
+		log.debug("id= " + judge.getId());
+		jm.insertSelective(judge);
+		log.debug("id= " + judge.getId());
+		Judges workingJudge = jm.selectByPrimaryKey(judge.getId());
+
+		GreetingServiceImpl service = new GreetingServiceImpl();
+		List<ClubNames> order = service.getClubOrderList();
+		ClubNames club = order.get(0);
+		Integer clubId = club.getId();
+		for (ClubNames i: order){
+			log.debug("club : " +  i);
+			}
+	  
+	  GreetingServiceImpl gService = new GreetingServiceImpl();
+		
+		List<Map<String, Object>> returnType = gService.selectResultsByJudge(workingJudge.getId(), clubId, new Date());
+		assertTrue (returnType.size() != 0);
+		
+		ResultsExample re = new ResultsExample();
+		re.createCriteria().andJudgeIdEqualTo(workingJudge.getId());
+		ResultsMapper resultsMapper = bf.getBean(ResultsMapper.class);
+		resultsMapper.deleteByExample(re);
+		
+		jm.deleteByPrimaryKey(workingJudge.getId());
+		
+			
+  }
+  @Test
+  public void testResultsWhenAutoPopulateNotNeeded(){
+	  JudgesMapper jm = (JudgesMapper) bf.getBean(JudgesMapper.class);
+	  List<Judges> judge = jm.selectJudgeListAll();
+	  Judges firstJudge = judge.get(0);
+	  
+		
+		ClubNamesMapper c = (ClubNamesMapper) bf.getBean(ClubNamesMapper.class);
+		GreetingServiceImpl service = new GreetingServiceImpl();
+		List<ClubNames> order = service.getClubOrderList();
+		ClubNames club = order.get(0);
+		Integer clubId = club.getId();
+		for (ClubNames i: order){
+			log.debug("club : " +  i);
+			}
+	  
+	  GreetingServiceImpl gService = new GreetingServiceImpl();
+
+		
+		List<Map<String, Object>> returnType = gService.selectResultsByJudge(firstJudge.getId(), clubId, new Date());
+		assertTrue (returnType.size() != 0);
+		
+		
+			
+  }
+  @Test
+  public void testInsertRankForJudgeWithNoRank(){
+	  JudgesMapper jm = (JudgesMapper) bf.getBean(JudgesMapper.class);
+	  Judges judge = new Judges();
+		judge.setFirstName("insert");
+		judge.setLastName("tester");
+		judge.setUserName("it");
+		judge.setPassword("test");
+		log.debug("id= " + judge.getId());
+		jm.insertSelective(judge);
+		log.debug("id= " + judge.getId());
+		Judges workingJudge = jm.selectByPrimaryKey(judge.getId());
+
+		GreetingServiceImpl service = new GreetingServiceImpl();
+		List<ClubNames> order = service.getClubOrderList();
+		ClubNames club = order.get(0);
+		Integer clubId = club.getId();
+		
+	  RankMapper rm = (RankMapper) bf.getBean(RankMapper.class);
+//	  Rank rank = new Rank();
+//	  rank.setClubId(clubId);
+//	  rank.setJudgeId(workingJudge.getId());
+
+	  
+	  GreetingServiceImpl gService = new GreetingServiceImpl();
+		List<Map<String, Object>> list = gService.getClubListBoys(workingJudge.getId(), new Date());
+		log.debug(list);
+		assertTrue(list.size() != 0);
+		
+		ResultsExample re = new ResultsExample();
+		re.createCriteria().andJudgeIdEqualTo(workingJudge.getId());
+		ResultsMapper resultsMapper = bf.getBean(ResultsMapper.class);
+		resultsMapper.deleteByExample(re);
+		
+		RankExample raEx = new RankExample();
+		raEx.createCriteria().andJudgeIdEqualTo(workingJudge.getId());
+		
+		int count = rm.deleteByExample(raEx);	
+		assertTrue(count > 0);
+		
+		jm.deleteByPrimaryKey(workingJudge.getId());
+  
   }
   
   

@@ -27,6 +27,7 @@ public class SuperActivity extends BasePresenter implements
 	private final EventBus eventBus;
 	
 	private SuperView display;
+	private List<ClubNames> clubOrderList;
 	
 	
 	public SuperActivity(SuperPlace place, ClientFactory clientFactory) {
@@ -67,15 +68,6 @@ public class SuperActivity extends BasePresenter implements
 		          }
 		          else
 		        	  x.setSelectedIndex(place + 1);
-		        FlexTable f = display.getFlexTable(); {
-		        	for (ClubNames m: result){
-						String clubName = (String) m.getClubName();
-		        		
-					    f.setText(row, 0, clubName);
-					    row += 1;
-		        	}
-			     
-		        }
 		          
 			}
 			
@@ -137,9 +129,14 @@ public class SuperActivity extends BasePresenter implements
 		try {
 			Log.debug("StartMethod in SuperActivity");
 			display.setPresenter(this);
-			getClubOrderList();
+			clubOrderList = clientFactory.getClubOrderList();
+			ListBox x = display.getListBox_2();
+	          for (ClubNames clubName: clubOrderList) {
+	        	   x.addItem(clubName.getClubName());
+	          }
 			panel.setWidget(display.asWidget());
-		} catch (Exception e) {
+		} 
+	          catch (Exception e) {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -155,6 +152,7 @@ public class SuperActivity extends BasePresenter implements
 
 			@Override
 			public void onSuccess(List<ClubNames> result) {
+				clientFactory.setClubOrderList(result);
 				int row = 0;
 				ListBox x = display.getListBox_2();
 		          for (ClubNames clubName: result) {

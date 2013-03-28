@@ -426,5 +426,10 @@ public class ResultsViewImpl extends Composite implements ResultsView {
 		
 		return btnBack;
 	}
+	@Override
+	public Button getBtnNextShow() {
+		
+		return btnNextShow;
+	}
 
 }

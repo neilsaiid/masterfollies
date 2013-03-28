@@ -280,7 +280,7 @@
   <select id="selectClubListandRankByJudgeID" resultType="map">
 	select club_names.id as club_names_id, club_names.club_name, club_names.girl, rank.id as rank_id, rank
 	from club_names
-	join rank on rank.club_id = club_names.id 
+	left join rank on rank.club_id = club_names.id 
 	where rank.judge_id = #{judge_id,jdbcType=INTEGER} and girl = #{girl,jdbcType=BIT}
 	order by club_names.club_name
   </select>
