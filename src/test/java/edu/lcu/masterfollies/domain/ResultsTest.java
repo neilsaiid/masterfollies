@@ -123,6 +123,10 @@ public class ResultsTest implements BeanFactoryAware {
 		rm.deleteByPrimaryKey(r.getId());
 		log.debug("This test has been deleted successfully.");
 	}
+	@Test
+	public void testGetGirlsClubList(){
+		
+	}
 }
 	
 

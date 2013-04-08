@@ -33,7 +33,7 @@ public class ClubListActivity extends BasePresenter implements
 	private final GreetingServiceAsync rpcService;
 	private final EventBus eventBus;
 	private ClubListView clubListView;
-	
+
 	DateTimeFormat dateFormat = DateTimeFormat.getFormat("MMM dd, yyyy 'at' hh:mm a");
 	private Judges judge; 
 
@@ -48,7 +48,7 @@ public class ClubListActivity extends BasePresenter implements
 
 		bind();
 	}
-	
+
 	public void bind() {
 
 		final AsyncDataProvider<Map<String, Object>> provider = new AsyncDataProvider<Map<String, Object>>() {
@@ -57,7 +57,7 @@ public class ClubListActivity extends BasePresenter implements
 					getClubListBoys(display, this);
 				}
 			};
-		
+
 		try {
 			provider.addDataDisplay(clientFactory.getClubListView()
 					.getTblClubList());
@@ -73,7 +73,7 @@ public class ClubListActivity extends BasePresenter implements
 				getClubListGirls(display, this);
 			}
 		};
-	
+
 	try {
 		providerGirls.addDataDisplay(clientFactory.getClubListView()
 				.getTblClubListGirls());
@@ -128,7 +128,7 @@ public class ClubListActivity extends BasePresenter implements
 		};
 		rpcService.getClubListGirls(judge.getId(), new Date(),callback);
 	}
-		
+
 
 	private void getClubListBoys(HasData<Map<String, Object>> display,
 			final AsyncDataProvider<Map<String, Object>> dp) {		
@@ -162,16 +162,16 @@ public class ClubListActivity extends BasePresenter implements
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		Log.debug("Start Method in ClubListAcivity");
-		
-		
+
+
 		try {
 			judge = ((ClubListPlace) clientFactory.getPlaceController()
 					.getWhere()).getJudge();
 			Log.debug("Judge: " + judge);
 			clubListView.setLblTitle(
 					"Ratings for Judge " + judge.getFirstName() + " " + judge.getLastName());
-			
-			
+
+
 			clubListView.setPresenter(this);
 			containerWidget.setWidget(clubListView.asWidget());
 		} catch (Exception e) {
@@ -203,7 +203,7 @@ public class ClubListActivity extends BasePresenter implements
 	@Override
 
 	public void goToResults(String nameOfClub, Integer clubId) {
-		
+
 		ResultsPlace resultsPlace = new ResultsPlace("results", judge, clubId, nameOfClub);
 		clientFactory.getPlaceController().goTo(resultsPlace);
 	}
@@ -221,7 +221,7 @@ public class ClubListActivity extends BasePresenter implements
 
 			@Override
 			public void onSuccess(Void result) {
-				
+
 				Log.debug("SUCCESS DONE");
 			}
 		};

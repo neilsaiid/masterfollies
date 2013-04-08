@@ -15,7 +15,6 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy;
-import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -63,7 +62,7 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 	private VerticalPanel verticalPanel_Boys;
 	private VerticalPanel verticalPanel_Girls;
 	private CellTable<Map<String, Object>> tblClubListGirls;
-	private TextColumn<Map<String, Object>> ClubNameGirls;
+	//private TextColumn<Map<String, Object>> ClubNameGirls;
 	private Column<Map<String, Object>, Boolean> column_Rank3;
 	private Column<Map<String, Object>, Boolean> column_Rank2;
 	private Column<Map<String, Object>, Boolean> column_Rank1;
@@ -80,6 +79,17 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 	public void setTblClassList(CellTable<Map<String, Object>> tblCourseList) {
 
 		this.tblClubList = tblCourseList;
+	}
+	@Override
+
+	public CellTable<Map<String, Object>> getTblClubList() {
+		return tblClubList;
+	}
+
+
+	@Override
+	public HasData<Map<String, Object>> getTblClubListGirls() {
+		return tblClubListGirls;
 	}
 
 	public Label getTextToServerLabel() {
@@ -400,7 +410,7 @@ public class ClubListViewImpl extends Composite implements ClubListView {
   });
 		
 		contentTableDecorator.add(errorLabel);
-
+		tblClubListGirls.setVisible(true);
 	}
 
 
@@ -427,16 +437,6 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 		return null;
 	}
 
-	@Override
 
-	public CellTable<Map<String, Object>> getTblClubList() {
-		return tblClubList;
-	}
-
-
-	@Override
-	public HasData<Map<String, Object>> getTblClubListGirls() {
-		return tblClubListGirls;
-	}
 
 }
