@@ -69,8 +69,8 @@ public class ClubListActivity extends BasePresenter implements
 
 	final AsyncDataProvider<Map<String, Object>> providerGirls = new AsyncDataProvider<Map<String, Object>>() {
 			@Override
-			protected void onRangeChanged(HasData<Map<String, Object>> display) {
-				getClubListGirls(display, this);
+			protected void onRangeChanged(HasData<Map<String, Object>> hasData) {
+				getClubListGirls(hasData, this);
 			}
 		};
 
@@ -103,13 +103,38 @@ public class ClubListActivity extends BasePresenter implements
 		}
 	}
 
-	protected void getClubListGirls(HasData<Map<String, Object>> hasData,
-			final AsyncDataProvider<Map<String, Object>> gdp) {
+//	private void getClubListGirls(HasData<Map<String, Object>> hasData,
+//			final AsyncDataProvider<Map<String, Object>> gdp) {
+//		Log.debug("CLIENT getClassListGirls");
+//		this.judge = ((ClubListPlace) clientFactory.getPlaceController().getWhere()).getJudge();
+//		final int start = hasData.getVisibleRange().getStart();
+//		final int length = hasData.getVisibleRange().getLength();
+//		AsyncCallback<List<Map<String, Object>>> callback = new AsyncCallback<List<Map<String, Object>>>() {
+//			@Override
+//			public void onFailure(Throwable caught) {
+//				Log.debug("FAIL Range " + caught.getMessage());
+//				Window.alert(caught.getMessage());
+//				caught.printStackTrace();
+//			}
+//			@Override
+//			public void onSuccess(List<Map<String, Object>> result) {	
+//				Log.debug("GDP = " + gdp);
+//				Log.debug("RESULT = " + result);
+//				gdp.updateRowCount(result.size(), /* exact(not estimate) = */
+//						true);				
+//				gdp.updateRowData(start, result);												
+//				Log.debug("SUCCESS DONE");
+//			}
+//		};
+//		rpcService.getClubListGirls(judge.getId(), new Date(),callback);
+//	}
+	private void getClubListGirls(HasData<Map<String, Object>> display,
+			final AsyncDataProvider<Map<String, Object>> gdp) {		
 		Log.debug("CLIENT getClassList");
 		this.judge = ((ClubListPlace) clientFactory.getPlaceController().getWhere()).getJudge();
-		final int start = hasData.getVisibleRange().getStart();
-		final int length = hasData.getVisibleRange().getLength();
-		AsyncCallback<List<Map<String, Object>>> callback = new AsyncCallback<List<Map<String, Object>>>() {
+		final int start = display.getVisibleRange().getStart();
+		final int length = display.getVisibleRange().getLength();
+		AsyncCallback<List<Map<String,Object>>> callback = new AsyncCallback<List<Map<String,Object>>>() {
 			@Override
 			public void onFailure(Throwable caught) {
 				Log.debug("FAIL Range " + caught.getMessage());
@@ -117,16 +142,21 @@ public class ClubListActivity extends BasePresenter implements
 				caught.printStackTrace();
 			}
 			@Override
-			public void onSuccess(List<Map<String, Object>> result) {
-				Log.debug("GDP = " + gdp);
-				Log.debug("RESULT = " + result);
-				gdp.updateRowCount(result.size(), /* exact(not estimate) = */
-						true);
-				gdp.updateRowData(start, result);						
-				Log.debug("SUCCESS DONE");
+			public void onSuccess(List<Map<String, Object>> result) {	
+				try {
+					Log.debug("GirlsDataProvider = " + gdp);
+					Log.debug("RESULT = " + result);
+					gdp.updateRowCount(result.size(), /* exact(not estimate) = */
+							true);				
+					gdp.updateRowData(start, result);												
+					Log.debug("SUCCESS DONE");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		};
-		rpcService.getClubListGirls(judge.getId(), new Date(),callback);
+		rpcService.getClubListGirls(judge.getId(), new Date(), callback);
+
 	}
 
 
@@ -143,9 +173,10 @@ public class ClubListActivity extends BasePresenter implements
 				Window.alert(caught.getMessage());
 				caught.printStackTrace();
 			}
-
 			@Override
-			public void onSuccess(List<Map<String, Object>> result) {				
+			public void onSuccess(List<Map<String, Object>> result) {	
+				Log.debug("DP = " + dp);
+				Log.debug("RESULT = " + result);
 				dp.updateRowCount(result.size(), /* exact(not estimate) = */
 						true);				
 				dp.updateRowData(start, result);												

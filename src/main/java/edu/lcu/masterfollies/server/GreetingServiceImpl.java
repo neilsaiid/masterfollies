@@ -288,6 +288,14 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 			resultsMapper.insertbatchResultsInsert(judgeId,clubId);
 			x = resultsMapper.selectResultsByJudge(judgeId,clubId);
 		}
+		Log.debug("X in GreetingServiceImpl is: " + x);
+		for (Map<String, Object> t: x){
+			for(Map.Entry<String, Object> so: t.entrySet()){
+				Log.debug("Key = " + so.getKey());
+				Log.debug("Values Class is: " + so.getValue().getClass());
+			}
+			
+		}
 		return x;
 	}
 
@@ -298,9 +306,12 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		List<Map<String, Object>> x = clubNamesMapper.selectClubListandRankByJudgeID(judgeId, girl);
 		Log.debug("Clubs and ranks are: " + x);
 		for(Map<String,Object> map:x){
-			//Log.debug("map = " + map);
+			for(Map.Entry<String, Object> so: map.entrySet()){
+				Log.debug("Key = " + so.getKey());
+				Log.debug("Values Class is: " + so.getValue().getClass());
+			}
 		}
-		Log.debug("from GreetingServiceImpl Returning x");
+		Log.debug("from GreetingServiceImpl Returning x" + xh);
 		return x;
 	}
 

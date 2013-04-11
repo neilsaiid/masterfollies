@@ -63,12 +63,14 @@ public class ClubListViewImpl extends Composite implements ClubListView {
 	private VerticalPanel verticalPanel_Girls;
 	private CellTable<Map<String, Object>> tblClubListGirls;
 	//private TextColumn<Map<String, Object>> ClubNameGirls;
+	private Column<Map<String, Object>, Boolean> column_Rank4;
 	private Column<Map<String, Object>, Boolean> column_Rank3;
 	private Column<Map<String, Object>, Boolean> column_Rank2;
 	private Column<Map<String, Object>, Boolean> column_Rank1;
 	private Column<Map<String, Object>, Boolean> column_Rank1Girls;
 	private Column<Map<String, Object>, Boolean> column_Rank2Girls;
 	private Column<Map<String, Object>, Boolean> column_Rank3Girls;
+	private Column<Map<String, Object>, Boolean> column_Rank4Girls;
 	
 	CheckboxCell[][] cba;
 	
@@ -275,6 +277,35 @@ public class ClubListViewImpl extends Composite implements ClubListView {
                     }
          
           });
+	            column_Rank4 = new Column<Map<String, Object>, Boolean>(new CheckboxCell()) {
+			      	@Override
+			      	public Boolean getValue(Map<String, Object> object) {
+			      		Integer rankValue = (Integer) object.get("rank");
+			      		if(rankValue != null && rankValue == 4)
+			      			return (Boolean) true;
+			      		return false;
+			      	
+			      	}
+			      };
+			      tblClubList.addColumn(column_Rank4, "Rank 4");
+		            column_Rank4.setFieldUpdater(new FieldUpdater<Map<String, Object>, Boolean>() {
+
+	                    @Override
+	                    public void update(int index, Map<String, Object> object, Boolean value) {
+	                  	  if (value) {
+	                  		  object.put("rank", 4);
+	                            listener.updateRank((Integer) object.get("rank_id"), 4);
+	                            tblClubList.redraw();
+	                  	  }
+	                  	  else {
+	                		  object.put("rank", 0);
+	                		  listener.updateRank((Integer) object.get("rank_id"), 0);
+	                  	  }
+	                  	
+	                  	  
+	                    }
+	         
+	          });
 		      tblClubList.setVisible(true);
 	//	/******* START OF GIRLS PANELS ******************/
 		verticalPanel_Girls = new VerticalPanel();
@@ -408,6 +439,35 @@ public class ClubListViewImpl extends Composite implements ClubListView {
             }
  
   });
+		column_Rank4Girls = new Column<Map<String, Object>, Boolean>(new CheckboxCell()) {
+	      	@Override
+	      	public Boolean getValue(Map<String, Object> object) {
+	      		Integer rankValue = (Integer) object.get("rank");
+	      		if(rankValue != null && rankValue == 4)
+	      			return (Boolean) true;
+	      		return false;
+	      	
+	      	}
+	      };
+	      tblClubListGirls.addColumn(column_Rank4Girls, "Rank 4");
+	      column_Rank4Girls.setFieldUpdater(new FieldUpdater<Map<String, Object>, Boolean>() {
+
+                @Override
+                public void update(int index, Map<String, Object> object, Boolean value) {
+              	  if (value) {
+              		  object.put("rank", 4);
+                        listener.updateRank((Integer) object.get("rank_id"), 4);
+                        tblClubListGirls.redraw();
+              	  }
+              	  else {
+            		  object.put("rank", 0);
+            		  listener.updateRank((Integer) object.get("rank_id"), 0);
+              	  }
+              	
+              	  
+                }
+     
+      });
 		
 		contentTableDecorator.add(errorLabel);
 		tblClubListGirls.setVisible(true);
