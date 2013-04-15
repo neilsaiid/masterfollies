@@ -235,9 +235,12 @@ public class GreetingServiceImplTest implements BeanFactoryAware {
 
 	  
 	  GreetingServiceImpl gService = new GreetingServiceImpl();
-		List<Map<String, Object>> list = gService.getClubListBoys(workingJudge.getId(), new Date());
+		List<Map<String, Object>> list = gService.getClubList(workingJudge.getId(),false, new Date());
 		log.debug(list);
 		assertTrue(list.size() != 0);
+		
+		List<Map<String, Object>> listGirls = gService.getClubList(workingJudge.getId(),true, new Date());
+		log.debug(listGirls);
 		
 		ResultsExample re = new ResultsExample();
 		re.createCriteria().andJudgeIdEqualTo(workingJudge.getId());

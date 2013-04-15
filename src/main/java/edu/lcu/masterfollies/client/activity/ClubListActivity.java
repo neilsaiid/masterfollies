@@ -155,7 +155,7 @@ public class ClubListActivity extends BasePresenter implements
 				}
 			}
 		};
-		rpcService.getClubListGirls(judge.getId(), new Date(), callback);
+		rpcService.getClubList(judge.getId(),true, new Date(), callback);
 
 	}
 
@@ -183,7 +183,7 @@ public class ClubListActivity extends BasePresenter implements
 				Log.debug("SUCCESS DONE");
 			}
 		};
-		rpcService.getClubListBoys(judge.getId(),new Date(), callback);
+		rpcService.getClubList(judge.getId(),false, new Date(), callback);
 
 	}
 

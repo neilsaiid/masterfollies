@@ -203,10 +203,10 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 	@Override
 
-	public List<Map<String,Object>> getClubListBoys(Integer judgeId, Date timestamp){
+	public List<Map<String,Object>> getClubList(Integer judgeId, Boolean isGirl, Date timestamp){
 		try {
 			Log.debug("from GreetingServiceImpl GET CLUB LIST BOYS");
-			List<Map<String, Object>> ret =  selectClubListandRankByJudgeID(judgeId, false, null);
+			List<Map<String, Object>> ret =  selectClubListandRankByJudgeID(judgeId, isGirl, null);
 			if(ret.size() == 0){
 				
 				for(ClubNames club:getClubOrderList()){
@@ -216,7 +216,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 					r.setRank(0);
 					rankMapper.insert(r);
 				}
-				ret =  selectClubListandRankByJudgeID(judgeId, false, null);
+				ret =  selectClubListandRankByJudgeID(judgeId, isGirl, null);
 			}
 			return ret;
 		} catch (Exception e) {
@@ -227,28 +227,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		return null;
 	}
 
-	@Override
-	public List<Map<String,Object>> getClubListGirls(Integer judgeId, Date timestamp){
-		try {
-			Log.debug("from GreetingServiceImpl GET CLUB LIST GIRLS");
-			List<Map<String, Object>> ret =  selectClubListandRankByJudgeID(judgeId, true, null);
-			if(ret.size() == 0){
-				
-				for(ClubNames club:getClubOrderList()){
-					Rank r = new Rank();
-					r.setClubId(club.getId());
-					r.setJudgeId(judgeId);
-					r.setRank(0);
-					rankMapper.insert(r);
-				}
-				ret =  selectClubListandRankByJudgeID(judgeId, false, null);
-			}
-		} catch (Exception e) {
-			// Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
+	
 	@Override
 	public Void batchInsert(Integer judgeId, Integer clubNameId, Date timestamp) {
 		// Auto-generated method stub
@@ -311,7 +290,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 				Log.debug("Values Class is: " + so.getValue().getClass());
 			}
 		}
-		Log.debug("from GreetingServiceImpl Returning x" + xh);
+		Log.debug("from GreetingServiceImpl Returning x" + x);
 		return x;
 	}
 
@@ -343,6 +322,4 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		return cn;
 	}
 
-
-	
 }

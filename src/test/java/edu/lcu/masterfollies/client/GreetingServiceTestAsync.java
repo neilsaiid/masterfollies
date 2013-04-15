@@ -105,18 +105,7 @@ public class GreetingServiceTestAsync extends RemoteServiceServlet implements Gr
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public void getClubListBoys(Integer judgeId,Date timestamp, 
-			AsyncCallback<List<Map<String, Object>>> callback) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void getClubListGirls(Integer judgeId,Date timestamp, 
-			AsyncCallback<List<Map<String, Object>>> callback) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	@Override
 	public void updateRankPoints(Integer rankId, Integer rank,Date timestamp, 
 			AsyncCallback<Void> callback) {
@@ -142,6 +131,12 @@ public class GreetingServiceTestAsync extends RemoteServiceServlet implements Gr
 	@Override
 	public void changeClubOrder(String clubName, Boolean up,
 			AsyncCallback<List<ClubNames>> callback) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void getClubList(Integer judgeId, Boolean isGirl, Date timestamp,
+			AsyncCallback<List<Map<String, Object>>> callback) {
 		// TODO Auto-generated method stub
 		
 	}
