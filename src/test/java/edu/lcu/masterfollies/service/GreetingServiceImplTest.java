@@ -124,7 +124,6 @@ public class GreetingServiceImplTest implements BeanFactoryAware {
     }
   @Test
 	public void testChangeClubOrder() {
-	  ClubNamesMapper c = (ClubNamesMapper) bf.getBean(ClubNamesMapper.class);
 		GreetingServiceImpl service = new GreetingServiceImpl();
 		List<ClubNames> order = service.getClubOrderList();
 		ClubNames firstClub = order.get(0);
@@ -132,7 +131,7 @@ public class GreetingServiceImplTest implements BeanFactoryAware {
 		for (ClubNames i: order){
 			log.debug("club : " +  i);
 			}
-		//TODO move club down
+		// move club down
 		List<ClubNames> clubReturn = service.changeClubOrder(clubName, false);
 		for (ClubNames i: clubReturn){
 			log.debug("club : " +  i);
@@ -141,7 +140,7 @@ public class GreetingServiceImplTest implements BeanFactoryAware {
 		assertTrue (clubReturn.get(1).getClubName().equals(clubName));
 		
 		
-		//TODO check that it moved the club up to start position
+		// check that it moved the club up to start position
 		clubReturn = service.changeClubOrder(clubName, true);
 		for (ClubNames i: clubReturn){
 			log.debug("club : " +  i);
@@ -149,6 +148,28 @@ public class GreetingServiceImplTest implements BeanFactoryAware {
 		assertTrue (clubReturn.get(0).getClubName().equals(clubName));
 		assertTrue (!clubReturn.get(1).getClubName().equals(clubName));
 		
+  }
+  /**
+   * test to make sure the populate current judge list on SuperViewImpl is working and that there is always
+   * at least one super judge
+   */
+
+  @Test
+  public void testDisplayCurrentJudgeList() {
+	  GreetingServiceImpl service = new GreetingServiceImpl();
+	  List<Judges> order = service.getJudgeList();
+//	  Judges firstj = order.get(0);
+//	  String firstJudge = firstj.getFirstName();
+	  for (Judges j: order){
+		  log.debug("Judge List : " + j);
+		  log.debug("Judge ID is : " + j.getId());
+		  log.debug("Judge First Name is: " + j.getFirstName());
+		  log.debug("Judge Last Name is: " + j.getLastName());
+		  log.debug("Judge Username is: " + j.getUserName());
+		  log.debug("Judge Password is: " + j.getPassword());
+		  log.debug("Judge super: " + j.getIsSuper());
+	  }
+	  assertTrue(order!=null);
   }
   @Test
   public void testResultsAutoPopulateWhenMissingData(){

@@ -189,6 +189,15 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		
 	}
 	@Override
+	public List<Judges> getJudgeList(){
+		Log.debug("from GreetingServiceImpl getJudgeList");
+		List<Judges> j = selectAllCurrentJudges();
+		
+		return j;
+		
+	}
+
+	@Override
 	public List<ClubNames> getClubOrderList(){
 		try {
 			Log.debug("from GreetingServiceImpl getClubOrderList");
@@ -320,6 +329,14 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 			
 		}
 		return cn;
+	}
+	@Override
+	public List<Judges> selectAllCurrentJudges(){
+		List<Judges> j = judgesMapper.selectJudgeListAll();
+		for (Judges map:j){
+			
+		}
+		return j;
 	}
 
 }

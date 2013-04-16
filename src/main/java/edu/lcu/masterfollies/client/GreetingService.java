@@ -36,6 +36,8 @@ public interface GreetingService extends RemoteService {
   List<ClubNames> getClubOrderList();
   List<ClubNames> selectClubNamesByCurrentClubOrder();
   List<ClubNames> changeClubOrder(String clubName, Boolean up);
+  List<Judges> getJudgeList();
+  List<Judges> selectAllCurrentJudges();
 
   
 }

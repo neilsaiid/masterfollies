@@ -140,6 +140,16 @@ public class GreetingServiceTestAsync extends RemoteServiceServlet implements Gr
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void getJudgeList(AsyncCallback<List<Judges>> callback) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void selectAllCurrentJudges(AsyncCallback<List<Judges>> callback) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 

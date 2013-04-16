@@ -9,7 +9,6 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.ListBox;
 
 import edu.lcu.masterfollies.client.ClientFactory;
@@ -17,6 +16,7 @@ import edu.lcu.masterfollies.client.GreetingServiceAsync;
 import edu.lcu.masterfollies.client.place.SuperPlace;
 import edu.lcu.masterfollies.client.ui.SuperView;
 import edu.lcu.masterfollies.domain.ClubNames;
+import edu.lcu.masterfollies.domain.Judges;
 import edu.lcu.masterfollies.shared.Log;
 
 public class SuperActivity extends BasePresenter implements
@@ -28,6 +28,7 @@ public class SuperActivity extends BasePresenter implements
 	
 	private SuperView display;
 	private List<ClubNames> clubOrderList;
+	private List<Judges> judgeList;
 	
 	
 	public SuperActivity(SuperPlace place, ClientFactory clientFactory) {
@@ -107,23 +108,20 @@ public class SuperActivity extends BasePresenter implements
 //		};
 //		rpcService.getClubOrderList(callback);
 		addHandler(this.display.getUpArrow().addClickHandler(new ClickHandler() {
-			
 			@Override
 			public void onClick(ClickEvent event) {
-				reorderList(true); 
-				
+				reorderList(true); 	
 			}
 		}));
 		addHandler(this.display.getDownArrow().addClickHandler(new ClickHandler() {
-			
 			@Override
 			public void onClick(ClickEvent event) {
-				
 				reorderList(false);
-				
 			}
 		}));
+		
 	}
+
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		try {
@@ -134,6 +132,8 @@ public class SuperActivity extends BasePresenter implements
 	          for (ClubNames clubName: clubOrderList) {
 	        	   x.addItem(clubName.getClubName());
 	          }
+	        getJudgeList();
+	        
 			panel.setWidget(display.asWidget());
 		} 
 	          catch (Exception e) {
@@ -153,13 +153,41 @@ public class SuperActivity extends BasePresenter implements
 			@Override
 			public void onSuccess(List<ClubNames> result) {
 				clientFactory.setClubOrderList(result);
-				int row = 0;
 				ListBox x = display.getListBox_2();
+				Log.debug("X has: " + x);
 		          for (ClubNames clubName: result) {
 		        	   x.addItem(clubName.getClubName());      
-			}
+		          }
 		
+			}
+		});
 	}
+	List<Judges> listOfJudges;
+	public void getJudgeList(){
+		rpcService.getJudgeList(new AsyncCallback<List<Judges>>(){
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Log.debug("SuperActivity Failed in getJudgeList");	
+			}
+
+			@Override
+			public void onSuccess(List<Judges> result) {
+				try {
+					listOfJudges = result;
+					 ListBox y = display.getListBoxCurrentJudge();
+					 Log.debug("Y has: " + y);
+						for(Judges judges: result){
+							Log.debug("listOfJudges has: " + listOfJudges);
+						y.addItem(judges.getId()+" "+judges.getFirstName()+" "+judges.getLastName()+"\t"+judges.getUserName()+" "+judges.getPassword()+"\t"+judges.getIsSuper());
+						}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+			
 		});
 	}
 

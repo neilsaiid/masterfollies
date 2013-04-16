@@ -24,6 +24,7 @@ public class SuperViewImpl extends Composite implements SuperView {
 	private ListBox listBox_2;
 	private Button btnDownArrow;
 	private Button btnUpArrow;
+	private ListBox listBoxCurrentJudge;
 	
 	/**
 	 * 
@@ -90,15 +91,15 @@ public class SuperViewImpl extends Composite implements SuperView {
 			layoutPanelClub.setWidgetLeftWidth(textBoxContactInfo, 132.0, Unit.PX, 143.0, Unit.PX);
 			layoutPanelClub.setWidgetTopHeight(textBoxContactInfo, 67.0, Unit.PX, 25.0, Unit.PX);
 			
-			Button btnAddClub = new Button("Add Club");
+			Button btnAddClub = new Button("Add/Update Club");
 			layoutPanelClub.add(btnAddClub);
-			layoutPanelClub.setWidgetLeftWidth(btnAddClub, 44.0, Unit.PX, 86.0, Unit.PX);
-			layoutPanelClub.setWidgetTopHeight(btnAddClub, 160.0, Unit.PX, 24.0, Unit.PX);
+			layoutPanelClub.setWidgetLeftWidth(btnAddClub, 107.0, Unit.PX, 168.0, Unit.PX);
+			layoutPanelClub.setWidgetTopHeight(btnAddClub, 171.0, Unit.PX, 24.0, Unit.PX);
 			
 			Button btnDeleteClub = new Button("Delete Club");
 			layoutPanelClub.add(btnDeleteClub);
-			layoutPanelClub.setWidgetLeftWidth(btnDeleteClub, 160.0, Unit.PX, 86.0, Unit.PX);
-			layoutPanelClub.setWidgetTopHeight(btnDeleteClub, 160.0, Unit.PX, 24.0, Unit.PX);
+			layoutPanelClub.setWidgetLeftWidth(btnDeleteClub, 565.0, Unit.PX, 86.0, Unit.PX);
+			layoutPanelClub.setWidgetTopHeight(btnDeleteClub, 171.0, Unit.PX, 24.0, Unit.PX);
 		
 	
 		LayoutPanel layoutPanelJudge = new LayoutPanel();
@@ -161,7 +162,7 @@ public class SuperViewImpl extends Composite implements SuperView {
 		
 		Button btnNewJudge = new Button("Add Judge");
 		layoutPanelJudge.add(btnNewJudge);
-		layoutPanelJudge.setWidgetLeftWidth(btnNewJudge, 30.0, Unit.PX, 86.0, Unit.PX);
+		layoutPanelJudge.setWidgetLeftWidth(btnNewJudge, 100.0, Unit.PX, 86.0, Unit.PX);
 		layoutPanelJudge.setWidgetTopHeight(btnNewJudge, 205.0, Unit.PX, 24.0, Unit.PX);
 		
 		Label lblCurrentJudgeList = new Label("Current Judge list");
@@ -169,24 +170,24 @@ public class SuperViewImpl extends Composite implements SuperView {
 		layoutPanelJudge.setWidgetLeftWidth(lblCurrentJudgeList, 365.0, Unit.PX, 201.0, Unit.PX);
 		layoutPanelJudge.setWidgetTopHeight(lblCurrentJudgeList, 11.0, Unit.PX, 18.0, Unit.PX);
 		
-		ListBox listBoxCurrentJudge = new ListBox();
+		listBoxCurrentJudge =new ListBox();
 		layoutPanelJudge.add(listBoxCurrentJudge);
 		layoutPanelJudge.setWidgetLeftWidth(listBoxCurrentJudge, 365.0, Unit.PX, 201.0, Unit.PX);
 		layoutPanelJudge.setWidgetTopHeight(listBoxCurrentJudge, 35.0, Unit.PX, 151.0, Unit.PX);
-		listBoxCurrentJudge.setVisibleItemCount(5);
+		listBoxCurrentJudge.setVisibleItemCount(20);
 		
 		Button btnDeleteJudge = new Button("Delete Judge");
 		layoutPanelJudge.add(btnDeleteJudge);
-		layoutPanelJudge.setWidgetLeftWidth(btnDeleteJudge, 131.0, Unit.PX, 115.0, Unit.PX);
+		layoutPanelJudge.setWidgetLeftWidth(btnDeleteJudge, 582.0, Unit.PX, 115.0, Unit.PX);
 		layoutPanelJudge.setWidgetTopHeight(btnDeleteJudge, 205.0, Unit.PX, 24.0, Unit.PX);
 		
 		LayoutPanel layoutPanelData = new LayoutPanel();
 		tabLayoutPanel.add(layoutPanelData, "Data", false);
 		
-		Button btnDelete = new Button("Delete");
+		Button btnDelete = new Button("Delete Database");
 		layoutPanelData.add(btnDelete);
-		layoutPanelData.setWidgetLeftWidth(btnDelete, 313.0, Unit.PX, 86.0, Unit.PX);
-		layoutPanelData.setWidgetTopHeight(btnDelete, 203.0, Unit.PX, 24.0, Unit.PX);
+		layoutPanelData.setWidgetLeftWidth(btnDelete, 313.0, Unit.PX, 136.0, Unit.PX);
+		layoutPanelData.setWidgetTopHeight(btnDelete, 208.0, Unit.PX, 24.0, Unit.PX);
 		
 		Label lblDeleteWarning = new Label("By clicking the button below, you will delete the data in the database that has the judge results");
 		layoutPanelData.add(lblDeleteWarning);
@@ -254,29 +255,28 @@ public class SuperViewImpl extends Composite implements SuperView {
 		return tabLayoutPanel;
 	}
 
-
 	@Override
 	public HasClickHandlers getUpArrow() {
 		return btnUpArrow;
 	}
-
 
 	@Override
 	public HasClickHandlers getDownArrow() {
 		return btnDownArrow;
 	}
 
-
 	@Override
 	public void setOrder() {
-		// TODO Auto-generated method stub
-		
+		//  Auto-generated method stub
 	}
-
 
 	@Override
 	public void setEventBus(HandlerManager eventBus) {
-		// TODO Auto-generated method stub
-		
+		//  Auto-generated method stub
+	}
+
+	@Override
+	public ListBox getListBoxCurrentJudge() {
+		return listBoxCurrentJudge;
 	}
 }
